@@ -83,12 +83,13 @@
 
 ### File Setting
 ```
+public
 src
 	db
 		models
 		schemas
 	services
 	routers
-	public
 	views
+	app.js
 ```
