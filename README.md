@@ -36,7 +36,7 @@
 
   <strong>2. 백엔드</strong>
     <br/>
-    <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
-    <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
-    <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"> 
-  
+    <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white">
+	<img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white">
+	<img src="https://img.shields.io/badge/Babel-F9DC3E?style=flat-square&logo=Babel&logoColor=white">
+	<img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white">
