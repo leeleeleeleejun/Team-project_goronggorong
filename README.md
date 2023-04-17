@@ -14,13 +14,14 @@
 
 ### File Setting
 ```
-public
-src
-	db
-		models
-		schemas
-	services
-	routers
-	views
-	app.js
+./
+├── public
+└── src
+    ├── app.js
+    ├── db
+    │   ├── models
+    │   └── schemas
+    ├── routers
+    ├── services
+    └── views
 ```
