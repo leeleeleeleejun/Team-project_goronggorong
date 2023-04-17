@@ -77,40 +77,9 @@
 ```
 db
 	models
-	Schema
-services(class)
+	schemas
+services
 routers
-public(img...)
-views(Frontend)
-package.json
-package-lock.json
-.gitignore
-.env
-README.md
-```
-
-```
-// User Schema
-_id
-name
-email
-password
-```
-
-```
-// Product Schema
-_id
-name
-price
-petType
-category
-```
-
-```
-// Order Schema
-_id
-User, ref: User
-ProductList, ref: Product
-totalPrice
-deliveryStatus
+public
+views
 ```
