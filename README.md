@@ -74,7 +74,7 @@
 
 ### File Setting
 ```
-./
+.root
 ├── public
 └── src
     ├── app.js
