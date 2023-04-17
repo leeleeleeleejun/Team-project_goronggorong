@@ -1,5 +1,4 @@
-# GoRongGoRong_ShoppingMall
-
+# 🐕GoRongGoRong_ShoppingMall🐈
     >애견용품들을 카테고리 별로 확인하고,
     >원하는 제품들은 장바구니에 담으며,
     >주문 및 배송을 할 수 있는 쇼핑몰 웹 서비스 제작 프로젝트 입니다.
@@ -26,3 +25,18 @@
      - 홍길동 (23) : “반려동물을 처음 키우는 데 어떻게 시작해야할지 모르겠어요”
        (용돈은 부족하지만 가성비 좋은 물건을 구매하고 싶어요!)
      - 직업: 대학생
+
+
+### 주요 사용 기술
+  <strong>1. 프론트엔드</strong>
+    <br/>
+    <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+    <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+
+  <strong>2. 백엔드</strong>
+    <br/>
+    <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+    <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
+    <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"> 
+  
