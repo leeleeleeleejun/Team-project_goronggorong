@@ -5,14 +5,13 @@
   box-sizing: border-box;
 }
 
-footer {
+body footer {
   background-color: #fafaf6;
   display: flex;
   align-items: end;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  margin-top: 50px;
 }
 p {
   margin-bottom: 4px;
