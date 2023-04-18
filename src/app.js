@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 // import morgan from 'morgan';
 
 // import { httpLogStream } from './utils/index.js';
+import { orderModel } from './db/models/order-model.js';
+import { ProductModel } from './db/models/product-model.js';
 
 // process.env에 설정한 환경변수 추가
 dotenv.config();
@@ -11,11 +13,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-    res.send('root');
+  res.send('root');
 });
 
 // app.use(morgan('dev', { stream: httpLogStream }));
 
 app.listen(port, () => {
-    console.log(`Connected to ${port}...`);
+  console.log(`Connected to ${port}...`);
 });
