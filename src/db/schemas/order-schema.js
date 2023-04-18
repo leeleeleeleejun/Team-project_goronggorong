@@ -5,6 +5,11 @@ const OrderSchema = new Schema({
   /*
     User : name, phone_number, address
   */
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   productList: [
     {
       product: {
@@ -23,10 +28,14 @@ const OrderSchema = new Schema({
     required: true,
   },
   // Admin
-  /* deliveryStatus: {
+  deliveryStatus: {
     type: String,
     required: true,
-  }, */
+  },
+  /*
+  paymentInfo
+  orderDate
+  } */
 });
 
-export { OrderSchema };
+export default OrderSchema;
