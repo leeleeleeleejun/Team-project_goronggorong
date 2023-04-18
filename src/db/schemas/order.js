@@ -20,3 +20,5 @@ const OrderSchema = new Schema({
     required: true,
   },
 });
+
+export { OrderSchema };
