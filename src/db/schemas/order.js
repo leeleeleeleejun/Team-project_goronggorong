@@ -1,4 +1,5 @@
 import { Schema } from 'mongoose';
+// import { ProductSchema } from './product';
 
 const OrderSchema = new Schema({
   /*
@@ -6,19 +7,26 @@ const OrderSchema = new Schema({
   */
   productList: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Product',
-      required: true,
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true,
+      },
+      amount: {
+        type: number,
+        required: true,
+      },
     },
   ],
   totalPrice: {
     type: Number,
     required: true,
   },
-  deliveryStatus: {
+  // Admin
+  /* deliveryStatus: {
     type: String,
     required: true,
-  },
+  }, */
 });
 
 export { OrderSchema };
