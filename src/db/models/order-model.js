@@ -3,7 +3,7 @@ import { OrderSchema } from '../schemas/order-schema.js';
 
 const Order = model('Order', OrderSchema);
 
-export class OrderModel {
+class OrderModel {
   async findAll() {
     const orders = await Order.find({});
 
