@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 // import morgan from 'morgan';
 
 // import { httpLogStream } from './utils/index.js';
-import { orderModel } from './db/models/order-model.js';
-import { ProductModel } from './db/models/product-model.js';
+import * as db from './db/index.js';
 
 // process.env에 설정한 환경변수 추가
 dotenv.config();
