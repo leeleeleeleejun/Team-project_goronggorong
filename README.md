@@ -105,7 +105,12 @@
 ### Branch
 - master: 금요일마다 Merge Request 요청
 - dev: 틈틈이 dev 브랜치에 feature 브랜치 Merge Request
+  - dev-FE
+  - dev-BE
 - feature: 기능 1개당 브랜치 하나
+  - feature-FE-order
+  - featuer-BE-api
+
 
 ### File Setting
 ```
