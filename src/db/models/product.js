@@ -1,9 +1,9 @@
 import { model } from 'mongoose';
 import { ProductSchema } from '../schemas/product-schema';
 
-const Product = model('product', ProductSchema);
+const Product = model('Product', ProductSchema);
 
-export class ProductModel {
+class ProductModel {
     async create(productInfo) {
         const newProduct = await Product.create(productInfo);
         return newProduct;
@@ -31,7 +31,6 @@ export class ProductModel {
     async delete(_id) {
         const deletedProduct = await Product.findOneAndDelete({ _id, returnOriginal: false });
         return deletedProduct;
-        
     }
 }
 
