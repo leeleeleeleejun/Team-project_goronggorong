@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "category": "food",
+        "name": "고롱 사료",
+        "price": 12900,
+        "imgUrl": "_",
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!"
+    },
+    {
+        "id": 1,
+        "category": "snack",
+        "name": "고롱 츄르",
+        "price": 7900,
+        "imgUrl": "_",
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!" 
+    },
+    {
+        "id": 2,
+        "category": "toy",
+        "name": "고롱 장난감",
+        "price": 6900,
+        "imgUrl": "_",
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!" 
+    },
+    {
+        "id": 3,
+        "category": "toilet",
+        "name": "고롱 배변패드",
+        "price": 17900,
+        "imgUrl": "_",
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!"
+    },
+    {
+        "id": 4,
+        "category": "fashion",
+        "name": "고롱 턱받이",
+        "price": 17900,
+        "imgUrl": "_",
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!"
+    }
+]
