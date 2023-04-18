@@ -1,0 +1,47 @@
+@import "../../reset.css";
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  box-sizing: border-box;
+}
+
+#products{
+  padding: 50px;
+}
+.page-size{
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+#prod-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+}
+.prod-item{
+  width: 100%;
+}
+.prod-link{
+  text-decoration: 0;
+  color: black;
+}
+
+.prod-thumb{
+  width: 100%;
+  border-radius: 8px;
+}
+
+.prod-title{
+  margin: 10px 0px;
+}
+.price-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price-info .price strong{
+  font-size: 24px;
+  font-weight: 500;
+  margin-right: 2px;
+}
