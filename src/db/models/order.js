@@ -3,7 +3,7 @@ import { OrderSchema } from '../schemas';
 
 const Order = mongoose.model('Order', OrderSchema);
 
-class OrderModel {
+export class OrderModel {
   async findAll() {
     const orders = await Order.find({});
 
@@ -11,4 +11,6 @@ class OrderModel {
   }
 }
 
-export { OrderModel };
+const orderModel = new OrderModel();
+
+export { orderModel };
