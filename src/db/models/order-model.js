@@ -13,4 +13,4 @@ class OrderModel {
 
 const orderModel = new OrderModel();
 
-export { orderModel };
+export default orderModel;

@@ -9,13 +9,18 @@ class ProductModel {
     return newProduct;
   }
 
-  async findById(id) {
-    const foundProduct = await Product.findOne({ id });
-    return foundProduct;
+  async findAll() {
+    const allProducts = await Product.find({});
+    return allProducts;
   }
 
   async findByCategory(category) {
     const foundProduct = await Product.find({ category });
+    return foundProduct;
+  }
+
+  async findById(id) {
+    const foundProduct = await Product.findOne({ id });
     return foundProduct;
   }
 
@@ -24,21 +29,17 @@ class ProductModel {
     return foundProduct;
   }
 
-  async findAll() {
-    const allProducts = await Product.find({});
-    return allProducts;
-  }
-  async update({ _id, update }) {
-    const updatedProduct = Product.findOneAndUpdate({ _id, returnOriginal: false }, update);
+  async update({ id, update }) {
+    const updatedProduct = Product.findOneAndUpdate({ id, returnOriginal: false }, update);
     return updatedProduct;
   }
 
-  async delete(_id) {
-    const deletedProduct = await Product.findOneAndDelete({ _id, returnOriginal: false });
+  async delete(id) {
+    const deletedProduct = await Product.findOneAndDelete({ id, returnOriginal: false });
     return deletedProduct;
   }
 }
 
 const productModel = new ProductModel();
 
-export { productModel };
+export default productModel;
