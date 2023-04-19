@@ -1,5 +1,5 @@
 import { model } from 'mongoose';
-import { OrderSchema } from '../schemas/order-schema.js';
+import { OrderSchema } from '../schemas/index.js';
 
 const Order = model('Order', OrderSchema);
 
@@ -13,4 +13,4 @@ class OrderModel {
 
 const orderModel = new OrderModel();
 
-export { orderModel };
+export default orderModel;
