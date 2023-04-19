@@ -26,6 +26,8 @@ const db = mongoose.connection;
 db.on('connected', () => console.log('Connecting DB Success'));
 db.on('error', (err) => console.error('Connecting DB Failed'));
 
+import { userModel } from './db/models/index.js';
+
 // app.set(views)
 // app.use(Middleware)
 app.get('/', (req, res) => {
