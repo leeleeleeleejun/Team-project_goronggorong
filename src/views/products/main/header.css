@@ -1,7 +1,7 @@
 @import "../../reset.css";
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
 * {
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
   box-sizing: border-box;
 }
 
@@ -16,6 +16,7 @@ body nav {
 }
 
 .category {
+  margin-left: 20px;
   display: flex;
   list-style: none;
   align-items: center;
@@ -26,6 +27,7 @@ body nav {
 }
 .category li a {
   text-decoration: 0;
+  font-family: 'Paytone One', sans-serif;
   font-size: 24px;
   font-weight: 600;
   color: #6f6f6f;
