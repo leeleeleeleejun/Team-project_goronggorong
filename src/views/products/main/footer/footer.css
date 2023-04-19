@@ -1,11 +1,6 @@
-@import "../../reset.css";
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-* {
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-  box-sizing: border-box;
-}
+@import "../../../config.css";
 
-body footer {
+.footer {
   background-color: #fafaf6;
   display: flex;
   align-items: end;
@@ -20,32 +15,32 @@ strong {
   font-weight: 700;
 }
 
-.brand-story {
+.footer__brand {
   color: #8e8a83;
   padding: 20px;
   font-size: 12px;
   flex-grow: 1;
 }
-.brand-story img {
+.footer__brand img {
   margin-bottom: 20px;
 }
-.brand-story p:last-child {
+.footer__brand p:last-child {
   margin-top: 20px;
 }
 
-.bank-info {
+.footer__bank {
   color: #8e8a83;
   padding: 20px;
   font-size: 12px;
   flex-grow: 2;
 }
-.bank-info h1 {
+.footer__bank h1 {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.to-top {
+.footer__to-top {
   position: fixed;
   right: 20px;
   bottom: 20px;
