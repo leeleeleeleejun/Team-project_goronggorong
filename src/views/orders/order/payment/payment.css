@@ -1,0 +1,44 @@
+main {
+  background-color: #f7f7f7;
+}
+
+h3 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.contents {
+  padding-bottom: 39px;
+  background-color: #ffffff;
+}
+
+.contents__order-sets {
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 20px 54px;
+}
+
+section {
+  display: flex;
+  border-bottom: 1px solid black;
+  padding: 26px 0px 26px 0px;
+}
+
+.content-title {
+  width: 220px;
+  padding-right: 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  padding-right: 30px;
+  margin-bottom: 0;
+  width: calc(100% - 225px);
+}
+.adress-imformation,
+.delivery-request {
+  display: flex;
+  justify-content: space-between;
+}
