@@ -2,10 +2,11 @@ import { Schema } from 'mongoose';
 // import { ProductSchema } from './product';
 
 const OrderSchema = new Schema({
-  /*
-    User : name, phone_number, address
-  */
+  orderDate: {
+    type: Date,
+  },
   user: {
+    // User : name, phoneNumber, address
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
@@ -27,15 +28,35 @@ const OrderSchema = new Schema({
     type: Number,
     required: true,
   },
-  // Admin
   deliveryStatus: {
     type: String,
     required: true,
   },
-  /*
-  paymentInfo
-  orderDate
-  } */
+  paymentMethod: {
+    paymentType: {
+      // credit, accout,
+      type: String,
+      required: true,
+    },
+    creditInfo: {
+      company: {
+        type: String,
+        required: true,
+      },
+      cardNumber: {
+        type: Number,
+        required: true,
+      },
+      expiryDate: {
+        type: String,
+        required: true,
+      },
+      cvc: {
+        type: Number,
+        required: true,
+      },
+    },
+  },
 });
 
 export default OrderSchema;
