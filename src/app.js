@@ -3,10 +3,14 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import mongoose from 'mongoose';
+<<<<<<< HEAD
 import { errorHandler } from './middlewares/index.js';
 // import morgan from 'morgan';
+=======
+import morgan from 'morgan';
+>>>>>>> ce14f6f (Add: User CRUD router 생성)
 
-// import { httpLogStream } from './utils/index.js';
+import { httpLogStream } from './utils/index.js';
 import { signupRouter } from './routers/index.js';
 
 const app = express();
@@ -29,17 +33,19 @@ db.on('connected', () => console.log('Connecting DB Success'));
 db.on('error', (err) => console.error('Connecting DB Failed'));
 
 // app.set(views)
-// app.use(Middleware)
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.get('/', (req, res) => {
   res.send('root');
 });
 
 // 순서 중요 (errorHandler은 다른 일반 라우팅 다음에 와야 next로 잘 받아줌)
-app.use(errorHandler);
 app.use('/signup', signupRouter);
+app.use(errorHandler);
 
 // Log 생성기
-// app.use(morgan('dev', { stream: httpLogStream }));
+app.use(morgan('dev', { stream: httpLogStream }));
 
 app.listen(port, () => {
   console.log(`Connected to ${port}...`);

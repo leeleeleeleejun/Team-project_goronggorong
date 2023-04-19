@@ -23,13 +23,13 @@ class UserModel {
   }
 
   async updateUser(userId, editedInfo) {
-    const updatedUser = await User.updateOne(userId, editedInfo);
+    const updatedUser = await User.updateOne({ _id: userId }, editedInfo);
 
     return updatedUser;
   }
 
   async deleteUser(userId) {
-    const deletedUser = await User.deleteOne(userId);
+    const deletedUser = await User.deleteOne({ _id: userId });
 
     return deletedUser;
   }
