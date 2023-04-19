@@ -41,12 +41,8 @@ productRouter.get('/products/:category/:id', async (req, res, next) => {
   }
 });
 
-// 제품 등록 API
-productRouter.post('/products/add', async (req, res, next) => {
+productRouter.post('/productregister', async (req, res, next) => {
   try {
-    // gcp 로 상품 이미지 업로드 (2주차에 추가예정?)
-
-    // 이외 json 데이터는 mongodb에 저장
     const newProduct = await productService.addProduct(req.body);
     // 이미지 추가 기능을 넣는다면 addProduct({...req.body, imgUrl: 'gcp url'})
     // 이런식으로 되어야 해서 imgUrl이 productInfo 가장 끝에 와야 할 듯
