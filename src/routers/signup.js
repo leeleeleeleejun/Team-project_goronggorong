@@ -7,4 +7,4 @@ router.get('/', (req, res) => {
   res.send('signup');
 });
 
-export default signupRouter;
+export { router as signupRouter };
