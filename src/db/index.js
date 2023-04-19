@@ -1,1 +1,1 @@
-export * from './models/index.js';
+export { productModel, orderModel } from './models/index.js';
