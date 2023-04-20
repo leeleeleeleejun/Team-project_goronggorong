@@ -19,11 +19,11 @@ class UserService {
     return users;
   }
 
-  /* 
-    BCRYPT
-    .hash: hash password 생성
-    .compare: hashpassword 비교
-  */
+  /*
+   * BCRYPT
+   * .hash: hash password 생성
+   * .compare: hashpassword 비교
+   */
   async createHashPassword(password) {
     const salt = 12;
     const hashedPassword = await bcrypt.hash(password, salt);
