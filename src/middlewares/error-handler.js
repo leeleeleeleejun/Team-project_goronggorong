@@ -25,3 +25,23 @@ function errorHandler(error, req, res, next) {
 }
 
 export default errorHandler;
+
+// 새로만든 errorHandler
+/* class customError extends Error {
+  constructor(statusCode, message) {
+    this.statusCode = statusCode;
+    this.message = message;
+  }
+}
+
+const errorHandler = (err, req, res, next) => {
+  const { statusCode, message } = err;
+
+  res.status(statusCode).json({
+    result: 'error',
+    message,
+    statusCode,
+  });
+};
+
+export default errorHandler; */

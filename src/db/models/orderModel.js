@@ -1,16 +1,12 @@
 import { model } from 'mongoose';
-import OrderSchema from '../schemas/OrderSchema.js';
+import { Order } from '../schemas/index.js';
 
-const Order = model('Order', OrderSchema);
-
-class OrderModel {
-  async findAll() {
+const OrderModel = {
+  findAll: async () => {
     const orders = await Order.find({});
 
     return orders;
-  }
-}
+  },
+};
 
-const orderModel = new OrderModel();
-
-export default orderModel;
+export default OrderModel;
