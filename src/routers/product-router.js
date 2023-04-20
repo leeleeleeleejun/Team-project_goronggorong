@@ -92,4 +92,3 @@ productRouter.delete('/products/:category/:id', async (req, res, next) => {
 })
 
 export { productRouter };
-  
