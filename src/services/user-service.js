@@ -13,16 +13,10 @@ class UserService {
     return user;
   }
 
-  async getUsers() {
+  async getAllUsers() {
     const users = await this.userModel.findAll();
 
     return users;
-  }
-
-  async getUser({ path }) {
-    const user = await this.userModel.findOne({ path });
-
-    return user;
   }
 
   /* 
@@ -37,11 +31,10 @@ class UserService {
     return hashedPassword;
   }
 
-  async isValidPassword(email, password) {
-    const user = await this.userModel.findByEmail(email);
-    const result = await bcrypt.compare(password, user.password);
+  async isValidPassword(inputPassword, password) {
+    const compareResult = await bcrypt.compare(inputPassword, password);
 
-    return result;
+    return compareResult;
   }
 }
 
