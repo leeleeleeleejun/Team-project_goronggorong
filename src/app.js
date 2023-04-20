@@ -28,14 +28,14 @@ mongoose.connect(process.env.DB_KEY);
 const db = mongoose.connection;
 
 db.on('connected', () => console.log('Connecting DB Success'));
-db.on('error', (err) => console.error('Connecting DB Failed'));
+db.on('error', (err) => console.error(err));
 
 // MIDDLEWARE
 // app.set(views)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public')); // public 폴더 접근
-// app.use(morgan('dev', { stream: httpLogStream })); // Log 생성기
+app.use(morgan('dev', { stream: httpLogStream })); // Log 생성기
 
 // ROUTER
 app.use('/api', signUserRouter);
