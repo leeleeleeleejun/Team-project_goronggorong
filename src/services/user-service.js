@@ -8,7 +8,7 @@ class UserService {
 
   async createUser(userInfo) {
     const { name, email, password, phone, address } = userInfo;
-    const hashedPassword = await userService.createHashPassword(password);
+    const hashedPassword = await this.createHashPassword(password);
     const user = await this.userModel.createUser({ name, email, password: hashedPassword, phone, address });
 
     return user;
