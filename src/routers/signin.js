@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { asyncHandler } from '../utils/index.js';
 import { userService } from '../services/index.js';
+import { asyncHandler } from '../utils/index.js';
+import { signToken } from '../middlewares/jwt.js';
 
 const router = Router();
 
@@ -23,14 +24,22 @@ router.get(
 router.post(
   '/',
   asyncHandler(async (req, res) => {
-    const { name, email, password, phone, address } = req.body;
-    const user = await userService.createUser({ name, email, password, phone, address });
+    const { email, password } = req.body;
+    const user = await userService.userModel.findByEmail(email);
+    const result = await userService.isValidPassword(password, user.password);
+
+    if (result === false) {
+      throw new Error('비밀번호가 틀렸습니다.');
+    }
+
+    const token = signToken(user);
 
     return res.status(200).json({
-      message: 'User가 생성됐습니다.',
-      user,
+      message: '유효한 User 계정입니다.',
+      result,
+      token,
     });
   }),
 );
 
-export { router as signupRouter };
+export { router as signinRouter };

@@ -9,6 +9,7 @@ import morgan from 'morgan';
 /* MODULE */
 import { httpLogStream } from './utils/index.js';
 import { signupRouter } from './routers/index.js';
+import { signinRouter } from './routers/index.js';
 import { productRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
   res.send('root');
 });
 app.use('/signup', signupRouter);
+app.use('/signin', signinRouter);
 app.use('/api', productRouter);
 app.use(errorHandler);
 

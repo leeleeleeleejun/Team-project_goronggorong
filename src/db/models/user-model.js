@@ -10,8 +10,8 @@ class UserModel {
     return users;
   }
 
-  async findById(userId) {
-    const user = await User.findById(userId);
+  async findByEmail(email) {
+    const user = await User.findOne({ email });
 
     return user;
   }

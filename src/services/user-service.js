@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { userModel } from '../db/models/index.js';
+import { userModel } from '../db/index.js';
 
 class UserService {
   constructor(userModel) {
@@ -7,14 +7,23 @@ class UserService {
   }
 
   async createUser(userInfo) {
-    const { name, email, password, phone, address } = userInfo;
-    const hashedPassword = await userService.createHashPassword(password);
-    const user = await this.userModel.createUser({ name, email, password: hashedPassword, phone, address });
+    const hashedPassword = await this.createHashPassword(userInfo.password);
+    const user = await this.userModel.createUser({ ...userInfo, password: hashedPassword });
 
     return user;
   }
 
-  // bcrypt
+  async getAllUsers() {
+    const users = await this.userModel.findAll();
+
+    return users;
+  }
+
+  /* 
+    BCRYPT
+    .hash: hash password 생성
+    .compare: hashpassword 비교
+  */
   async createHashPassword(password) {
     const salt = 12;
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -22,8 +31,8 @@ class UserService {
     return hashedPassword;
   }
 
-  async isValidPassword(password) {
-    const compareResult = bcrypt.compare(password, this.userModel.password);
+  async isValidPassword(inputPassword, password) {
+    const compareResult = await bcrypt.compare(inputPassword, password);
 
     return compareResult;
   }
@@ -32,9 +41,3 @@ class UserService {
 const userService = new UserService(userModel);
 
 export default userService;
-
-/* 
-  bcrypt
-  .hash: hash password 생성
-  .compare: hashpassword 비교
-*/
