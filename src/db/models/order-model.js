@@ -1,7 +1,7 @@
 import { model } from 'mongoose';
 import OrderSchema from '../schemas/order-schema.js';
 
-const Order = mongoose.model('Order', OrderSchema);
+const Order = model('Order', OrderSchema);
 
 class OrderModel {
   async findAll() {
