@@ -1,21 +1,21 @@
 import { Router } from 'express';
-import productService from '../services/product-service.js'
+import productService from '../services/product-service.js';
 const productRouter = Router();
 
 // 제품 불러오기 API
 productRouter.get('/', async (req, res, next) => {
-    try {
-      // 전체 제품 목록 불러오기
-      const products = await productService.getProducts();
-      // 제품 목록 JSON 형태로 프론트에 쏴주기
-      res.status(200).json({
-        message: '전체 제품 목록을 불러왔습니다',
-        products,
-      });
-    } catch(error) {
-      next(error);
-    }
-  });
+  try {
+    // 전체 제품 목록 불러오기
+    const products = await productService.getProducts();
+    // 제품 목록 JSON 형태로 프론트에 쏴주기
+    res.status(200).json({
+      message: '전체 제품 목록을 불러왔습니다',
+      products,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 productRouter.get('/products/:category', async (req, res, next) => {
   try {
@@ -26,7 +26,7 @@ productRouter.get('/products/:category', async (req, res, next) => {
       message: '선택한 카테고리에 해당하는 제품을 불러왔습니다',
       products,
     });
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
 });
@@ -40,7 +40,7 @@ productRouter.get('/products/:category/:id', async (req, res, next) => {
       message: '해당 아이디 제품을 불러왔습니다',
       product,
     });
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
 });
@@ -58,38 +58,37 @@ productRouter.post('/products/add', async (req, res, next) => {
       message: '새로운 제품 등록을 완료했습니다',
       newProduct,
     });
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
-})
+});
 
 // 제품 수정 API
 productRouter.patch('/products/:category/:id', async (req, res, next) => {
-  try{
+  try {
     const { category, id } = req.params;
     const updatedProduct = await productService.setProduct(id, req.body);
     res.status(200).json({
       message: '해당 제품 수정을 완료했습니다',
       updatedProduct,
     });
-  } catch(error){
-    next(error)
+  } catch (error) {
+    next(error);
   }
-})
+});
 
 // 제품 삭제 API
 productRouter.delete('/products/:category/:id', async (req, res, next) => {
-  try{
+  try {
     const { category, id } = req.params;
     const product = await productService.deleteProduct(id);
     res.status(200).json({
       message: '해당 제품 삭제를 완료했습니다',
       product,
     });
-  } catch(error){
-    next(error)
+  } catch (error) {
+    next(error);
   }
-})
+});
 
 export { productRouter };
-  
