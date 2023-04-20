@@ -7,7 +7,7 @@ const router = Router();
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const users = await userService.getUser();
+    const users = await userService.getUsers();
 
     if (!users) {
       throw new Error('생성된 사용자가 없습니다.');
@@ -23,7 +23,8 @@ router.get(
 router.post(
   '/',
   asyncHandler(async (req, res) => {
-    const user = await userService.createUser(req.body);
+    const { name, email, password, phone, address } = req.body;
+    const user = await userService.createUser({ name, email, password, phone, address });
 
     return res.status(200).json({
       message: 'User가 생성됐습니다.',

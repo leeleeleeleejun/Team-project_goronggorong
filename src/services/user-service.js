@@ -7,21 +7,26 @@ class UserService {
   }
 
   async createUser(userInfo) {
-    const { name, email, password, phone, address } = userInfo;
-    const hashedPassword = await this.createHashPassword(password);
-    const user = await this.userModel.createUser({ name, email, password: hashedPassword, phone, address });
+    const hashedPassword = await this.createHashPassword(userInfo.password);
+    const user = await this.userModel.createUser({ ...userInfo, password: hashedPassword });
 
     return user;
   }
 
-  async getUser() {
+  async getUsers() {
     const users = await this.userModel.findAll();
 
     return users;
   }
 
+  async getUser({ path }) {
+    const user = await this.userModel.findOne({ path });
+
+    return user;
+  }
+
   /* 
-    bcrypt
+    BCRYPT
     .hash: hash password 생성
     .compare: hashpassword 비교
   */
@@ -33,19 +38,10 @@ class UserService {
   }
 
   async isValidPassword(email, password) {
-    const user = await this.userModel.findByPath({ email });
+    const user = await this.userModel.findByEmail(email);
+    const result = await bcrypt.compare(password, user.password);
 
-    if (!user) {
-      throw new Error('사용자가 없습니다');
-    }
-
-    const compareResult = await bcrypt.compare(password, user.password);
-
-    if (compareResult === false) {
-      throw new Error('비밀번호가 틀렸습니다.');
-    }
-
-    return compareResult;
+    return result;
   }
 }
 
