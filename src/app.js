@@ -9,6 +9,7 @@ import morgan from 'morgan';
 /* MODULE */
 import { httpLogStream } from './utils/index.js';
 import { signupRouter } from './routers/index.js';
+import { signinRouter } from './routers/index.js';
 import { productRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
@@ -43,10 +44,8 @@ app.get('/', (req, res) => {
   res.send('root');
 });
 app.use('/signup', signupRouter);
-app.use('/api', productRouter); // 서버와 클라이언트 라우팅 구분
-app.use(errorHandler);
-
-// 순서 중요 (errorHandler는 다른 일반 라우팅 다음에 와야 next로 잘 받아줌)
+app.use('/signin', signinRouter);
+app.use('/api', productRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {
