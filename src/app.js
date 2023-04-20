@@ -8,9 +8,9 @@ import morgan from 'morgan';
 
 /* MODULE */
 import { httpLogStream } from './utils/index.js';
-import { errorHandler } from './middlewares/index.js';
 import { signupRouter } from './routers/index.js';
 import { productRouter } from './routers/index.js';
+import { errorHandler } from './middlewares/index.js';
 
 const app = express();
 
@@ -60,5 +60,3 @@ app.listen(port, () => {
 });
 
 export default app;
-
-
