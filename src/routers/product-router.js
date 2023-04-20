@@ -2,23 +2,12 @@ import { Router } from 'express';
 import productService from '../services/product-service.js';
 const productRouter = Router();
 
-<<<<<<< HEAD
-// 제품 불러오기 API
-=======
->>>>>>> d1a5f28 (Fix: product router 고치는중)
 productRouter.get('/', async (req, res, next) => {
   try {
     // 전체 제품 목록 불러오기
     const products = await productService.getProducts();
     // 제품 목록 JSON 형태로 프론트에 쏴주기
-<<<<<<< HEAD
-    res.status(200).json({
-      message: '전체 제품 목록을 불러왔습니다',
-      products,
-    });
-=======
     res.status(200).json(products);
->>>>>>> d1a5f28 (Fix: product router 고치는중)
   } catch (error) {
     next(error);
   }
