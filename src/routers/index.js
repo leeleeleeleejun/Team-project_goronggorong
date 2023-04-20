@@ -1,7 +1,6 @@
-import { rootRouter } from './root.js';
-import { signupRouter } from './signup.js';
-import { signinRouter } from './signin.js';
-import { ordersRouter } from './orders.js';
+import { signupRouter } from './signupRouter.js';
+import { signinRouter } from './signinRouter.js';
+import { orderRouter } from './orderRouter.js';
 
-export { signupRouter, signinRouter, rootRouter };
+export { signupRouter, signinRouter, orderRouter };
 export { productRouter } from './product-router.js';
