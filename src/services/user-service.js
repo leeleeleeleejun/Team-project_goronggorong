@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { userModel } from '../db/models/index.js';
+import { userModel } from '../db/index.js';
 
 class UserService {
   constructor(userModel) {
@@ -12,6 +12,12 @@ class UserService {
     const user = await this.userModel.createUser({ name, email, password: hashedPassword, phone, address });
 
     return user;
+  }
+
+  async getUser() {
+    const users = await this.userModel.findAll();
+
+    return users;
   }
 
   // bcrypt
