@@ -1,0 +1,21 @@
+.overview{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+}
+
+.bottom-nav{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: lightyellow;
+  position: sticky;
+  bottom: 0;
+}
