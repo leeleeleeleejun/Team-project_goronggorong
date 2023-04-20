@@ -3,14 +3,10 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import mongoose from 'mongoose';
-<<<<<<< HEAD
-import { errorHandler } from './middlewares/index.js';
-// import morgan from 'morgan';
-=======
 import morgan from 'morgan';
->>>>>>> ce14f6f (Add: User CRUD router 생성)
 
 import { httpLogStream } from './utils/index.js';
+import { errorHandler } from './middlewares/index.js';
 import { signupRouter } from './routers/index.js';
 
 const app = express();
