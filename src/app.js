@@ -38,7 +38,14 @@ app.get('/', (req, res) => {
 
 // 순서 중요 (errorHandler은 다른 일반 라우팅 다음에 와야 next로 잘 받아줌)
 app.use('/signup', signupRouter);
+app.use('/api', productRouter); // 서버와 클라이언트 라우팅 구분
 app.use(errorHandler);
+
+// 순서 중요 (errorHandler는 다른 일반 라우팅 다음에 와야 next로 잘 받아줌)
+app.use(errorHandler);
+
+// public 폴더 접근
+app.use(express.static('public'));
 
 // Log 생성기
 // app.use(morgan('dev', { stream: httpLogStream }));
