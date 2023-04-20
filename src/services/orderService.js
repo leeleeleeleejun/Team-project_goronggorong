@@ -1,15 +1,11 @@
-import { orderModel } from '../db/index.js';
+import { OrderModel } from '../db/index.js';
 
-class OrderService {
-  constructor(orderModel) {
-    this.orderModel = orderModel;
-  }
-
-  async createOrder(userId, products, price) {
+const orderService = {
+  createOrder: async (userId, products, price) => {
     const user = this.orderModel.findById();
-  }
-}
 
-const orderService = new OrderService(orderModel);
+    return user;
+  },
+};
 
 export default orderService;

@@ -1,5 +1,5 @@
-import { signUserRouter } from './signUserRouter.js';
+import { userRouter } from './userRouter.js';
 import { orderRouter } from './orderRouter.js';
 
-export { signUserRouter, orderRouter };
+export { userRouter, orderRouter };
 export { productRouter } from './product-router.js';
