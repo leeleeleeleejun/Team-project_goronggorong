@@ -32,7 +32,7 @@ class ProductService {
     // 새로운 상품 등록하기
     async addProduct(productInfo) {
         // 객체 destructuring
-        const { id, category, name, price, description, imageUrl, amount } = productInfo;
+        const { id, category, name, price, description, amount, imgUrl } = productInfo;
 
         // 올바른 id(1부터 시작하는 상품번호) 확인
         const LastId = await this.productModel.findAll().length
