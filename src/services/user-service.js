@@ -20,7 +20,11 @@ class UserService {
     return users;
   }
 
-  // bcrypt
+  /* 
+    bcrypt
+    .hash: hash password 생성
+    .compare: hashpassword 비교
+  */
   async createHashPassword(password) {
     const salt = 12;
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -28,8 +32,18 @@ class UserService {
     return hashedPassword;
   }
 
-  async isValidPassword(password) {
-    const compareResult = bcrypt.compare(password, this.userModel.password);
+  async isValidPassword(email, password) {
+    const user = await this.userModel.findByPath({ email });
+
+    if (!user) {
+      throw new Error('사용자가 없습니다');
+    }
+
+    const compareResult = await bcrypt.compare(password, user.password);
+
+    if (compareResult === false) {
+      throw new Error('비밀번호가 틀렸습니다.');
+    }
 
     return compareResult;
   }
@@ -38,9 +52,3 @@ class UserService {
 const userService = new UserService(userModel);
 
 export default userService;
-
-/* 
-  bcrypt
-  .hash: hash password 생성
-  .compare: hashpassword 비교
-*/
