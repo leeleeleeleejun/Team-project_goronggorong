@@ -45,7 +45,7 @@ app.use('/signup', signupRouter);
 app.use(errorHandler);
 
 // Log 생성기
-app.use(morgan('dev', { stream: httpLogStream }));
+// app.use(morgan('dev', { stream: httpLogStream }));
 
 app.listen(port, () => {
   console.log(`Connected to ${port}...`);
