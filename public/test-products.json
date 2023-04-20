@@ -6,7 +6,7 @@
         "price": 12900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
         "amount": 100,
-        "imgUrl": "public/고롱사료.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "price": 12900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
         "amount": 100,
-        "imgUrl": "public/고롱사료.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@
         "price": 12900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
         "amount": 100,
-        "imgUrl": "public/고롱사료.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@
         "price": 12900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
         "amount": 100,
-        "imgUrl": "public/고롱사료.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
     },
     {
         "id": 5,
@@ -42,7 +42,7 @@
         "price": 7900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
         "amount": 100,
-        "imgUrl": "public/고롱츄르.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
     },
     {
         "id": 6,
@@ -51,7 +51,7 @@
         "price": 7900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
         "amount": 100,
-        "imgUrl": "public/고롱츄르.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
     },
     {
         "id": 7,
@@ -60,7 +60,7 @@
         "price": 7900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
         "amount": 100,
-        "imgUrl": "public/고롱츄르.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
     },
     {
         "id": 8,
@@ -69,7 +69,7 @@
         "price": 7900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
         "amount": 100,
-        "imgUrl": "public/고롱츄르.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
     },
     {
         "id": 9,
@@ -78,7 +78,7 @@
         "price": 6900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
         "amount": 100,
-        "imgUrl": "public/고롱장난감.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
     },
     {
         "id": 10,
@@ -87,7 +87,7 @@
         "price": 6900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
         "amount": 100,
-        "imgUrl": "public/고롱장난감.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
     },
     {
         "id": 11,
@@ -96,7 +96,7 @@
         "price": 6900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
         "amount": 100,
-        "imgUrl": "public/고롱장난감.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
     },
     {
         "id": 12,
@@ -105,7 +105,7 @@
         "price": 6900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
         "amount": 100,
-        "imgUrl": "public/고롱장난감.jpeg" 
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
     },
     {
         "id": 13,
@@ -114,7 +114,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
         "amount": 100,
-        "imgUrl": "public/고롱배변패드.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
     },
     {
         "id": 14,
@@ -123,7 +123,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
         "amount": 100,
-        "imgUrl": "public/고롱배변패드.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
     },
     {
         "id": 15,
@@ -132,7 +132,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
         "amount": 100,
-        "imgUrl": "public/고롱배변패드.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
     },
     {
         "id": 16,
@@ -141,7 +141,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
         "amount": 100,
-        "imgUrl": "public/고롱배변패드.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
     },
     {
         "id": 17,
@@ -150,7 +150,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
         "amount": 100,
-        "imgUrl": "public/고롱턱받이.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
     },
     {
         "id": 18,
@@ -159,7 +159,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
         "amount": 100,
-        "imgUrl": "public/고롱턱받이.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
     },
     {
         "id": 19,
@@ -168,7 +168,7 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
         "amount": 100,
-        "imgUrl": "public/고롱턱받이.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
     },
     {
         "id": 20,
@@ -177,6 +177,186 @@
         "price": 17900,
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
         "amount": 100,
-        "imgUrl": "public/고롱턱받이.jpeg"
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
+    },
+    {
+        "id": 21,
+        "category": "food",
+        "name": "고롱 사료 5",
+        "price": 12900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
+    },
+    {
+        "id": 22,
+        "category": "food",
+        "name": "고롱 사료 6",
+        "price": 12900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
+    },
+    {
+        "id": 23,
+        "category": "food",
+        "name": "고롱 사료 7",
+        "price": 12900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
+    },
+    {
+        "id": 24,
+        "category": "food",
+        "name": "고롱 사료 8",
+        "price": 12900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
+    },
+    {
+        "id": 25,
+        "category": "snack",
+        "name": "고롱 츄르 5",
+        "price": 7900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
+    },
+    {
+        "id": 26,
+        "category": "snack",
+        "name": "고롱 츄르 6",
+        "price": 7900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
+    },
+    {
+        "id": 27,
+        "category": "snack",
+        "name": "고롱 츄르 7",
+        "price": 7900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
+    },
+    {
+        "id": 28,
+        "category": "snack",
+        "name": "고롱 츄르 8",
+        "price": 7900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongsnack.jpeg" 
+    },
+    {
+        "id": 29,
+        "category": "toy",
+        "name": "고롱 장난감 5",
+        "price": 6900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
+    },
+    {
+        "id": 30,
+        "category": "toy",
+        "name": "고롱 장난감 6",
+        "price": 6900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
+    },
+    {
+        "id": 31,
+        "category": "toy",
+        "name": "고롱 장난감 7",
+        "price": 6900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
+    },
+    {
+        "id": 32,
+        "category": "toy",
+        "name": "고롱 장난감 8",
+        "price": 6900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongtoy.jpeg" 
+    },
+    {
+        "id": 33,
+        "category": "toilet",
+        "name": "고롱 배변패드 5",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
+    },
+    {
+        "id": 34,
+        "category": "toilet",
+        "name": "고롱 배변패드 6",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
+    },
+    {
+        "id": 35,
+        "category": "toilet",
+        "name": "고롱 배변패드 7",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
+    },
+    {
+        "id": 36,
+        "category": "toilet",
+        "name": "고롱 배변패드 8",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongpad.jpeg"
+    },
+    {
+        "id": 37,
+        "category": "fashion",
+        "name": "고롱 턱받이 5",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
+    },
+    {
+        "id": 38,
+        "category": "fashion",
+        "name": "고롱 턱받이 6",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
+    },
+    {
+        "id": 39,
+        "category": "fashion",
+        "name": "고롱 턱받이 7",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
+    },
+    {
+        "id": 40,
+        "category": "fashion",
+        "name": "고롱 턱받이 8",
+        "price": 17900,
+        "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
+        "amount": 100,
+        "imgUrl": "https://storage.googleapis.com/hochony/gorongImg/gorongbib.jpeg"
     }
 ]
