@@ -25,26 +25,26 @@ main {
   border-top: 1px solid black;
 }
 
-.cart-item-wrap {
+.cart-list__cart-item-wrap {
   width: 980px;
   list-style-type: none;
   border-bottom: 1px solid black;
   padding: 20px 0;
 }
 
-.cart-item {
+.cart-item-wrap__cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
 }
 
-.item-imformation-wrap {
+.icart-item__item-info-wrap {
   display: flex;
   align-items: center;
 }
 
-.itme-checkbox {
+.item-info-wrap__itme-checkbox {
   /*webkit 속성값 */
   appearance: none;
   position: relative;
@@ -57,7 +57,7 @@ main {
   border-radius: 2px;
 }
 
-.itme-checkbox::before {
+.item-info-wrap__itme-checkbox::before {
   content: '\2713';
   font-size: 20px;
   font-weight: 900;
@@ -69,7 +69,7 @@ main {
   line-height: 1;
 }
 
-.itme-checkbox:checked {
+.item-info-wrap__itme-checkbox:checked {
   /* check box */
   /* Light/primary */
   background: #ffeb60;
@@ -78,33 +78,33 @@ main {
   border-radius: 2px;
 }
 
-.itme-checkbox:checked::before {
+.item-info-wrap__itme-checkbox:checked::before {
   border-radius: 2px;
   transform: scale(1) translate(-50%, -50%);
 }
 
-.item-img {
+.item-img-wrap__item-img {
   width: 90%;
   max-width: 100px;
 }
 
-.item-imformation {
+.item-info {
   display: flex;
   flex-direction: column;
 }
 
-.amount-wrap {
+.cart-list__amount-wrap {
   display: flex;
   justify-content: space-between;
 }
 
-.amount {
+.amount-wrap__amount {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.amount button {
+.amount-wrap__amount button {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -113,7 +113,7 @@ main {
   border: 1px solid #dfdfdf;
 }
 
-.amount span {
+.amount-wrap__amount span {
   background: #ffeb60;
   text-align: center;
   width: 20px;
@@ -121,15 +121,15 @@ main {
   line-height: 30px;
 }
 
-#order-delete-button-wrap {
-  display: flex;
-  justify-content: space-between;
-}
-
-.delete-button {
+.amount-wrap__delete-button {
   margin-left: 30px;
   background: none;
   border: none;
+}
+
+#order-delete-button-wrap {
+  display: flex;
+  justify-content: space-between;
 }
 
 #order-price div {

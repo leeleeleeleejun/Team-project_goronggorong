@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+    <link rel="stylesheet" href="./payment.css" />
+  </head>
+
+  <body>
+    <header></header>
+    <main>
+      <h3>Order/Payment</h3>
+      <div class="contents">
+        <div class="contents__order-sets">
+          <section class="order-sets__user-imformation">
+            <div class="content-title">
+              <span> 주문 고객 정보 </span>
+            </div>
+            <div class="content">
+              <div> 이준석 </div>
+              <div> 010-0000-0000 </div>
+            </div>
+          </section>
+          <section class="order-sets__user-adress">
+            <div class="content-title">
+              <span> 배송지 </span>
+            </div>
+            <div class="content">
+              <div class="adress-imformation">
+                <div>
+                  <span>배송지 명</span>
+                  <span>실제 주소</span>
+                  <span>받는 사람 정보</span>
+                </div>
+                <button class="change-adress">배송지 변경</button>
+              </div>
+              <div class="delivery-request">
+                <div>
+                  <span>배송 요청사항</span>
+                  <span>문앞 | 필요없음</span>
+                </div>
+                <button class="chage-delivery-request">요청사항 변경</button>
+              </div>
+            </div>
+          </section>
+          <section class="order-sets__choose-payment">
+            <div class="content-title">
+              <span> 결제 수단 </span>
+            </div>
+            <div class="content">
+              <ul>
+                <li>
+                  <label>
+                    <input type="radio">무통장입금</input>
+                  </label>
+                </li>
+								<li>
+                  <label>
+                    <input type="radio">카드결제</input>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </section>
+					<section class="payment-price">
+						<div class="content-title">
+							<span>결제 금액</span>
+						</div>
+						<div class="content">
+							5999원
+						</div>
+					</section>
+					<section class="payment-btn">
+						<button>5999원 결제하기</button>
+					</section>
+        </div>
+      </div>
+    </main>
+		<footer>
+  </body>
+</html>
