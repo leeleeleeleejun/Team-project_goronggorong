@@ -46,12 +46,6 @@ app.use('/signup', signupRouter);
 app.use('/api', productRouter);
 app.use(errorHandler);
 
-// public 폴더 접근
-app.use(express.static('public'));
-
-// Log 생성기
-// app.use(morgan('dev', { stream: httpLogStream }));
-
 app.listen(port, () => {
   console.log(`Connected to ${port}...`);
 });
