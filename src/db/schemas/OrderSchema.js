@@ -1,21 +1,19 @@
 import { Schema } from 'mongoose';
-// import { ProductSchema } from './product';
 
 const OrderSchema = new Schema({
-  orderDate: {
-    type: Date,
-  },
   user: {
-    // User : name, phoneNumber, address
+    // User : name, phone, address
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
+  message: {
+    type: String,
+  },
   productList: [
     {
-      product: {
-        type: Schema.Types.ObjectId,
-        ref: 'Product',
+      productId: {
+        type: Number,
         required: true,
       },
       amount: {
@@ -28,13 +26,9 @@ const OrderSchema = new Schema({
     type: Number,
     required: true,
   },
-  deliveryStatus: {
-    type: String,
-    required: true,
-  },
   paymentMethod: {
     paymentType: {
-      // credit, accout,
+      // credit, account
       type: String,
       required: true,
     },
@@ -56,6 +50,12 @@ const OrderSchema = new Schema({
         required: true,
       },
     },
+  },
+  orderDate: {
+    type: Date,
+  },
+  deliveryStatus: {
+    type: String,
   },
 });
 

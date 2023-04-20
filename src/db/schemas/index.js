@@ -1,5 +1,5 @@
-import UserSchema from './user-schema.js';
-import OrderSchema from './order-schema.js';
+import UserSchema from './UserSchema.js';
 import ProductSchema from './product-schema.js';
+import OrderSchema from './OrderSchema.js';
 
-export { UserSchema, OrderSchema, ProductSchema };
+export { UserSchema, ProductSchema, OrderSchema };
