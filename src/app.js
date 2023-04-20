@@ -8,7 +8,7 @@ import morgan from 'morgan';
 
 /* MODULE */
 import { httpLogStream } from './utils/index.js';
-import { rootRouter, signupRouter, signinRouter, productRouter } from './routers/index.js';
+import { signupRouter, signinRouter, productRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -39,9 +39,8 @@ app.use(express.static('public')); // public 폴더 접근
 
 /* ROUTER */
 
-app.use('/', rootRouter);
-app.use('/signup', signupRouter);
-app.use('/signin', signinRouter);
+app.use('/api', signupRouter);
+app.use('/api', signinRouter);
 app.use('/api', productRouter);
 app.use(errorHandler);
 

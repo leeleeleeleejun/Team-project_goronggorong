@@ -1,4 +1,4 @@
-import errorHandler from './error-handler.js';
 import { signToken, verifyToken } from './jwt.js';
+import errorHandler from './error-handler.js';
 
-export { errorHandler, signToken, verifyToken };
+export { signToken, verifyToken, errorHandler };
