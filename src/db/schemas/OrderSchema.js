@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const OrderSchema = new Schema({
   user: {
@@ -59,4 +59,4 @@ const OrderSchema = new Schema({
   },
 });
 
-export default OrderSchema;
+export default model('Order', OrderSchema);
