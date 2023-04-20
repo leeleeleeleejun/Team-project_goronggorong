@@ -4,179 +4,179 @@
         "category": "food",
         "name": "고롱 사료 1",
         "price": 12900,
-        "imgUrl": "public/고롱사료.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱사료.jpeg"
     },
     {
         "id": 2,
         "category": "food",
         "name": "고롱 사료 2",
         "price": 12900,
-        "imgUrl": "public/고롱사료.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱사료.jpeg"
     },
     {
         "id": 3,
         "category": "food",
         "name": "고롱 사료 3",
         "price": 12900,
-        "imgUrl": "public/고롱사료.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱사료.jpeg"
     },
     {
         "id": 4,
         "category": "food",
         "name": "고롱 사료 4",
         "price": 12900,
-        "imgUrl": "public/고롱사료.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱사료.jpeg"
     },
     {
         "id": 5,
         "category": "snack",
         "name": "고롱 츄르 1",
         "price": 7900,
-        "imgUrl": "public/고롱츄르.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱츄르.jpeg" 
     },
     {
         "id": 6,
         "category": "snack",
         "name": "고롱 츄르 2",
         "price": 7900,
-        "imgUrl": "public/고롱츄르.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱츄르.jpeg" 
     },
     {
         "id": 7,
         "category": "snack",
         "name": "고롱 츄르 3",
         "price": 7900,
-        "imgUrl": "public/고롱츄르.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱츄르.jpeg" 
     },
     {
         "id": 8,
         "category": "snack",
         "name": "고롱 츄르 4",
         "price": 7900,
-        "imgUrl": "public/고롱츄르.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 츄르!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱츄르.jpeg" 
     },
     {
         "id": 9,
         "category": "toy",
         "name": "고롱 장난감 1",
         "price": 6900,
-        "imgUrl": "public/고롱장난감.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱장난감.jpeg" 
     },
     {
         "id": 10,
         "category": "toy",
         "name": "고롱 장난감 2",
         "price": 6900,
-        "imgUrl": "public/고롱장난감.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱장난감.jpeg" 
     },
     {
         "id": 11,
         "category": "toy",
         "name": "고롱 장난감 3",
         "price": 6900,
-        "imgUrl": "public/고롱장난감.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱장난감.jpeg" 
     },
     {
         "id": 12,
         "category": "toy",
         "name": "고롱 장난감 4",
         "price": 6900,
-        "imgUrl": "public/고롱장난감.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 장난감!",
-        "amount": 100 
+        "amount": 100,
+        "imgUrl": "public/고롱장난감.jpeg" 
     },
     {
         "id": 13,
         "category": "toilet",
         "name": "고롱 배변패드 1",
         "price": 17900,
-        "imgUrl": "public/고롱배변패드.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱배변패드.jpeg"
     },
     {
         "id": 14,
         "category": "toilet",
         "name": "고롱 배변패드 2",
         "price": 17900,
-        "imgUrl": "public/고롱배변패드.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱배변패드.jpeg"
     },
     {
         "id": 15,
         "category": "toilet",
         "name": "고롱 배변패드 3",
         "price": 17900,
-        "imgUrl": "public/고롱배변패드.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱배변패드.jpeg"
     },
     {
         "id": 16,
         "category": "toilet",
         "name": "고롱 배변패드 4",
         "price": 17900,
-        "imgUrl": "public/고롱배변패드.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 배변패드!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱배변패드.jpeg"
     },
     {
         "id": 17,
         "category": "fashion",
         "name": "고롱 턱받이 1",
         "price": 17900,
-        "imgUrl": "public/고롱턱받이.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱턱받이.jpeg"
     },
     {
         "id": 18,
         "category": "fashion",
         "name": "고롱 턱받이 2",
         "price": 17900,
-        "imgUrl": "public/고롱턱받이.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱턱받이.jpeg"
     },
     {
         "id": 19,
         "category": "fashion",
         "name": "고롱 턱받이 3",
         "price": 17900,
-        "imgUrl": "public/고롱턱받이.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱턱받이.jpeg"
     },
     {
         "id": 20,
         "category": "fashion",
         "name": "고롱 턱받이 4",
         "price": 17900,
-        "imgUrl": "public/고롱턱받이.jpeg",
         "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 턱받이!",
-        "amount": 100
+        "amount": 100,
+        "imgUrl": "public/고롱턱받이.jpeg"
     }
 ]

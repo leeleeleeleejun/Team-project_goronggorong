@@ -1,6 +1,7 @@
 import { model } from 'mongoose';
 import { ProductSchema } from '../schemas/index.js';
 
+
 const Product = model('Product', ProductSchema);
 
 class ProductModel {

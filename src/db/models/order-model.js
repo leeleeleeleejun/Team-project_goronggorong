@@ -1,6 +1,7 @@
 import { model } from 'mongoose';
 import { OrderSchema } from '../schemas/index.js';
 
+
 const Order = model('Order', OrderSchema);
 
 class OrderModel {
