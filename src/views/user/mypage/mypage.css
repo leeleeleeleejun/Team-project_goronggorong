@@ -1,0 +1,37 @@
+@import "../../../config.css";
+
+.state__li::after{
+  content: ">";
+}
+.state__li:last-child::after{
+  display: none;
+}
+
+section{
+  margin-bottom: 50px;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  border: 1px gray solid;
+}
+.user{
+  display: flex;
+  justify-content: center;
+  border: 1px gray solid;
+}
+.state{
+  display: flex;
+  justify-content: center;
+  border: 1px gray solid;
+}
+
+.state__li{
+  flex: 1;
+}
+
+.order{
+  display: flex;
+  justify-content: center;
+  border: 1px gray solid;
+}
