@@ -9,11 +9,10 @@ body {
   color: #242424;
 }
 
-#page-title {
+h3 {
   padding: 0 10px;
   font-size: 40px;
   font-weight: 600;
-  text-align: center;
   line-height: 1.2em;
 }
 
