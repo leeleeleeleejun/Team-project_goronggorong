@@ -25,4 +25,4 @@ const httpLogStream = {
   },
 };
 
-export { httpLogStream };
+export default httpLogStream;
