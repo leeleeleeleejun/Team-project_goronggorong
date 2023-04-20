@@ -7,7 +7,7 @@ const router = Router();
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const users = await userService.getUsers();
+    const users = await userService.getAllUsers();
 
     if (!users) {
       throw new Error('생성된 사용자가 없습니다.');
