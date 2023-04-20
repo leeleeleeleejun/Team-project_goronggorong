@@ -1,0 +1,4 @@
+.user-adress-info {
+  display: flex;
+  flex-direction: column;
+}
