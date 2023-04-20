@@ -8,9 +8,7 @@ import morgan from 'morgan';
 
 /* MODULE */
 import { httpLogStream } from './utils/index.js';
-import { signupRouter } from './routers/index.js';
-import { signinRouter } from './routers/index.js';
-import { productRouter } from './routers/index.js';
+import { rootRouter, signupRouter, signinRouter, productRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -40,9 +38,8 @@ app.use(express.static('public')); // public 폴더 접근
 // app.use(morgan('dev', { stream: httpLogStream })); // Log 생성기
 
 /* ROUTER */
-app.get('/', (req, res) => {
-  res.send('root');
-});
+
+app.use('/', rootRouter);
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/api', productRouter);
