@@ -21,7 +21,7 @@ const createItem = (item)=>{
 }
 
 //전체 상품 목록 불러오기
-axios.get('/')
+axios.get('http://localhost:3001/items/')
   .then((res)=>{
     const items = res.data;
     const list = document.querySelector('.prod__list')
