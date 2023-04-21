@@ -5,6 +5,8 @@ const router = Router();
 
 router.post('/signup', userController.createUser);
 router.post('/signin', userController.verifyUser);
+router.put('/myPageUpdate', userController.myPageUpdate);
+router.delete('/myPageDelete', userController.myPageDelete);
 // router.get('/signout');
 
 export { router as userRouter };
