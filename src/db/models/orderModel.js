@@ -11,7 +11,7 @@ const orderModel = {
 
     return order;
   },
-  createOrder: async (user, orderInfo) => {
+  createOrder: async (user, orderId, orderInfo) => {
     const order = await Order.create({
       user: {
         name: user.name,
@@ -19,6 +19,7 @@ const orderModel = {
         address: orderInfo.address,
       },
       ...orderInfo,
+      orderId,
     });
 
     return order;
