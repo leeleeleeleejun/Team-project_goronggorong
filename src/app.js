@@ -24,7 +24,6 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 // DB
-
 mongoose.connect(process.env.DB_KEY);
 const db = mongoose.connection;
 
