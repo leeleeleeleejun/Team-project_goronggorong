@@ -1,10 +1,11 @@
 import { Router } from 'express';
+import { orderController } from '../controllers/index.js';
 
 const router = Router();
 
-router.post('/orders/cart', async (req, res) => {
-  const { userId, products, price } = req.body;
-  // const order = await
-});
+// verityToken 필요
+// router.get('/orders/cart', );
+// router.get('/order/payment', verifyToken);
+router.post('/orders/payment', orderController.createOrder);
 
 export { router as orderRouter };

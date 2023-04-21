@@ -1,6 +1,6 @@
 import { Order } from '../schemas/index.js';
 
-const OrderModel = {
+const orderModel = {
   findAll: async () => {
     const orders = await Order.find({});
 
@@ -8,4 +8,4 @@ const OrderModel = {
   },
 };
 
-export default OrderModel;
+export default orderModel;
