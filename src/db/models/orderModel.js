@@ -6,10 +6,22 @@ const orderModel = {
 
     return orders;
   },
-  createOrder: async (user, orderInfo) => {
-    const order = await Order.create({ user, ...orderInfo });
+  findById: async (_id) => {
+    const order = await Order.findOne({ _id });
 
-    console.log(order);
+    return order;
+  },
+  createOrder: async (user, orderId, orderInfo) => {
+    const order = await Order.create({
+      user: {
+        name: user.name,
+        phone: user.phone,
+        address: orderInfo.address,
+      },
+      ...orderInfo,
+      orderId,
+    });
+
     return order;
   },
 };

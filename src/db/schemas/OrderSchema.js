@@ -1,13 +1,25 @@
 import { Schema, model } from 'mongoose';
 
 const OrderSchema = new Schema({
-  user: {
-    // User : name, phone, address
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+  orderId: {
+    type: Number,
     required: true,
   },
-  message: {
+  user: {
+    name: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+  },
+  requestMessage: {
     type: String,
   },
   products: [
@@ -53,9 +65,11 @@ const OrderSchema = new Schema({
   },
   orderDate: {
     type: Date,
+    default: Date.now,
   },
   deliveryStatus: {
     type: String,
+    default: '입금 대기',
   },
 });
 
