@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../products/main/header/header.css" />
+    <link rel="stylesheet" href="../../products/main/footer/footer.css" />
+    <link rel="stylesheet" href="mypage.css" />
+    <title>마이페이지</title>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a href="/"><img class="nav__logo" src="../../../img/products/logo.png" width="140" /></a>
+        <ul class="nav__cate">
+          <li>
+            <a href="/products/:food">Food</a>
+          </li>
+          <li>
+            <a href="/products/:snack">Snack</a>
+          </li>
+          <li>
+            <a href="/products/:toy">Toy</a>
+          </li>
+          <li>
+            <a href="/products/:toilet">Toilet</a>
+          </li>
+          <li>
+            <a href="/products/:fashion">Fashion</a>
+          </li>
+        </ul>
+    
+        <ul class="nav__user-menu">
+          <li>
+            <a href="/mypage"><img class="icon" src="../../../img/products/profile.png" /></a>
+          </li>
+          <li>
+            <a href="/orders/cart"><img class="icon" src="../../../img/products/cart.png" /></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main role="main">
+      <section class="title">
+        <h1>마이페이지</h1>
+      </section>
+
+      <section class="user">
+        <p><span class="user__name">김집사</span>님</p>
+        <a class="user__edit" href="/check-valid-user">회원정보 수정</a>
+      </section>
+
+      <section>
+        <article>
+          <ul class="state">
+            <li class="state__li state__1">
+              <p class="state__num">0</p>
+              <p class="state__title">입금대기</p>
+            </li>
+            <li class="state__li state__2">
+              <p class="state__num">0</p>
+              <p class="state__title">결제완료</p>
+            </li>
+            <li class="state__li state__3">
+              <p class="state__num">0</p>
+              <p class="state__title">배송준비중</p>
+            </li>
+            <li class="state__li state__4">
+              <p class="state__num">0</p>
+              <p class="state__title">배송중</p>
+            </li>
+            <li class="state__li state__5">
+              <p class="state__num">0</p>
+              <p class="state__title">배송완료</p>
+            </li>
+            <li class="state__li state__6">
+              <p class="state__num">0</p>
+              <p class="state__title">구매확정</p>
+            </li>
+          </ul>
+        </article>
+        <article class="order">
+          <div class="order__preview">
+            <div class="preview__top">
+              <p class="preview__top--date">2023.04.19</p>
+              <button class="preview__top--delete">주문내역삭제</button>
+            </div>
+            <div class="preview__bottom">
+              <h2 class="preview__state">배송준비중</h2>
+              <div class="preview__info-container">
+                <img width="100px" src="https://cdudsyowwnmx6388661.cdn.ntruss.com/aboutPet/images/goods/GI251031450/b27ed4e6-5e38-442e-bde8-9e8be1c36138.jpg?type=f&w=259&h=259&quality=90&align=4"/>
+                <div class="preview__info">
+                  <p class="preview__info--title">캐티맨 카샤카샤 붕붕</p>
+                  <p><strong class="preview__info__count">1</strong>개</p>
+                  <h2><strong class="preview__info__price">4,800</strong>원</h2>
+                </div>
+                <button class="preview__btn--detail">주문 상세</button>
+              </div>
+              <button class="preview__btn--cancel">주문 취소</button>
+            </div>
+          </article>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__brand">
+        <a href="/">
+          <img src="../../img/products/logo_simple.png" width="120px" />
+        </a>
+        <p><strong>고롱고롱</strong></p>
+        <p>우리 댕댕이, 우리 야옹이 용품 쉽게, 빠르게!</p>
+        <p>고롱고롱은 초보 집사님도 쉽게 주인님 용품을 구매할 수 있는 온라인 쇼핑몰입니다.</p>
+        <p>TEAM GorongGorong ฅ^•ﻌ•^ฅ</p>
+        <p>©2023 Elice Engineer Track SW4</p>
+      </div>
+      <div class="footer__bank">
+        <h1>BANK INFO</h1>
+        <p><strong>카카오뱅크</strong> 3333-1234-567890</p>
+        <p><strong>예금주</strong> 주식회사 고롱고롱</p>
+      </div>
+      <div class="footer__to-top">
+        <a href="#">
+          <img src="../../img/products/top.png" />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
