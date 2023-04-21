@@ -23,7 +23,7 @@ const signToken = (user) => {
   return newToken;
 };
 
-const userService = {
+const userController = {
   getAllUsers: async (req, res) => {
     try {
       const users = await UserModel.findAll();
@@ -89,4 +89,4 @@ const userService = {
   },
 };
 
-export default userService;
+export default userController;
