@@ -21,7 +21,7 @@ const userModel = {
 
     return user;
   },
-  /* updateUser: async (userId, editedInfo) => {
+  updateUser: async (userId, editedInfo) => {
     const updatedUser = await User.updateOne({ _id: userId }, editedInfo);
 
     return updatedUser;
@@ -30,7 +30,7 @@ const userModel = {
     const deletedUser = await User.deleteOne({ _id: userId });
 
     return deletedUser;
-  }, */
+  },
 };
 
 export default userModel;
