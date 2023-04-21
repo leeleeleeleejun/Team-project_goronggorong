@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserModel } from '../db/index.js';
+import { customError } from '../middlewares/index.js';
 
 /*
  * BCRYPT
@@ -24,32 +25,25 @@ const signToken = (user) => {
 };
 
 const userController = {
-  getAllUsers: async (req, res) => {
-    try {
-      const users = await UserModel.findAll();
-
-      if (!users) {
-        // 404 Not Found
-        throw new Error();
-      } else {
-        return res.status(200).json({
-          message: '전체 사용자 목록을 읽어왔습니다.',
-          users,
-        });
-      }
-    } catch (err) {
-      return res.status(404).json({
-        message: '생성된 사용자가 없습니다',
-      });
-    }
-  },
-  createUser: async (req, res) => {
+  createUser: async (req, res, next) => {
     const { name, email, password, phone, address } = req.body;
 
     try {
+      // 중복 email 확인
+      const checkUser = await UserModel.findByEmail(email);
+
+      if (checkUser) {
+        throw new customError(400, '사용자가 이미 있습니다');
+      }
+
+      // 사용자 생성
       const salt = 12;
       const hashedPassword = await bcrypt.hash(password, salt);
       const user = await UserModel.createUser({ name, email, password: hashedPassword, phone, address });
+
+      if (!user) {
+        throw new customError(400, '사용자를 생성하는데 실패했습니다.');
+      }
 
       // 201 Created
       return res.status(201).json({
@@ -57,23 +51,28 @@ const userController = {
         user,
       });
     } catch (err) {
-      return res.status(400).json({
-        message: '사용자를 생성하는데 실패했습니다.',
-        err,
-      });
+      next(err);
     }
   },
   verifyUser: async (req, res) => {
     const { email, password } = req.body;
 
     try {
+      // 사용자가 있는지 확인
       const user = await UserModel.findByEmail(email);
+
+      if (!user) {
+        throw new customError(400, '사용자가 없습니다');
+      }
+
+      // 비밀번호 확인
       const result = await bcrypt.compare(password, user.password);
 
       if (result === false) {
-        throw new error();
+        throw new customError(400, '비밀번호가 틀렸습니다');
       }
 
+      // 토큰 생성
       const token = signToken(user);
 
       return res.status(200).json({
@@ -82,9 +81,7 @@ const userController = {
         token,
       });
     } catch (err) {
-      return res.status(400).json({
-        message: '로그인 실패',
-      });
+      next(err);
     }
   },
 };
