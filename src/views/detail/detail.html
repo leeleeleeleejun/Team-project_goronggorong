@@ -13,13 +13,13 @@
     <main role="main" class="prod-detail">
       <section class="overview">
         <img
-          class="overview__img"
+          class="overview__img item__img"
           src="https://user-images.githubusercontent.com/126763111/233000890-41c35704-7abd-436d-a1c3-40796df5c021.png"
           width="500px"
         />
         <div class="overview__detail">
-          <h1 class="overview__title">캐티맨 카샤카샤 붕붕</h1>
-          <h2><strong class="overview__price">4,800</strong>원</h2>
+          <h1 class="overview__title item__name">캐티맨 카샤카샤 붕붕</h1>
+          <h2><strong class="overview__price item__price">4,800</strong>원</h2>
         </div>
       </section>
       <!-- 상품 상세이미지 영역 -->
@@ -32,17 +32,22 @@
       <!-- 하단 장바구니/구매하기 버튼 영역 -->
       <nav class="bottom-nav">
         <img
-          class="bottom-nav__img"
+          class="bottom-nav__img item__img"
           src="https://user-images.githubusercontent.com/126763111/233000890-41c35704-7abd-436d-a1c3-40796df5c021.png"
           width="50px"
         />
         <div class="bottom-nav__info">
-          <p>캐티맨 카샤카샤 붕붕</p>
-          <p><strong class="bottom-nav__price">4,800</strong>원</p>
+          <p class="bottom-nav__title item__name">캐티맨 카샤카샤 붕붕</p>
+          <p><strong class="bottom-nav__price item__price">4,800</strong>원</p>
         </div>
-        <button class="bottom-nav__cart">장바구니</button>
-        <button class="bottom-nav__order">구매하기</button>
+        <div class="bottom-nav__amount">
+          <input class="bottom-nav__amount--count" type="number" value="0">개</input>
+        </div>
+        <button class="bottom-nav__btn--cart">장바구니 담기</button>
       </nav>
     </main>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="detail.js" type="module"></script>
   </body>
 </html>
