@@ -1,5 +1,5 @@
-import UserModel from './UserModel.js';
-import productModel from './productModel.js';
-import OrderModel from './OrderModel.js';
+import userModel from './userModel.js';
+import productModel from './product-model.js';
+import orderModel from './orderModel.js';
 
-export { UserModel, productModel, OrderModel };
+export { userModel, productModel, orderModel };

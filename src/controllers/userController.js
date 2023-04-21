@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { UserModel } from '../db/index.js';
+import { userModel } from '../db/index.js';
 import { customError } from '../middlewares/index.js';
 
 /*
@@ -30,7 +30,7 @@ const userController = {
 
     try {
       // 중복 email 확인
-      const checkUser = await UserModel.findByEmail(email);
+      const checkUser = await userModel.findByEmail(email);
 
       if (checkUser) {
         throw new customError(400, '사용자가 이미 있습니다');
@@ -39,7 +39,7 @@ const userController = {
       // 사용자 생성
       const salt = 12;
       const hashedPassword = await bcrypt.hash(password, salt);
-      const user = await UserModel.createUser({ name, email, password: hashedPassword, phone, address });
+      const user = await userModel.createUser({ name, email, password: hashedPassword, phone, address });
 
       if (!user) {
         throw new customError(400, '사용자를 생성하는데 실패했습니다.');
@@ -54,12 +54,12 @@ const userController = {
       next(err);
     }
   },
-  verifyUser: async (req, res) => {
+  verifyUser: async (req, res, next) => {
     const { email, password } = req.body;
 
     try {
       // 사용자가 있는지 확인
-      const user = await UserModel.findByEmail(email);
+      const user = await userModel.findByEmail(email);
 
       if (!user) {
         throw new customError(400, '사용자가 없습니다');
