@@ -30,7 +30,23 @@ const orderController = {
       next(err);
     }
   },
-  getSelectedOrder: async (req, res, next) => {},
+  getSelectedOrder: async (req, res, next) => {
+    const { _id } = req.params;
+
+    try {
+      const order = await orderModel.findById(_id);
+      if (!order) {
+        throw new customError(400, '주문 상세정보가 없습니다.');
+      }
+
+      return res.status(200).json({
+        message: '주문 상세정보를 불러왔습니다.',
+        order,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
 };
 
 export default orderController;

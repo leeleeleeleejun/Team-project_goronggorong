@@ -7,6 +7,6 @@ const router = Router();
 // router.get('/orders/cart', );
 // router.get('/order/payment', verifyToken);
 router.post('/orders/payment', orderController.createOrder);
-router.get('/orders/:id', orderController.getSelectedOrder);
+router.get('/orders/:_id', orderController.getSelectedOrder);
 
 export { router as orderRouter };

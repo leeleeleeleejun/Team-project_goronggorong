@@ -6,6 +6,11 @@ const orderModel = {
 
     return orders;
   },
+  findById: async (_id) => {
+    const order = await Order.findOne({ _id });
+
+    return order;
+  },
   createOrder: async (user, orderInfo) => {
     const order = await Order.create({
       user: {
