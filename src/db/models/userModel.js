@@ -1,6 +1,6 @@
 import { User } from '../schemas/index.js';
 
-const UserModel = {
+const userModel = {
   findAll: async () => {
     const users = await User.find({});
 
@@ -8,6 +8,11 @@ const UserModel = {
   },
   findByEmail: async (email) => {
     const user = await User.findOne({ email });
+
+    return user;
+  },
+  findById: async (_id) => {
+    const user = await User.findOne({ _id });
 
     return user;
   },
@@ -28,4 +33,4 @@ const UserModel = {
   }, */
 };
 
-export default UserModel;
+export default userModel;
