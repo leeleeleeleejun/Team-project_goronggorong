@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cart</title>
+    <link rel="stylesheet" href="../../config.css" />
+    <link rel="stylesheet" href="../../products/main/footer/footer.css" />
+    <link rel="stylesheet" href="../../products/main/header/header.css" />
+    <link rel="stylesheet" href="./cart.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a href="#"><img class="nav__logo" src="../../img/products/logo_simple.png" width="140" /></a>
+        <ul class="nav__cate">
+          <li>
+            <a href="#">Food</a>
+          </li>
+          <li>
+            <a href="#">Snack</a>
+          </li>
+          <li>
+            <a href="#">Toy</a>
+          </li>
+          <li>
+            <a href="#">Toilet</a>
+          </li>
+          <li>
+            <a href="#">Fashion</a>
+          </li>
+        </ul>
+
+        <ul class="nav__user-menu">
+          <li>
+            <a href="mypage"><img class="icon" src="../../img/products/profile.png" /></a>
+          </li>
+          <li>
+            <a href="cart"><img class="icon" src="../../img/products/cart.png" /></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div>
+      <h3 id="page-title">CART</h3>
+    </div>
+    <main>
+      <section>
+        <ul id="cart-list"></ul>
+        <div id="order-delete-button-wrap">
+          <div id="delete-button-wrap">
+            <button id="choice-delete">선택삭제</button>
+            <button id="all-delete">전체삭제</button>
+          </div>
+          <div id="order-button-wrap">
+            <button id="choice-order">선택상품 주문</button>
+            <button id="all-order">전체상품 주문</button>
+          </div>
+        </div>
+        <div id="order-price">
+          <div>
+            <span>주문금액</span>
+            <span>100000원</span>
+          </div>
+          <hr />
+          <div>
+            <span>합계</span>
+            <span>5000원</span>
+          </div>
+          <form>
+            <button>주문하기</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__brand">
+        <a href="#">
+          <img src="../../img/products/logo_simple.png" width="120px" />
+        </a>
+        <p><strong>고롱고롱</strong></p>
+        <p>우리 댕댕이, 우리 야옹이 용품 쉽게, 빠르게!</p>
+        <p>고롱고롱은 초보 집사님도 쉽게 주인님 용품을 구매할 수 있는 온라인 쇼핑몰입니다.</p>
+        <p>TEAM GorongGorong ฅ^•ﻌ•^ฅ</p>
+        <p>©2023 Elice Engineer Track SW4</p>
+      </div>
+      <div class="footer__bank">
+        <h1>BANK INFO</h1>
+        <p><strong>카카오뱅크</strong> 3333-1234-567890</p>
+        <p><strong>예금주</strong> 주식회사 고롱고롱</p>
+      </div>
+      <div class="footer__to-top">
+        <a href="#">
+          <img src="../../img/products/top.png" />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
+<script src="./cart.js"></script>

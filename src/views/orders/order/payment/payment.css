@@ -1,0 +1,52 @@
+.adress-imformation,
+.delivery-request {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pay-method li {
+  padding-top: 10px;
+}
+
+.useCard,
+.use-virtual-account {
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  background-color: #f7f7f7;
+}
+
+.useCard > div,
+.use-virtual-account > div {
+  padding-left: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.useCard > div > input {
+  width: 90%;
+}
+
+.use-virtual-account > div {
+  flex-direction: row;
+  border-bottom: 1px solid #abb2b9;
+  padding: 10px 10px;
+}
+
+.use-virtual-account > div > span {
+  width: 55%;
+}
+
+.bank-info span {
+  line-height: 200%;
+}
+
+.bank-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-btn {
+  height: 40px;
+}
