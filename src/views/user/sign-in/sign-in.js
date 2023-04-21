@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const form = document.querySelector('.sign__form')
 const id = document.querySelector('.form__id')
 const pw = document.querySelector('.form__pw')

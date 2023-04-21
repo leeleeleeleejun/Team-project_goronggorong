@@ -13,13 +13,14 @@ axios.get('http://localhost:3000/items/:id')
     price.innerHTML = item.price;
     //상품상세이미지로 바꿔둘 것
     contentImg.src = item.imgUrl;
-    
+
     let cartItem = []
 
     navCartBtn.addEventListener('click',addCart)
 
     function addCart(e){
       const newCart = {
+        id: new Date(),
         img : item.imgUrl,
         name : item.name,
         price : item.price,

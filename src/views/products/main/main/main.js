@@ -1,5 +1,3 @@
-const axios = require("axios")
-
 //상품 불러오기
 const createItem = (item)=>{
   return `
