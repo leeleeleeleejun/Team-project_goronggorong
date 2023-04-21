@@ -1,6 +1,21 @@
 import { userModel, orderModel } from '../db/index.js';
 import { customError } from '../middlewares/index.js';
 
+const createOrderId = () => {
+  const now = new Date();
+  let year = String(now.getFullYear());
+  const month = String(now.getMonth() + 1);
+  const date = String(now.getDate());
+  if (month.length === 1) year += '0';
+  let orderId = year + month + date;
+
+  for (let i = 0; i < 6; i++) {
+    orderId += Math.floor(Math.random() * 10);
+  }
+
+  return orderId;
+};
+
 const orderController = {
   createOrder: async (req, res, next) => {
     const { userId, address, requestMessage, products, totalPrice, paymentMethod } = req.body;
@@ -11,7 +26,8 @@ const orderController = {
         throw new customError(400, '사용자가 없습니다.');
       }
 
-      const order = await orderModel.createOrder(user, {
+      const orderId = createOrderId();
+      const order = await orderModel.createOrder(user, orderId, {
         address,
         requestMessage,
         products,
