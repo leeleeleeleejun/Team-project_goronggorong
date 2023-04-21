@@ -10,9 +10,9 @@ const OrderSchema = new Schema({
   message: {
     type: String,
   },
-  productList: [
+  products: [
     {
-      productId: {
+      id: {
         type: Number,
         required: true,
       },
@@ -35,19 +35,19 @@ const OrderSchema = new Schema({
     creditInfo: {
       company: {
         type: String,
-        required: true,
+        // required: true,
       },
       cardNumber: {
         type: Number,
-        required: true,
+        // required: true,
       },
       expiryDate: {
         type: String,
-        required: true,
+        // required: true,
       },
       cvc: {
         type: Number,
-        required: true,
+        // required: true,
       },
     },
   },

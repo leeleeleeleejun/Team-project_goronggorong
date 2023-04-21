@@ -8,7 +8,7 @@ import morgan from 'morgan';
 
 // MODULE
 import { httpLogStream } from './utils/index.js';
-import { userRouter, productRouter } from './routers/index.js';
+import { userRouter, productRouter, orderRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -40,6 +40,7 @@ app.use(morgan('dev', { stream: httpLogStream })); // Log 생성기
 // ROUTER
 app.use('/api', userRouter);
 app.use('/api', productRouter);
+app.use('/api', orderRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {
