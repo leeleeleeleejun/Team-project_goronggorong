@@ -16,6 +16,7 @@
 }
 .prod__item{
   width: 100%;
+  display: grid;
 }
 .prod__link{
   text-decoration: 0;
