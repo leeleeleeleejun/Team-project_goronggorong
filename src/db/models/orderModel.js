@@ -1,4 +1,3 @@
-import { model } from 'mongoose';
 import { Order } from '../schemas/index.js';
 
 const OrderModel = {
