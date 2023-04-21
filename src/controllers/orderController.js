@@ -3,12 +3,21 @@ import { customError } from '../middlewares/index.js';
 
 const orderController = {
   createOrder: async (req, res, next) => {
-    const { userId, address, message, products, totalPrice, paymentMethod } = req.body;
+    const { userId, address, requestMessage, products, totalPrice, paymentMethod } = req.body;
 
     try {
       const user = await userModel.findById(userId);
-      const order = await orderModel.createOrder(user, { address, message, products, totalPrice, paymentMethod });
+      if (!user) {
+        throw new customError(400, '사용자가 없습니다.');
+      }
 
+      const order = await orderModel.createOrder(user, {
+        address,
+        requestMessage,
+        products,
+        totalPrice,
+        paymentMethod,
+      });
       if (!order) {
         throw new customError(400, '주문이 완료되지 않았습니다.');
       }
