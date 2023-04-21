@@ -7,9 +7,15 @@ const orderModel = {
     return orders;
   },
   createOrder: async (user, orderInfo) => {
-    const order = await Order.create({ user, ...orderInfo });
+    const order = await Order.create({
+      user: {
+        name: user.name,
+        phone: user.phone,
+        address: orderInfo.address,
+      },
+      ...orderInfo,
+    });
 
-    console.log(order);
     return order;
   },
 };
