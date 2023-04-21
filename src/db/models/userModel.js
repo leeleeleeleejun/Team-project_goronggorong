@@ -11,6 +11,11 @@ const userModel = {
 
     return user;
   },
+  findById: async (_id) => {
+    const user = await User.findOne({ _id });
+
+    return user;
+  },
   createUser: async (userInfo) => {
     const user = await User.create(userInfo);
 
