@@ -1,5 +1,5 @@
 import { userRouter } from './userRouter.js';
 import { orderRouter } from './orderRouter.js';
+import { productRouter } from './productRouter.js';
 
-export { userRouter, orderRouter };
-export { productRouter } from './product-router.js';
+export { userRouter, orderRouter, productRouter };

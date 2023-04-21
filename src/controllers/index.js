@@ -1,5 +1,5 @@
 import userController from './userController.js';
-import productService from './product-service.js';
+import productController from './productController.js';
 import orderController from './orderController.js';
 
-export { userController, productService, orderController };
+export { userController, productController, orderController };
