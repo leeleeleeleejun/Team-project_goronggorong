@@ -1,3 +1,6 @@
+import { main } from '/src/views/public/js/main.js';
+await main();
+
 axios
   .get('http://localhost:3000/items/:id')
   .then((res) => {
@@ -6,16 +9,14 @@ axios
     const itemImg = document.querySelector('.item__img');
     const name = document.querySelector('.item__name');
     const price = document.querySelector('.item__price');
-    const contentImg = document.querySelector('.content__img');
+    const category = document.querySelector('.overview__category');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
     itemImg.setAttribute('src', item.imgUrl);
     name.innerHTML = item.name;
     price.innerHTML = item.price;
-    //상품상세이미지로 바꿔둘 것
-    contentImg.setAttribute('src', item.imgUrl);
-
+    category.innerHTML = item.category;
     navCartBtn.addEventListener('click', addCart);
 
     let cartItem = [];
