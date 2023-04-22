@@ -1,18 +1,19 @@
 function renderHeader(loggedInUser) {
-  let header;
+  const header = document.querySelector('header');
+
   //로그인 한 유저의 헤더
   if (loggedInUser) {
-    header = `
+    header.innerHTML = `
     <header>
   <nav class="nav">
-    <a href="/"><img class="nav__logo" src="../../../img/products/logo.png" width="140" /></a>
+    <a href="/"><img class="nav__logo" src="/src/views/img/main/logo.png" width="140" /></a>
 
     <ul class="nav__user-menu">
       <li>
-        <a class="nav__mypage" href="/mypage"><img class="icon" src="../../../img/products/profile.png" /></a>
+        <a class="nav__mypage" href="/mypage"><img class="icon" src="/src/views/img/main/profile.png" /></a>
       </li>
       <li>
-        <a href="/orders/cart"><img class="icon" src="../../../img/products/cart.png" /></a>
+        <a href="/orders/cart"><img class="icon" src="/src/views/img/main/cart.png" /></a>
       </li>
     </ul>
   </nav>
@@ -21,11 +22,11 @@ function renderHeader(loggedInUser) {
   }
   //로그인 안 한 유저의 헤더
   else {
-    header = `
+    header.innerHTML = `
     <header>
       <nav class="nav">
         <a href="/">
-          <img class="nav__logo" src="../../../img/products/logo.png" width="140" />
+          <img class="nav__logo" src="/src/views/img/main/logo.png" width="140" />
         </a>
 
         <ul class="nav__user-menu">
@@ -36,7 +37,7 @@ function renderHeader(loggedInUser) {
           </li>
           <li>
             <a href="/orders/cart">
-              <img class="icon" src="../../../img/products/cart.png" />
+              <img class="icon" src="/src/views/img/main/cart.png" />
             </a>
           </li>
         </ul>
@@ -44,8 +45,6 @@ function renderHeader(loggedInUser) {
     </header>
     `;
   }
-
-  document.body.innerHTML += header;
 }
 
 export { renderHeader };

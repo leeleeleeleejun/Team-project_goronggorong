@@ -1,3 +1,6 @@
+import { main } from '/src/views/public/js/main.js';
+await main();
+
 //상품 불러오기
 const createItem = (item) => {
   return `
@@ -11,7 +14,7 @@ const createItem = (item) => {
                 <p class="prod__title">${item.name}</p>
                 <div class="prod__order">
                   <span><strong class="prod__order-price">${item.price}</strong>원</span>
-                  <!-- <button class="prod__add-cart"><img src="../../../img/products/cart.png" /></button> -->
+                  <!-- <button class="prod__add-cart"><img src="/src/views/img/main/cart.png" /></button> -->
                 </div>
               </div>
             </a>
@@ -20,7 +23,7 @@ const createItem = (item) => {
 
 //전체 상품 목록 불러오기
 axios
-  .get('http://localhost:3001/items/')
+  .get('http://localhost:3000/items/')
   .then((res) => {
     const items = res.data;
     const list = document.querySelector('.prod__list');

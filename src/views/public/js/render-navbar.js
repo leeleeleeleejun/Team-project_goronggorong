@@ -1,30 +1,27 @@
 function renderNavbar() {
-  const navbar = `
-  <nav class="navbar">
+  const navbar = document.querySelector('.navbar');
+  navbar.innerHTML = `
   <ul class="nav__cate">
     <li>
       <a class="nav__cate--on" href="/products/:food">All</a>
     </li>
     <li>
-      <a href="/products/:food">Food</a>
+      <a href="/products/food">Food</a>
     </li>
     <li>
-      <a href="/products/:snack">Snack</a>
+      <a href="/products/snack">Snack</a>
     </li>
     <li>
-      <a href="/products/:toy">Toy</a>
+      <a href="/products/toy">Toy</a>
     </li>
     <li>
-      <a href="/products/:toilet">Toilet</a>
+      <a href="/products/toilet">Toilet</a>
     </li>
     <li>
-      <a href="/products/:fashion">Fashion</a>
+      <a href="/products/fashion">Fashion</a>
     </li>
   </ul>
-</nav>
   `;
-
-  document.body.innerHTML += navbar;
 }
 
 export { renderNavbar };
