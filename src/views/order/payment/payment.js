@@ -1,3 +1,6 @@
+import { main } from '/src/views/public/js/main.js';
+await main();
+
 const useVirtualAccount = document.querySelector('.use-virtual-account');
 const useCard = document.querySelector('.use-card');
 const cardInfo = document.querySelector('.card-info');

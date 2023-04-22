@@ -1,5 +1,5 @@
-//import axios from 'axios';
-
+import { main } from '/src/views/public/js/main.js';
+await main();
 localStorage.setItem(
   'cart',
   JSON.stringify([
@@ -113,7 +113,7 @@ const writeCartList = () => {
   totalPrice.innerHTML = 0;
   const items = JSON.parse(localStorage.getItem('cart'));
   for (let i = 0; i < items.length; i++) {
-    cartList.appendChild(makeItem(i, items[i]));
+    cartList.appendChild(makeListItem(i, items[i]));
     totalPrice.innerHTML = Number(totalPrice.innerHTML) + items[i].price * items[i].amount;
   }
 };
@@ -153,7 +153,7 @@ allOrderBtn.addEventListener('click', () => {
 
 writeCartList();
 
-const reqBody = {
-  products: [{ product_id, amount }],
-  totalPrice: '',
-};
+// const reqBody = {
+//   products: [{ product_id, amount }],
+//   totalPrice: '',
+// };
