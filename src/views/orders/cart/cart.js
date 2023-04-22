@@ -32,7 +32,7 @@ const allDeleteBtn = document.querySelector('#all-delete');
 const allOrderBtn = document.querySelector('#all-order');
 const lastOrderBtn = document.querySelector('#last-order-button');
 
-const makeItem = (id, content) => {
+const makeListItem = (id, content) => {
   //itemInfo = JSON.parse(itemInfo);
   const li = document.createElement('li');
   li.setAttribute('class', 'cart-list__cart-item-wrap');
@@ -141,7 +141,6 @@ allDeleteBtn.addEventListener('click', () => {
 choiceOrder.addEventListener('click', () => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const orderTarget = [...checkboxes].filter((item) => item.checked);
-  console.log('a');
   for (let i = orderTarget.length - 1; i >= 0; i--) {
     deleteHandle(orderTarget[i].id);
   }
@@ -152,4 +151,9 @@ allOrderBtn.addEventListener('click', () => {
   writeCartList();
 });
 
-window.onload = writeCartList();
+writeCartList();
+
+const reqBody = {
+  products: [{ product_id, amount }],
+  totalPrice: '',
+};
