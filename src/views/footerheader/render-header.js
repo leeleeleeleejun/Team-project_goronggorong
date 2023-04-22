@@ -6,14 +6,14 @@ function renderHeader(loggedInUser) {
     header.innerHTML = `
     <header>
   <nav class="nav">
-    <a href="/"><img class="nav__logo" src="/src/views/img/main/logo.png" width="140" /></a>
+    <a href="/"><img class="nav__logo" src="/img/logo.png" width="140" /></a>
 
     <ul class="nav__user-menu">
       <li>
-        <a class="nav__mypage" href="/mypage"><img class="icon" src="/src/views/img/main/profile.png" /></a>
+        <a class="nav__mypage" href="/mypage"><img class="icon" src="/img/profile.png" /></a>
       </li>
       <li>
-        <a href="/orders/cart"><img class="icon" src="/src/views/img/main/cart.png" /></a>
+        <a href="/orders/cart"><img class="icon" src="/img/cart.png" /></a>
       </li>
     </ul>
   </nav>
@@ -26,7 +26,7 @@ function renderHeader(loggedInUser) {
     <header>
       <nav class="nav">
         <a href="/">
-          <img class="nav__logo" src="/src/views/img/main/logo.png" width="140" />
+          <img class="nav__logo" src="/img/logo.png" width="140" />
         </a>
 
         <ul class="nav__user-menu">
@@ -37,7 +37,7 @@ function renderHeader(loggedInUser) {
           </li>
           <li>
             <a href="/orders/cart">
-              <img class="icon" src="/src/views/img/main/cart.png" />
+              <img class="icon" src="/img/cart.png" />
             </a>
           </li>
         </ul>

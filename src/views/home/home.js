@@ -1,11 +1,11 @@
-import { main } from '/src/views/public/js/main.js';
+import { main } from '../footerheader/main.js';
 await main();
 
 //상품 불러오기
 const createItem = (item) => {
   return `
   <li class="prod__item">
-            <a class="prod__link" href="/products/:${item.category}/${item.id}">
+            <a class="prod__link" href="/products/${item.id}">
               <img
                 class="prod__link-thumb"
                 src="https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
@@ -23,9 +23,9 @@ const createItem = (item) => {
 
 //전체 상품 목록 불러오기
 axios
-  .get('http://localhost:3000/items/')
+  .get('http://localhost:3000/api/')
   .then((res) => {
-    const items = res.data;
+    const items = res.data.products;
     const list = document.querySelector('.prod__list');
     items.forEach((item) => {
       list.innerHTML += createItem(item);

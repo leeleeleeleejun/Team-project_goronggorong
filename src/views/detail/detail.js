@@ -1,22 +1,29 @@
-import { main } from '/src/views/public/js/main.js';
+import { main } from '/footerheader/main.js';
 await main();
 
+
+// .get(`http://localhost:3000/api/products/${id}`)
 axios
-  .get('http://localhost:3000/items/:id')
+  .get(`http://localhost:3000/api/products/1`)
   .then((res) => {
-    const item = res.data;
+    const item = res.data.product;
+    console.log(item);
 
     const itemImg = document.querySelector('.item__img');
-    const name = document.querySelector('.item__name');
+    const name = document.getElementsByClassName('item__name');
     const price = document.querySelector('.item__price');
     const category = document.querySelector('.overview__category');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
     itemImg.setAttribute('src', item.imgUrl);
-    name.innerHTML = item.name;
-    price.innerHTML = item.price;
-    category.innerHTML = item.category;
+    console.log(name);
+    for (let i = 0; i < 2; i++) {
+      name[i].innerText = item.name;
+    }
+
+    price.innerText = item.price;
+    category.innerText = item.category;
     navCartBtn.addEventListener('click', addCart);
 
     let cartItem = [];

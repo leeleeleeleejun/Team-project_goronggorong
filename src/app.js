@@ -8,7 +8,7 @@ import morgan from 'morgan';
 
 // MODULE
 import { httpLogStream } from './utils/index.js';
-import { userRouter, productRouter, orderRouter } from './routers/index.js';
+import { userRouter, productRouter, orderRouter, viewRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -20,6 +20,7 @@ const rootDir = path.join(__dirname, '..');
 
 process.chdir(rootDir);
 dotenv.config();
+process.chdir(__dirname);
 
 const port = process.env.PORT || 3000;
 
@@ -31,13 +32,14 @@ db.on('connected', () => console.log('Connecting DB Success'));
 db.on('error', (err) => console.error(err));
 
 // MIDDLEWARE
-// app.set(views)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static('public')); // public 폴더 접근
+app.use(express.static(rootDir + '/public')); // public 폴더 접근
+console.log(rootDir + '/public');
 app.use(morgan('dev', { stream: httpLogStream })); // Log 생성기
 
 // ROUTER
+app.use(viewRouter);
 app.use('/api', userRouter);
 app.use('/api', productRouter);
 app.use('/api', orderRouter);
@@ -47,4 +49,4 @@ app.listen(port, () => {
   console.log(`Connected to ${port}...`);
 });
 
-export default app;
+export { app, __dirname as srcPath };

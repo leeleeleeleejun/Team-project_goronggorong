@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import app from '../app.js';
+import { app } from '../app.js';
 
 const verifyToken = () => {};
 
