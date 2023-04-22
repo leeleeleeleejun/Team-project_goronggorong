@@ -1,7 +1,6 @@
 import { main } from '/layouts/main.js';
 await main();
 
-
 // .get(`http://localhost:3000/api/products/${id}`)
 const url = window.location.pathname;
 const itemId = url.split('/')[2];
