@@ -1,8 +1,15 @@
+@import "/src/views/public/css/main.css";
 .overview{
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.overview__category{
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 4px;
 }
 
 .content{

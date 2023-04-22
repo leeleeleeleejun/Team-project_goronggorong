@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="footer.css" />
-
-<footer class="footer">
+function renderFooter() {
+  const footer = document.querySelector('footer');
+  footer.innerHTML = `
   <div class="footer__brand">
     <a href="/">
-      <img src="../../../img/products/logo_simple.png" width="120px" />
+      <img src="/src/views/img/main/logo_simple.png" width="120px" />
     </a>
     <p><strong>고롱고롱</strong></p>
     <p>우리 댕댕이, 우리 야옹이 용품 쉽게, 빠르게!</p>
@@ -18,7 +18,10 @@
   </div>
   <div class="footer__to-top">
     <a href="#">
-      <img src="../../../img/products/top.png" />
+      <img src="/src/views/img/main/top.png" />
     </a>
   </div>
-</footer>
+  `;
+}
+
+export { renderFooter };

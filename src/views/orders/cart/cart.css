@@ -125,23 +125,31 @@ main {
   line-height: 30px;
 }
 
+#order-delete-button-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+#total-price-wrap {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+}
+
 .amount-wrap__delete-button {
   margin-left: 30px;
   background: none;
   border: none;
 }
 
-#order-delete-button-wrap {
+.last-order-button-wrap {
   display: flex;
-  justify-content: space-between;
 }
 
-#order-price div {
-  display: flex;
-  justify-content: space-between;
-}
-
-#order-price div span {
-  padding: 10px 0;
-  font-size: 14px;
+.last-order-button-wrap button {
+  width: 50%;
+  height: 40px;
+  margin: auto;
 }
