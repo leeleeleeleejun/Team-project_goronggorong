@@ -1,0 +1,23 @@
+@import "../../config.css";
+
+body{
+  background-color: #f7f7f7;
+}
+
+.sign{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sign__form{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form__help{
+  color: rgb(176, 176, 176);
+  font-size: 12px;
+}

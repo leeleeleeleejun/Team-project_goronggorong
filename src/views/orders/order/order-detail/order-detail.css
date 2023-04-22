@@ -1,0 +1,11 @@
+.itme-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.itme-info > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px;
+}

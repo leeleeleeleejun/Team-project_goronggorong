@@ -1,0 +1,44 @@
+@import "/src/views/config.css";
+@import "/src/views/public/css/main.css";
+
+.prod{
+  padding: 50px;
+}
+.prod__page-size{
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.prod__list{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+}
+.prod__item{
+  width: 100%;
+  display: grid;
+}
+.prod__link{
+  text-decoration: 0;
+  color: black;
+}
+
+.prod__link-thumb{
+  width: 100%;
+  border-radius: 8px;
+}
+
+.prod__title{
+  margin: 10px 0px;
+}
+.prod__order{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prod__order-price{
+  font-size: 24px;
+  font-weight: 500;
+  margin-right: 2px;
+}
