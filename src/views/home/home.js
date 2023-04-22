@@ -24,8 +24,7 @@ const createItem = (item) => {
 //전체 상품 목록 불러오기
 
 axios
-  //api/?skip=0&limit=20
-  .get(`/api/?skip=${skip}&limit=${limit}`)
+  .get('http://localhost:3000/api/')
   .then((res) => {
     const items = res.data.products;
     const list = document.querySelector('.prod__list');
