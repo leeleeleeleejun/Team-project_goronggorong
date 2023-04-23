@@ -1,12 +1,12 @@
 import { main } from '/layouts/main.js';
 await main();
 
-// .get(`http://localhost:3000/api/products/${id}`)
-const url = window.location.pathname;
-const itemId = url.split('/')[2];
+//url주소에서 ?뒤의 문자열 가져와서 '='으로 id값만 분리하기
+const url = window.location.search;
+const itemId = url.split('=')[1];
 
 axios
-  .get(`http://localhost:3000/api/products/${itemId}`)
+  .get(`http://localhost:3000/api/products?id=${itemId}`)
   .then((res) => {
     const item = res.data.product;
 
