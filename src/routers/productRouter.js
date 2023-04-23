@@ -6,7 +6,7 @@ const router = Router();
 // pagination 추가 (예시 : api/?skip=0&limit=20 )
 router.get('/', productController.getProducts);
 router.get('/products/:category', productController.getProductsByCategory);
-router.get('/products/:category/:id', productController.getProductById);
+router.get('/products', productController.getProductById);
 
 // 제품 등록 API
 router.post('/products/add', productController.addProduct);
