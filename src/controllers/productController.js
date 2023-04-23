@@ -7,9 +7,10 @@ const productController = {
     try {
       // 한 페이지 기본값 설정
       const { skip, limit } = req.query; // /api/?skip=0&limit=20
-      // 페이지의 제품 목록
       const products = await productModel.findAll(parseInt(skip), parseInt(limit));
-      // 제품 목록 JSON 형태로 프론트에 쏴주기
+      if (parseInt(skip) >= parseInt(limit) || products.slice(skip, limit).length === 0) {
+        return res.status(400).json({ message: '잘못된 목록 설정 입니다' });
+      }
       res.status(200).json({
         message: `전체 제품 목록 ${parseInt(skip) + 1} id 부터 ${parseInt(limit)} id 까지 불러왔습니다.`,
         info: products.slice(skip, limit),
@@ -27,6 +28,9 @@ const productController = {
         throw new customError(400, '잘못된 카테고리 입니다');
       }
       const products = await productModel.findByCategory(category);
+      if (!products) {
+        throw new customError(400, '해당 상품이 존재하지 않습니다');
+      }
       res.status(200).json({
         message: '선택한 카테고리에 해당하는 제품 목록을 불러왔습니다',
         info: products,
@@ -41,6 +45,9 @@ const productController = {
       // 아이디로 찾아서 JSON 으로 프론트에 쏴주기
       const { id } = req.query;
       const product = await productModel.findById(id);
+      if (!product) {
+        throw new customError(400, '해당 상품이 존재하지 않습니다');
+      }
       res.status(200).json({
         message: '해당 아이디 제품을 불러왔습니다',
         info: product,
