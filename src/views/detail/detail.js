@@ -2,11 +2,16 @@ import { main } from '/layouts/main.js';
 await main();
 
 //url주소에서 ?뒤의 문자열 가져와서 '='으로 id값만 분리하기
-const url = window.location.search;
-const itemId = url.split('=')[1];
+// const url = window.location.search;
+// const itemId = url.split('=')[1];
+
+// axios
+//   .get(`http://localhost:3000/api/products?id=${itemId}`)
+const url = window.location.pathname;
+const itemId = url.split('/')[2];
 
 axios
-  .get(`http://localhost:3000/api/products?id=${itemId}`)
+  .get(`http://localhost:3000/api/products/${itemId}`)
   .then((res) => {
     const item = res.data.product;
 
@@ -35,12 +40,24 @@ axios
         price: item.price,
         amount: navAmount.value,
       };
-      //만약 기존 추가된 아이템이 있다면
+      //스토리지에 기존 아이템이 있는 경우
       if (localStorage.getItem('cart')) {
         cartItem = JSON.parse(localStorage.getItem('cart'));
+        //cartItem에 이름이 같은 아이템이 있는지 찾기
+        const existingItem = cartItem.find((item) => item.name === newItem.name);
+        if (existingItem) {
+          alert('기존에 장바구니에 추가 된 아이템입니다. 수량을 변경했어요😽');
+          //새로운 수량입력값으로 변경
+          existingItem.amount = navAmount.value;
+        } else {
+          cartItem.push(newItem);
+        }
+      }
+      //기존 스토리지에 아이템이 없는 경우
+      else {
+        cartItem.push(newItem);
       }
 
-      cartItem.push(newItem);
       localStorage.setItem('cart', JSON.stringify(cartItem));
       //배열 초기화
       cartItem = [];
