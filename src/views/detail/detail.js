@@ -30,7 +30,6 @@ axios
 
     function addCart() {
       const newItem = {
-        id: new Date(),
         img: item.imgUrl,
         name: item.name,
         price: item.price,
