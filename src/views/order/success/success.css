@@ -1,7 +1,7 @@
 @import '/src/views/public/css/main.css';
 @import '/src/views/orders/order/order-common.css';
 
-.user-adress-info {
+.user-address-info {
   display: flex;
   flex-direction: column;
 }

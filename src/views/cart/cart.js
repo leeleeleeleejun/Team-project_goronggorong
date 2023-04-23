@@ -24,6 +24,19 @@ localStorage.setItem(
   ]),
 );
 
+const reqbody = JSON.parse(localStorage.getItem('cart')).map((item) => {
+  return { name: item.name, amount: item.amount };
+});
+const getCartInfo = JSON.parse(localStorage.getItem('cart'));
+
+axios({
+  method: 'post',
+  url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
+  data: getCartInfo,
+}).then(function (response) {
+  console.log(response);
+});
+
 const cartList = document.querySelector('#cart-list');
 const totalPrice = document.querySelector('#total-price');
 const choiceOrder = document.querySelector('#choice-order');
@@ -40,10 +53,10 @@ const makeListItem = (id, content) => {
   cartItem.setAttribute('class', 'cart-item-wrap__cart-item');
   const itemInfoWrap = document.createElement('div');
   itemInfoWrap.setAttribute('class', 'cart-item__item-info-wrap');
-  const itmeCheckbox = document.createElement('input');
-  itmeCheckbox.setAttribute('type', 'checkbox');
-  itmeCheckbox.setAttribute('class', 'item-info-wrap__itme-checkbox');
-  itmeCheckbox.setAttribute('id', id);
+  const itemCheckbox = document.createElement('input');
+  itemCheckbox.setAttribute('type', 'checkbox');
+  itemCheckbox.setAttribute('class', 'item-info-wrap__item-checkbox');
+  itemCheckbox.setAttribute('id', id);
 
   const itemImgWrap = document.createElement('a');
   //itemImgWrap.setAttribute('href'); // 상페이지 url 연결
@@ -83,17 +96,17 @@ const makeListItem = (id, content) => {
       localStorage.setItem(id, JSON.stringify(content));
     }
   });
-  const delelteButton = document.createElement('button');
-  delelteButton.setAttribute('class', 'amount-wrap__delete-button');
-  delelteButton.innerText = 'X';
+  const deleteButton = document.createElement('button');
+  deleteButton.setAttribute('class', 'amount-wrap__delete-button');
+  deleteButton.innerText = 'X';
 
-  delelteButton.addEventListener('click', () => {
+  deleteButton.addEventListener('click', () => {
     deleteHandle(id);
   });
 
   li.appendChild(cartItem);
   cartItem.appendChild(itemInfoWrap);
-  itemInfoWrap.appendChild(itmeCheckbox);
+  itemInfoWrap.appendChild(itemCheckbox);
   itemInfoWrap.appendChild(itemImgWrap);
   itemImgWrap.appendChild(itemImg);
   itemInfoWrap.appendChild(itemInfo);
@@ -105,7 +118,7 @@ const makeListItem = (id, content) => {
   amount.appendChild(increaseButton);
   amount.appendChild(amountNumber);
   amount.appendChild(decreaseButton);
-  amount.appendChild(delelteButton);
+  amount.appendChild(deleteButton);
   return li;
 };
 const writeCartList = () => {

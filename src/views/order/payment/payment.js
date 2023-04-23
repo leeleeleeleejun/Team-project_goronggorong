@@ -4,9 +4,9 @@ import { main } from '/src/views/public/js/main.js';
 await main();
 
 const deliveryInfo = {
-  deliveryImfoWrap: document.querySelector('.delivery-info'),
-  deliveryAdressName: document.querySelector('.delivery-adress-name'),
-  deliveryAdress: document.querySelector('.delivery-adress'),
+  deliveryInfoWrap: document.querySelector('.delivery-info'),
+  deliveryAddressName: document.querySelector('.delivery-address-name'),
+  deliveryAddress: document.querySelector('.delivery-address'),
   deliveryTargetName: document.querySelector('.delivery-target-name'),
   deliveryTargetPhone: document.querySelector('.delivery-target-phone'),
 };
@@ -45,8 +45,8 @@ const reqBody = (() => {
   const getValue = () => {
     return value;
   };
-  const setValue = (taget, change) => {
-    return (value[taget] = change);
+  const setValue = (target, change) => {
+    return (value[target] = change);
   };
   return { getValue, setValue };
 })();
@@ -121,35 +121,34 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
   e.currentTarget.classList.toggle('change');
 
   const changeDeliveryInfo = document.querySelector('.change-delivery-info');
-  const changeDeliveryAdressName = document.querySelector('.change-delivery-adress-name');
+  const changeDeliveryAddressName = document.querySelector('.change-delivery-address-name');
   const changeDeliveryTargetName = document.querySelector('.change-delivery-target-name');
   const changeDeliveryTargetPhone = document.querySelector('.change-delivery-target-phone');
-  const changeDeliveryAdressWrap = document.querySelector('.change-delivery-adress');
-  const changeDeliveryAdress = [...changeDeliveryAdressWrap.children]
+  const changeDeliveryAddressWrap = document.querySelector('.change-delivery-address');
+  const changeDeliveryAddress = [...changeDeliveryAddressWrap.children]
     .filter((item) => item.tagName === 'INPUT')
     .map((item) => item.value)
     .join(' ');
-  console.log(changeDeliveryAdress);
   changeDeliveryTargetPhone.addEventListener('input', (e) => {
     inputNumberTypeCheck(e, (targetNumber) => {
       return targetNumber;
     });
   });
   if (e.currentTarget.className === 'change') {
-    deliveryInfo.deliveryImfoWrap.classList.add('close');
+    deliveryInfo.deliveryInfoWrap.classList.add('close');
     changeDeliveryInfo.classList.remove('close');
     e.currentTarget.innerHTML = '완료';
   } else {
-    deliveryInfo.deliveryImfoWrap.classList.remove('close');
+    deliveryInfo.deliveryInfoWrap.classList.remove('close');
     changeDeliveryInfo.classList.add('close');
     e.currentTarget.innerHTML = '배송지 변경';
     // 입력값이 비울 경우 기존의 데이터 삽입
-    deliveryInfo.deliveryAdressName.innerHTML = changeDeliveryAdressName.value.length
-      ? changeDeliveryAdressName.value
-      : deliveryInfo.deliveryAdressName.innerHTML;
-    deliveryInfo.deliveryAdress.innerHTML = changeDeliveryAdress.length
-      ? changeDeliveryAdress
-      : deliveryInfo.deliveryAdress.innerHTML;
+    deliveryInfo.deliveryAddressName.innerHTML = changeDeliveryAddressName.value.length
+      ? changeDeliveryAddressName.value
+      : deliveryInfo.deliveryAddressName.innerHTML;
+    deliveryInfo.deliveryAddress.innerHTML = changeDeliveryAddress.length
+      ? changeDeliveryAddress
+      : deliveryInfo.deliveryAddress.innerHTML;
     deliveryInfo.deliveryTargetName.innerHTML = changeDeliveryTargetName.value.length
       ? changeDeliveryTargetName.value
       : deliveryInfo.deliveryTargetName.innerHTML;

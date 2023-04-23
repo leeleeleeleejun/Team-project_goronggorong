@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./payment.js" type="module"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/src/views/public/js/deilveryAdressApi.js"></script>
+    <script src="/src/views/public/js/deliveryAdressApi.js"></script>
   </head>
   <body>
     <header></header>
@@ -27,21 +27,21 @@
               <div class="user-phone">010-0000-0000</div>
             </div>
           </section>
-          <section class="order-sets__user-adress">
+          <section class="order-sets__user-address">
             <div class="content-title">
               <span> 배송지 </span>
             </div>
             <div class="content">
               <div class="delivery-info-wrap">
                 <div class="delivery-info">
-                  <span class="delivery-adress-name">배송지 명</span>
-                  <span class="delivery-adress">실제 주소</span>
+                  <span class="delivery-address-name">배송지 명</span>
+                  <span class="delivery-address">실제 주소</span>
                   <span class="delivery-target-name">받는 사람 이름</span>
                   <span class="delivery-target-phone">받는 사람 번호</span>
                 </div>
                 <div class="change-delivery-info close">
-                  <input type="text" placeholder="배송지 명칭을 입력해주세요." class="change-delivery-adress-name" />
-                  <div class="change-delivery-adress">
+                  <input type="text" placeholder="배송지 명칭을 입력해주세요." class="change-delivery-address-name" />
+                  <div class="change-delivery-address">
                     <input type="text" id="sample6_postcode" placeholder="우편번호" />
                     <button onclick="sample6_execDaumPostcode()">우편번호 찾기</button> <br />
                     <input type="text" id="sample6_address" placeholder="주소" /><br />
@@ -90,11 +90,11 @@
                   <!--카드결제 선택 시 오픈-->
                   <div class="card-info">
                     <div>
-                      <span>Card number</span>
+                      <span>카드 번호</span>
                       <input type="text" class="card-number" maxlength="19" />
                     </div>
                     <div>
-                      <span>Expir date</span>
+                      <span>만료일</span>
                       <input type="text" class="expir-date" maxlength="5" />
                     </div>
                     <div>
@@ -102,11 +102,24 @@
                       <input type="text" class="cvc-number" maxlength="3" />
                     </div>
                     <div>
-                      <span>Bank</span>
-                      <input type="text" class="bank" />
+                      <span>은행</span>
+                      <select class="dank">
+                        <option>BC카드</option>
+                        <option>국민은행</option>
+                        <option>삼성카드</option>
+                        <option>신한은행</option>
+                        <option>롯데은행</option>
+                        <option>NH농협은행</option>
+                        <option>수협은행</option>
+                        <option>우리은행</option>
+                        <option>하나은행</option>
+                        <option>광주은행</option>
+                        <option>전북은행</option>
+                        <option>제주은행</option>
+                      </select>
                     </div>
                     <div>
-                      <span>Name on card</span>
+                      <span>이름</span>
                       <input type="text" class="name-on-card" />
                     </div>
                   </div>

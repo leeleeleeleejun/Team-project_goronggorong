@@ -38,8 +38,10 @@
   flex-direction: column;
 }
 
-.card-info > div > input {
+.card-info > div > input,
+.card-info > div > select {
   width: 90%;
+  height: 30px;
 }
 
 .virtual-account-info > div {

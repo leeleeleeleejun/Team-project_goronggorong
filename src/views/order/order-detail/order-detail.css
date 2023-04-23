@@ -1,12 +1,12 @@
 @import '/src/views/public/css/main.css';
 @import '/src/views/orders/order/order-common.css';
 
-.itme-info {
+.item-info {
   display: flex;
   flex-direction: row;
 }
 
-.itme-info > div {
+.item-info > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
