@@ -6,23 +6,25 @@ const orderModel = {
 
     return orders;
   },
-  findById: async (_id) => {
+  findOneById: async (_id) => {
     const order = await Order.findOne({ _id });
 
     return order;
   },
-  createOrder: async (user, orderId, orderInfo) => {
-    const order = await Order.create({
-      user: {
-        name: user.name,
-        phone: user.phone,
-        address: orderInfo.address,
-      },
-      ...orderInfo,
-      orderId,
-    });
+  findAllById: async (_id) => {
+    const orders = await Order.find({ userId: _id });
+
+    return orders;
+  },
+  createOrder: async (orderInfo) => {
+    const order = await Order.create(orderInfo);
 
     return order;
+  },
+  updateOrder: async (_id) => {
+    const updatedOrder = await Order.updateOne({ _id }, { deliveryStatus: '주문취소' });
+
+    return updatedOrder;
   },
 };
 

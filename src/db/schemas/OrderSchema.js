@@ -5,7 +5,11 @@ const OrderSchema = new Schema({
     type: Number,
     required: true,
   },
-  user: {
+  userId: {
+    type: String,
+    required: true,
+  },
+  receiver: {
     name: {
       type: String,
       required: true,
@@ -18,14 +22,15 @@ const OrderSchema = new Schema({
       type: String,
       required: true,
     },
+    requestMessage: {
+      type: String,
+    },
   },
-  requestMessage: {
-    type: String,
-  },
+
   products: [
     {
       id: {
-        type: Number,
+        type: String,
         required: true,
       },
       amount: {
@@ -47,29 +52,33 @@ const OrderSchema = new Schema({
     creditInfo: {
       company: {
         type: String,
-        // required: true,
       },
       cardNumber: {
-        type: Number,
-        // required: true,
+        type: String,
       },
       expiryDate: {
         type: String,
-        // required: true,
       },
       cvc: {
-        type: Number,
-        // required: true,
+        type: String,
+      },
+      cardOwner: {
+        type: String,
       },
     },
   },
   orderDate: {
     type: Date,
     default: Date.now,
+    required: true,
   },
   deliveryStatus: {
     type: String,
-    default: '입금 대기',
+    default: '입금대기',
+    required: true,
+  },
+  cancelReason: {
+    type: String,
   },
 });
 
