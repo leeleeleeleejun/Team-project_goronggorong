@@ -3,7 +3,7 @@ function renderNavbar() {
   navbar.innerHTML = `
   <ul class="nav__cate">
     <li>
-      <a class="nav__cate--on" href="/products/:food">All</a>
+      <a class="nav__cate--on" href="/">All</a>
     </li>
     <li>
       <a href="/products/food">Food</a>
