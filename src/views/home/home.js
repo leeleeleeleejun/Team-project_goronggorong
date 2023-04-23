@@ -5,13 +5,24 @@ await main();
 const amountAll = document.querySelector('.prod__item--amount');
 
 axios
-  .get(`/api/?skip=0&limit=200`)
+  .get(`/api`) //전체리스트 불러오기
   .then((res) => {
     const items = res.data.products;
     amountAll.innerText = items.length;
     const list = document.querySelector('.prod__list');
     items.forEach((item) => {
       list.innerHTML += createItem(item);
+    });
+  })
+  .then((res) => {
+    const category = document.querySelectorAll('.nav__cate li');
+    category.forEach((cate) => {
+      cate.addEventListener('click', function (e) {
+        //기존 on카테고리에서 on클래스 삭제하고
+        document.querySelector('.nav__cate--on').classList.remove('nav__cate--on');
+        //클릭한 카테고리에 on 클래스 추가
+        e.target.classList.add('nav__cate--on');
+      });
     });
   })
   .catch((err) => {
