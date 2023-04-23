@@ -1,22 +1,23 @@
 import { main } from '/layouts/main.js';
 await main();
-
-//url주소에서 ?뒤의 문자열 가져와서 '='으로 id값만 분리하기
-// const url = window.location.search;
-// const itemId = url.split('=')[1];
+//패스로 불러올 때
+// const url = window.location.pathname;
+// const itemId = url.split('/')[2];
 
 // axios
-//   .get(`http://localhost:3000/api/products?id=${itemId}`)
-const url = window.location.pathname;
-const itemId = url.split('/')[2];
+//   .get(`http://localhost:3000/api/products/${itemId}`)
+
+// url주소에서 ?뒤의 문자열 가져와서 '='으로 id값만 분리하기
+const url = window.location.search;
+const itemId = url.split('=')[1];
 
 axios
-  .get(`http://localhost:3000/api/products/${itemId}`)
+  .get(`http://localhost:3000/api/products?id=${itemId}`)
   .then((res) => {
     const item = res.data.product;
 
     const itemImg = document.querySelectorAll('.item__img');
-    const name = document.querySelectorAll('item__name');
+    const name = document.querySelectorAll('.item__name');
     const price = document.querySelectorAll('.item__price');
     const category = document.querySelector('.overview__category');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
