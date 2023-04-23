@@ -1,0 +1,7 @@
+.caution {
+  list-style-type: circle;
+}
+.caution > li {
+  display: flex;
+  flex-direction: column;
+}

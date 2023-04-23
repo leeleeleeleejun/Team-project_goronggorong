@@ -9,11 +9,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./payment.js" type="module"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <<<<<<< HEAD:src/views/payment/payment.html
     <script src="/src/views/public/js/deliveryAdressApi.js"></script>
-    =======
-    <script src="/src/views/public/js/deilveryAdressApi.js"></script>
-    >>>>>>> ec23d01 (Add: 우편번호API 추가):src/views/orders/order/payment/payment.html
   </head>
   <body>
     <header></header>
@@ -38,11 +34,13 @@
             <div class="content">
               <div class="delivery-info-wrap">
                 <div class="delivery-info">
+                  <span class="delivery-address-name">배송지 명</span>
                   <span class="delivery-address">실제 주소</span>
                   <span class="delivery-target-name">받는 사람 이름</span>
                   <span class="delivery-target-phone">받는 사람 번호</span>
                 </div>
                 <div class="change-delivery-info close">
+                  <input type="text" placeholder="배송지 명칭을 입력해주세요." class="change-delivery-address-name" />
                   <div class="change-delivery-address">
                     <input type="text" id="sample6_postcode" placeholder="우편번호" />
                     <button onclick="sample6_execDaumPostcode()">우편번호 찾기</button> <br />
@@ -105,7 +103,7 @@
                     </div>
                     <div>
                       <span>은행</span>
-                      <select class="bank">
+                      <select class="dank">
                         <option>BC카드</option>
                         <option>국민은행</option>
                         <option>삼성카드</option>
