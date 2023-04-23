@@ -21,8 +21,5 @@ form.addEventListener('submit', function (e) {
       if (res.info === 200) {
         localStorage.setItem('userToken', res.data);
       }
-    })
-    .catch((err) => {
-      alert(err);
     });
 });

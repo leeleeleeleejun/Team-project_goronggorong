@@ -25,7 +25,7 @@ const createItem = (item) => {
 
 axios
   //api/?skip=0&limit=20
-  .get(`http://localhost:3000/api/?skip=${skip}&limit=${limit}`)
+  .get(`/api/?skip=${skip}&limit=${limit}`)
   .then((res) => {
     const items = res.data.products;
     const list = document.querySelector('.prod__list');
