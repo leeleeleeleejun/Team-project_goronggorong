@@ -1,5 +1,25 @@
+//import axios from 'axios';
+//import axios from 'axios';
 import { main } from '/src/views/public/js/main.js';
 await main();
+
+const deliveryInfo = {
+  deliveryImfoWrap: document.querySelector('.delivery-info'),
+  deliveryAdressName: document.querySelector('.delivery-adress-name'),
+  deliveryAdress: document.querySelector('.delivery-adress'),
+  deliveryTargetName: document.querySelector('.delivery-target-name'),
+  deliveryTargetPhone: document.querySelector('.delivery-target-phone'),
+};
+
+//유저 정보 불러오기
+axios({
+  method: 'get',
+  url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
+  responseType: 'json',
+}).then(function (response) {
+  const userName = document.querySelector('.user-name');
+  const userPhone = document.querySelector('.user-phone');
+});
 
 const useVirtualAccount = document.querySelector('.use-virtual-account');
 const useCard = document.querySelector('.use-card');
@@ -99,48 +119,55 @@ deliveryRequestOption.addEventListener('change', (e) => {
 const changeDeliveryInfoBtn = document.querySelector('#change-delivery-info-btn');
 changeDeliveryInfoBtn.addEventListener('click', (e) => {
   e.currentTarget.classList.toggle('change');
-  const deliveryImfoWrap = document.querySelector('.delivery-info');
-  const deliveryAdressName = document.querySelector('.delivery-adress-name');
-  const deliveryAdress = document.querySelector('.delivery-adress');
-  const deliveryTargetName = document.querySelector('.delivery-target-name');
-  const deliveryTargetPhone = document.querySelector('.delivery-target-phone');
 
   const changeDeliveryInfo = document.querySelector('.change-delivery-info');
   const changeDeliveryAdressName = document.querySelector('.change-delivery-adress-name');
-  const changeDeliveryAdress = document.querySelector('.change-delivery-adress');
   const changeDeliveryTargetName = document.querySelector('.change-delivery-target-name');
   const changeDeliveryTargetPhone = document.querySelector('.change-delivery-target-phone');
+  const changeDeliveryAdressWrap = document.querySelector('.change-delivery-adress');
+  const changeDeliveryAdress = [...changeDeliveryAdressWrap.children]
+    .filter((item) => item.tagName === 'INPUT')
+    .map((item) => item.value)
+    .join(' ');
+  console.log(changeDeliveryAdress);
   changeDeliveryTargetPhone.addEventListener('input', (e) => {
     inputNumberTypeCheck(e, (targetNumber) => {
       return targetNumber;
     });
   });
   if (e.currentTarget.className === 'change') {
-    deliveryImfoWrap.classList.add('close');
+    deliveryInfo.deliveryImfoWrap.classList.add('close');
     changeDeliveryInfo.classList.remove('close');
     e.currentTarget.innerHTML = '완료';
   } else {
-    deliveryImfoWrap.classList.remove('close');
+    deliveryInfo.deliveryImfoWrap.classList.remove('close');
     changeDeliveryInfo.classList.add('close');
     e.currentTarget.innerHTML = '배송지 변경';
     // 입력값이 비울 경우 기존의 데이터 삽입
-    deliveryAdressName.innerHTML = changeDeliveryAdressName.value.length
+    deliveryInfo.deliveryAdressName.innerHTML = changeDeliveryAdressName.value.length
       ? changeDeliveryAdressName.value
-      : deliveryAdressName.innerHTML;
-    deliveryAdress.innerHTML = changeDeliveryAdress.value.length
-      ? changeDeliveryAdressName.value
-      : deliveryAdress.innerHTML;
-    deliveryTargetName.innerHTML = changeDeliveryTargetName.value.length
+      : deliveryInfo.deliveryAdressName.innerHTML;
+    deliveryInfo.deliveryAdress.innerHTML = changeDeliveryAdress.length
+      ? changeDeliveryAdress
+      : deliveryInfo.deliveryAdress.innerHTML;
+    deliveryInfo.deliveryTargetName.innerHTML = changeDeliveryTargetName.value.length
       ? changeDeliveryTargetName.value
-      : deliveryTargetName.innerHTML;
-    deliveryTargetPhone.innerHTML = changeDeliveryTargetPhone.value.length
+      : deliveryInfo.deliveryTargetName.innerHTML;
+    deliveryInfo.deliveryTargetPhone.innerHTML = changeDeliveryTargetPhone.value.length
       ? changeDeliveryTargetPhone.value
-      : deliveryTargetPhone.innerHTML;
+      : deliveryInfo.deliveryTargetPhone.innerHTML;
   }
 });
 
 const paymentBtn = document.querySelector('.payment-btn');
 paymentBtn.addEventListener('click', () => {
   const result = reqBody.getValue();
-  console.log(result);
+
+  axios({
+    method: 'get',
+    url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
+    responseType: 'json',
+  }).then(function (response) {
+    console.log(response);
+  });
 });

@@ -146,14 +146,20 @@ choiceOrder.addEventListener('click', () => {
   }
 });
 
-allOrderBtn.addEventListener('click', () => {
+allOrderBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const reqbody = JSON.parse(localStorage.getItem('cart')).map((item) => {
+    return { name: item.name, amount: item.amount };
+  });
+  axios({
+    method: 'post',
+    url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
+    data: JSON.stringify(reqbody),
+  }).then(function (response) {
+    console.log(response);
+  });
   localStorage.setItem('cart', JSON.stringify([]));
   writeCartList();
 });
 
 writeCartList();
-
-// const reqBody = {
-//   products: [{ product_id, amount }],
-//   totalPrice: '',
-// };

@@ -1,11 +1,15 @@
 @import '/src/views/public/css/main.css';
 @import '/src/views/orders/order/order-common.css';
 
-.delivery-imfo-wrap,
+.delivery-info-wrap,
 .delivery-request-wrap {
   display: flex;
   justify-content: space-between;
   padding: 8px;
+}
+
+.delivery-info-wrap {
+  height: 240px;
 }
 
 .pay-method li {
@@ -70,7 +74,7 @@
 
 .delivery-info > span,
 .change-delivery-info > input {
-  width: 400px;
+  width: 500px;
   height: 40px;
   margin: 3px 0;
   line-height: 40px;

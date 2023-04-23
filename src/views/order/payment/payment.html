@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="./payment.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./payment.js" type="module"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/src/views/public/js/deilveryAdressApi.js"></script>
   </head>
-
   <body>
     <header></header>
     <nav class="navbar"></nav>
@@ -22,8 +23,8 @@
               <span> 주문 고객 정보 </span>
             </div>
             <div class="content">
-              <div>이준석</div>
-              <div>010-0000-0000</div>
+              <div class="user-name">이준석</div>
+              <div class="user-phone">010-0000-0000</div>
             </div>
           </section>
           <section class="order-sets__user-adress">
@@ -31,7 +32,7 @@
               <span> 배송지 </span>
             </div>
             <div class="content">
-              <div class="delivery-imfo-wrap">
+              <div class="delivery-info-wrap">
                 <div class="delivery-info">
                   <span class="delivery-adress-name">배송지 명</span>
                   <span class="delivery-adress">실제 주소</span>
@@ -40,7 +41,13 @@
                 </div>
                 <div class="change-delivery-info close">
                   <input type="text" placeholder="배송지 명칭을 입력해주세요." class="change-delivery-adress-name" />
-                  <input type="text" placeholder="주소를 입력해 주세요." class="change-delivery-adress" />
+                  <div class="change-delivery-adress">
+                    <input type="text" id="sample6_postcode" placeholder="우편번호" />
+                    <button onclick="sample6_execDaumPostcode()">우편번호 찾기</button> <br />
+                    <input type="text" id="sample6_address" placeholder="주소" /><br />
+                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" />
+                    <input type="text" id="sample6_extraAddress" placeholder="참고항목" />
+                  </div>
                   <input
                     type="text"
                     placeholder="받는 사람의 이름을 입력해주세요."
