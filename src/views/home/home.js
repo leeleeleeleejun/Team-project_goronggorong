@@ -1,4 +1,4 @@
-import { main } from '../footerheader/main.js';
+import { main } from '/layouts/main.js';
 await main();
 
 //상품 불러오기
@@ -8,7 +8,7 @@ const createItem = (item) => {
             <a class="prod__link" href="/products/${item.id}">
               <img
                 class="prod__link-thumb"
-                src="https://storage.googleapis.com/hochony/gorongImg/gorongfood.jpeg"
+                src="${item.imgUrl}"
               />
               <div class="prod__info">
                 <p class="prod__title">${item.name}</p>

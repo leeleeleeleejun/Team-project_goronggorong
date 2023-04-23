@@ -1,22 +1,10 @@
 import express from 'express';
-import { fileURLToPath } from 'url';
-import path from 'path';
+import { viewService } from '../services/index.js';
 
 const router = express.Router();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const serveStatics = (srcFolder) => {
-  const src = path.join(__dirname, `../views/${srcFolder}`);
-  console.log(__dirname, `../views/${srcFolder}`);
-  const option = { index: `${srcFolder}.html` };
-
-  return express.static(src, option);
-};
-
-router.use('/', serveStatics('home'));
-router.use('/products/:id', serveStatics('detail'));
-router.use('/footerheader', serveStatics('footerheader'));
+router.use('/', viewService.serveStatics('home'));
+router.use('/products/:id', viewService.serveStatics('detail'));
+router.use('/layouts', viewService.serveStatics('layouts'));
 
 export { router as viewRouter };

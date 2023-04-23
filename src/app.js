@@ -35,7 +35,6 @@ db.on('error', (err) => console.error(err));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(rootDir + '/public')); // public 폴더 접근
-console.log(rootDir + '/public');
 app.use(morgan('dev', { stream: httpLogStream })); // Log 생성기
 
 // ROUTER
