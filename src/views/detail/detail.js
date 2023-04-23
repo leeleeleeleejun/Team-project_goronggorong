@@ -14,7 +14,6 @@ axios
     const itemImg = document.querySelectorAll('.item__img');
     const name = document.querySelectorAll('item__name');
     const price = document.querySelectorAll('.item__price');
-
     const category = document.querySelector('.overview__category');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
