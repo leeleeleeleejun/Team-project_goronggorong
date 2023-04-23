@@ -1,28 +1,12 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { userModel } from '../db/index.js';
-import { customError } from '../middlewares/index.js';
+import { customError, signToken } from '../middlewares/index.js';
 
 /*
  * BCRYPT
  * .hash: hash password 생성
  * .compare: hashpassword 비교
  */
-const signToken = (user) => {
-  const newToken = jwt.sign(
-    {
-      id: user.id,
-      email: user.email,
-      password: user.password,
-    },
-    process.env.SECRET_KEY,
-    {
-      issuer: 'goronggorong',
-    },
-  );
-
-  return newToken;
-};
 
 const userController = {
   createUser: async (req, res, next) => {
