@@ -1,11 +1,8 @@
 import { main } from '/layouts/main.js';
 await main();
 
-const view20 = document.querySelector('.dropdown-20');
-const view40 = document.querySelector('.dropdown-40');
-const viewAll = document.querySelector('.dropdown-all');
-const amountAll = document.querySelector('.prod__item--amount');
 //전체 상품 목록 불러오기
+const amountAll = document.querySelector('.prod__item--amount');
 
 axios
   .get(`/api/?skip=0&limit=200`)
@@ -20,49 +17,6 @@ axios
   .catch((err) => {
     alert(err);
   });
-
-// view20.addEventListener('click', function () {
-//   axios
-//     .get(`/api/?skip=0&limit=20`)
-//     .then((res) => {
-//       const items = res.data.products;
-//       const list = document.querySelector('.prod__list');
-//       items.forEach((item) => {
-//         list.innerHTML += createItem(item);
-//       });
-//     })
-//     .catch((err) => {
-//       alert(err);
-//     });
-// });
-// view40.addEventListener('click', function () {
-//   axios
-//     .get(`/api/?skip=0&limit=40`)
-//     .then((res) => {
-//       const items = res.data.products;
-//       const list = document.querySelector('.prod__list');
-//       items.forEach((item) => {
-//         list.innerHTML += createItem(item);
-//       });
-//     })
-//     .catch((err) => {
-//       alert(err);
-//     });
-// });
-// viewAll.addEventListener('click', function () {
-//   axios
-//     .get(`/api/?skip=0&limit=100`)
-//     .then((res) => {
-//       const items = res.data.products;
-//       const list = document.querySelector('.prod__list');
-//       items.forEach((item) => {
-//         list.innerHTML += createItem(item);
-//       });
-//     })
-//     .catch((err) => {
-//       alert(err);
-//     });
-// });
 
 //상품 불러오기
 const createItem = (item) => {
