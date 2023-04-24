@@ -25,19 +25,6 @@ localStorage.setItem(
   ]),
 );
 
-const reqbody = JSON.parse(localStorage.getItem('cart')).map((item) => {
-  return { name: item.name, amount: item.amount };
-});
-const getCartInfo = JSON.parse(localStorage.getItem('cart'));
-
-axios({
-  method: 'post',
-  url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
-  data: getCartInfo,
-}).then(function (response) {
-  console.log(response);
-});
-
 const cartList = document.querySelector('#cart-list');
 const totalPrice = document.querySelector('#total-price');
 const choiceOrder = document.querySelector('#choice-order');

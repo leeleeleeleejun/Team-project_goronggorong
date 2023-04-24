@@ -1,29 +1,31 @@
 @import '/src/views/public/css/main.css';
 @import '/src/views/orders/order/order-common.css';
 
-.itme-info {
+.item-info {
   display: flex;
 }
 
-.itme-info > div {
+.item-info > div {
   display: flex;
   flex-direction: column;
 }
 
-.cancle-reason {
+.cancel-reason {
   display: flex;
   flex-direction: row;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
-.cancle-detail-reason {
+.cancel-detail-reason {
   display: flex;
   flex-direction: column;
 }
 
-.cancle-detail-reason > input {
+.cancel-detail-reason > input {
   width: 50%;
   height: 100px;
+  margin-top: 10px;
 }
 
 .return-price {
