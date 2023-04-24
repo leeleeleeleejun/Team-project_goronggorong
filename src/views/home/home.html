@@ -8,41 +8,42 @@
     <link rel="stylesheet" type="text/css" href="./home.css" />
     <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer type="module" src="./home.js" ></script>
+    <script defer type="module" src="./home.js"></script>
     <title>고롱고롱</title>
   </head>
   <header></header>
-  <nav class="navbar"></nav>
+  <nav class="navbar">
+    <ul class="nav__cate">
+      <li>
+        <a class="nav__cate--on" href="/">All</a>
+      </li>
+      <li>
+        <a href="/products/Food">Food</a>
+      </li>
+      <li>
+        <a href="/products/Snack">Snack</a>
+      </li>
+      <li>
+        <a href="/products/Toy">Toy</a>
+      </li>
+      <li>
+        <a href="/products/Toilet">Toilet</a>
+      </li>
+      <li>
+        <a href="/products/Fashion">Fashion</a>
+      </li>
+    </ul>
+  </nav>
   <body>
     <main role="main">
       <section class="prod">
         <div class="prod__page-size">
           <p>총 <span class="prod__item--amount"></span>개의 상품</p>
-          <!-- 드롭다운 -->
-          <div class="dropdown is-active">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                <span>40개씩 보기</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a class="dropdown-item"> 20개씩 보기 </a>
-                <a href="#" class="dropdown-item is-active"> 40개씩 보기 </a>
-                <hr class="dropdown-divider" />
-                <a href="#" class="dropdown-item"> 전체보기 </a>
-              </div>
-            </div>
-          </div>
-          <!-- 드롭다운끝 -->
         </div>
         <!-- 상품 리스트 불러오는 부분 -->
         <ul class="prod__list"></ul>
         <!-- 페이지네이션 -->
-        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+        <nav class="pagination" role="navigation" aria-label="pagination">
           <ul class="pagination-list">
             <li>1</li>
             <li>2</li>
@@ -57,4 +58,3 @@
     <footer></footer>
   </body>
 </html>
-api경로 :pages로 받아와서 해당페이지의 상품들만

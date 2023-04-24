@@ -1,17 +1,23 @@
 import { main } from '/layouts/main.js';
 await main();
+//패스로 불러올 때
+// const url = window.location.pathname;
+// const itemId = url.split('/')[2];
 
-// .get(`http://localhost:3000/api/products/${id}`)
-const url = window.location.pathname;
-const itemId = url.split('/')[2];
+// axios
+//   .get(`http://localhost:3000/api/products/${itemId}`)
+
+// url주소에서 ?뒤의 문자열 가져와서 '='으로 id값만 분리하기
+const url = window.location.search;
+const itemId = url.split('=')[1];
 
 axios
-  .get(`http://localhost:3000/api/products/${itemId}`)
+  .get(`http://localhost:3000/api/products?id=${itemId}`)
   .then((res) => {
     const item = res.data.product;
 
     const itemImg = document.querySelectorAll('.item__img');
-    const name = document.querySelectorAll('item__name');
+    const name = document.querySelectorAll('.item__name');
     const price = document.querySelectorAll('.item__price');
     const category = document.querySelector('.overview__category');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
@@ -30,18 +36,29 @@ axios
 
     function addCart() {
       const newItem = {
-        id: new Date(),
         img: item.imgUrl,
         name: item.name,
         price: item.price,
         amount: navAmount.value,
       };
-      //만약 기존 추가된 아이템이 있다면
+      //스토리지에 기존 아이템이 있는 경우
       if (localStorage.getItem('cart')) {
         cartItem = JSON.parse(localStorage.getItem('cart'));
+        //cartItem에 이름이 같은 아이템이 있는지 찾기
+        const existingItem = cartItem.find((item) => item.name === newItem.name);
+        if (existingItem) {
+          alert('기존에 장바구니에 추가 된 아이템입니다. 수량을 변경했어요😽');
+          //새로운 수량입력값으로 변경
+          existingItem.amount = navAmount.value;
+        } else {
+          cartItem.push(newItem);
+        }
+      }
+      //기존 스토리지에 아이템이 없는 경우
+      else {
+        cartItem.push(newItem);
       }
 
-      cartItem.push(newItem);
       localStorage.setItem('cart', JSON.stringify(cartItem));
       //배열 초기화
       cartItem = [];

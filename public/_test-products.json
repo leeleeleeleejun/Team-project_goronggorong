@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 1",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 2",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 3",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -28,7 +28,7 @@
   },
   {
     "id": 4,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 4",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -181,7 +181,7 @@
   },
   {
     "id": 21,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 5",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -190,7 +190,7 @@
   },
   {
     "id": 22,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 6",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -199,7 +199,7 @@
   },
   {
     "id": 23,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 7",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
@@ -208,7 +208,7 @@
   },
   {
     "id": 24,
-    "category": "Food",
+    "category": "food",
     "name": "고롱 사료 8",
     "price": 12900,
     "description": "남녀노소견묘 모두가 좋아하는 고롱고롱의 시그니처 사료!",
