@@ -25,25 +25,20 @@ const orderController = {
         throw new customError(400, '누락된 데이터가 있습니다.');
       }
 
-      const user = await userModel.findOneById(userId);
+      const user = await userModel.findById(userId);
       if (!user) {
         throw new customError(400, '사용자가 없습니다.');
       }
 
       const orderId = createOrderId();
-      let deliveryStatus = '';
       if (paymentMethod.paymentType === 'card') {
-        deliveryStatus = '결제완료';
+        req.body.deliveryStatus = '결제완료';
       }
 
       const order = await orderModel.createOrder({
+        ...req.body,
         orderId,
-        userId,
-        receiver,
-        products,
-        totalPrice,
-        paymentMethod,
-        deliveryStatus,
+        user: userId,
       });
       if (!order) {
         throw new customError(400, '주문이 완료되지 않았습니다.');

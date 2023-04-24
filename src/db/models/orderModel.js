@@ -7,12 +7,12 @@ const orderModel = {
     return orders;
   },
   findOneById: async (_id) => {
-    const order = await Order.findOne({ _id });
+    const order = await Order.findOne({ _id }).populate('products.id');
 
     return order;
   },
   findAllById: async (_id) => {
-    const orders = await Order.find({ userId: _id });
+    const orders = await Order.find({ user: _id });
 
     return orders;
   },
