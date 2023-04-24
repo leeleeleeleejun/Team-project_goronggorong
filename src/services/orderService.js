@@ -23,10 +23,10 @@ const orderService = {
     }
 
     orderInfo.orderId = orderService.createOrderId();
+    orderInfo.totalCase = orderInfo.products.length;
     if (orderInfo.paymentMethod.paymentType === 'card') {
       orderInfo.deliveryStatus = '결제완료';
     }
-    orderInfo.totalCase = orderInfo.products.length;
 
     const order = await orderModel.createOrder(orderInfo);
     if (!order) {
