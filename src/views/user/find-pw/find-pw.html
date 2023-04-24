@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer type="module" src="find-pw.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="find-pw.css" />
     <title>비밀번호 찾기</title>
   </head>
@@ -11,7 +14,7 @@
     <main role="main">
       <section class="sign">
         <a href="/">
-          <img src="../../img/products/logo.png" width="150px" />
+          <img src="/src/views/img/main/logo.png" width="150px" />
         </a>
         <form class="sign__form">
           <h1>비밀번호 찾기</h1>
@@ -29,14 +32,35 @@
             name="form__phone"
             type="tel"
             pattern="[0-9]{11}"
+            maxlength="11"
             value="010"
             required
           />
           <p class="form__help">숫자만 입력해 주세요.</p>
 
-          <button class="form__submit" type="submit">비밀번호 찾기</button>
+          <button class="form__submit">비밀번호 찾기</button>
         </form>
       </section>
     </main>
+    <!-- 모달창 -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">비밀번호 재설정 완료</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <!-- Content ... -->
+          <p>🔑비밀번호가 재설정 되었습니다🔑</p>
+          <h1>변경된 임시 비밀번호는 <input type="text" class="new-pw"></input> 입니다.</h1>
+          <p>⛔️ 개인정보 보호를 위해 꼭 비밀번호를 재설정해주세요</p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success modal-copy">복사하기</button>
+          <button class="button modal-signin">로그인</button>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>

@@ -5,45 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment</title>
-    <link rel="stylesheet" href="../../../config.css" />
-    <link rel="stylesheet" href="../../../products/main/footer/footer.css" />
-    <link rel="stylesheet" href="../../../products/main/header/header.css" />
-    <link rel="stylesheet" href="../order-common.css" />
     <link rel="stylesheet" href="./payment.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./payment.js" type="module"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/src/views/public/js/deliveryAdressApi.js"></script>
   </head>
-
   <body>
-    <header>
-      <nav class="nav">
-        <a href="#"><img class="nav__logo" src="../../../img/products/logo.png" width="140" /></a>
-        <ul class="nav__cate">
-          <li>
-            <a href="#">Food</a>
-          </li>
-          <li>
-            <a href="#">Snack</a>
-          </li>
-          <li>
-            <a href="#">Toy</a>
-          </li>
-          <li>
-            <a href="#">Toilet</a>
-          </li>
-          <li>
-            <a href="#">Fashion</a>
-          </li>
-        </ul>
-
-        <ul class="nav__user-menu">
-          <li>
-            <a href="mypage"><img class="icon" src="../../../img/products/profile.png" /></a>
-          </li>
-          <li>
-            <a href="cart"><img class="icon" src="../../../img/products/cart.png" /></a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <header></header>
+    <nav class="navbar"></nav>
     <main>
       <h3>주문결제</h3>
       <div class="contents">
@@ -53,25 +23,29 @@
               <span> 주문 고객 정보 </span>
             </div>
             <div class="content">
-              <div>이준석</div>
-              <div>010-0000-0000</div>
+              <div class="user-name">이준석</div>
+              <div class="user-phone">010-0000-0000</div>
             </div>
           </section>
-          <section class="order-sets__user-adress">
+          <section class="order-sets__user-address">
             <div class="content-title">
               <span> 배송지 </span>
             </div>
             <div class="content">
-              <div class="delivery-imfo-wrap">
+              <div class="delivery-info-wrap">
                 <div class="delivery-info">
-                  <span class="delivery-adress-name">배송지 명</span>
-                  <span class="delivery-adress">실제 주소</span>
+                  <span class="delivery-address">실제 주소</span>
                   <span class="delivery-target-name">받는 사람 이름</span>
                   <span class="delivery-target-phone">받는 사람 번호</span>
                 </div>
                 <div class="change-delivery-info close">
-                  <input type="text" placeholder="배송지 명칭을 입력해주세요." class="change-delivery-adress-name" />
-                  <input type="text" placeholder="주소를 입력해 주세요." class="change-delivery-adress" />
+                  <div class="change-delivery-address">
+                    <input type="text" id="sample6_postcode" placeholder="우편번호" />
+                    <button onclick="sample6_execDaumPostcode()">우편번호 찾기</button> <br />
+                    <input type="text" id="sample6_address" placeholder="주소" /><br />
+                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" />
+                    <input type="text" id="sample6_extraAddress" placeholder="참고항목" />
+                  </div>
                   <input
                     type="text"
                     placeholder="받는 사람의 이름을 입력해주세요."
@@ -114,11 +88,11 @@
                   <!--카드결제 선택 시 오픈-->
                   <div class="card-info">
                     <div>
-                      <span>Card number</span>
+                      <span>카드 번호</span>
                       <input type="text" class="card-number" maxlength="19" />
                     </div>
                     <div>
-                      <span>Expir date</span>
+                      <span>만료일</span>
                       <input type="text" class="expir-date" maxlength="5" />
                     </div>
                     <div>
@@ -126,11 +100,24 @@
                       <input type="text" class="cvc-number" maxlength="3" />
                     </div>
                     <div>
-                      <span>Bank</span>
-                      <input type="text" class="bank" />
+                      <span>은행</span>
+                      <select class="bank">
+                        <option>BC카드</option>
+                        <option>국민은행</option>
+                        <option>삼성카드</option>
+                        <option>신한은행</option>
+                        <option>롯데은행</option>
+                        <option>NH농협은행</option>
+                        <option>수협은행</option>
+                        <option>우리은행</option>
+                        <option>하나은행</option>
+                        <option>광주은행</option>
+                        <option>전북은행</option>
+                        <option>제주은행</option>
+                      </select>
                     </div>
                     <div>
-                      <span>Name on card</span>
+                      <span>이름</span>
                       <input type="text" class="name-on-card" />
                     </div>
                   </div>
@@ -180,28 +167,6 @@
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <div class="footer__brand">
-        <a href="#">
-          <img src="../../../img/products/logo_simple.png" width="120px" />
-        </a>
-        <p><strong>고롱고롱</strong></p>
-        <p>우리 댕댕이, 우리 야옹이 용품 쉽게, 빠르게!</p>
-        <p>고롱고롱은 초보 집사님도 쉽게 주인님 용품을 구매할 수 있는 온라인 쇼핑몰입니다.</p>
-        <p>TEAM GorongGorong ฅ^•ﻌ•^ฅ</p>
-        <p>©2023 Elice Engineer Track SW4</p>
-      </div>
-      <div class="footer__bank">
-        <h1>BANK INFO</h1>
-        <p><strong>카카오뱅크</strong> 3333-1234-567890</p>
-        <p><strong>예금주</strong> 주식회사 고롱고롱</p>
-      </div>
-      <div class="footer__to-top">
-        <a href="#">
-          <img src="../../../img/products/top.png" />
-        </a>
-      </div>
-    </footer>
-    <script src="./payment.js"></script>
+    <footer></footer>
   </body>
 </html>

@@ -5,44 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>success</title>
-    <link rel="stylesheet" href="../../../config.css" />
-    <link rel="stylesheet" href="../../../products/main/footer/footer.css" />
-    <link rel="stylesheet" href="../../../products/main/header/header.css" />
-    <link rel="stylesheet" href="../order-common.css" />
     <link rel="stylesheet" href="./success.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./success.js" type="module"></script>
   </head>
   <body>
-    <header>
-      <nav class="nav">
-        <a href="#"><img class="nav__logo" src="../../../img/products/logo.png" width="140" /></a>
-        <ul class="nav__cate">
-          <li>
-            <a href="#">Food</a>
-          </li>
-          <li>
-            <a href="#">Snack</a>
-          </li>
-          <li>
-            <a href="#">Toy</a>
-          </li>
-          <li>
-            <a href="#">Toilet</a>
-          </li>
-          <li>
-            <a href="#">Fashion</a>
-          </li>
-        </ul>
-
-        <ul class="nav__user-menu">
-          <li>
-            <a href="mypage"><img class="icon" src="../../../img/products/profile.png" /></a>
-          </li>
-          <li>
-            <a href="cart"><img class="icon" src="../../../img/products/cart.png" /></a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <header></header>
+    <nav class="navbar"></nav>
     <main>
       <h3>주문 완료</h3>
       <div class="contents">
@@ -57,12 +26,12 @@
               <div>주문하식 내역은 나의 정보에서 확인하실 수 있습니다.</div>
             </div>
           </section>
-          <section class="success-order__user-adress">
+          <section class="success-order__user-address">
             <div class="content-title">
               <span>배송지</span>
             </div>
             <div class="content">
-              <div class="user-adress-info">
+              <div class="user-address-info">
                 <span>배송지 명</span>
                 <span>실제 주소</span>
                 <span>받는 사람 정보</span>
@@ -101,27 +70,6 @@
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <div class="footer__brand">
-        <a href="#">
-          <img src="../../../img/products/logo_simple.png" width="120px" />
-        </a>
-        <p><strong>고롱고롱</strong></p>
-        <p>우리 댕댕이, 우리 야옹이 용품 쉽게, 빠르게!</p>
-        <p>고롱고롱은 초보 집사님도 쉽게 주인님 용품을 구매할 수 있는 온라인 쇼핑몰입니다.</p>
-        <p>TEAM GorongGorong ฅ^•ﻌ•^ฅ</p>
-        <p>©2023 Elice Engineer Track SW4</p>
-      </div>
-      <div class="footer__bank">
-        <h1>BANK INFO</h1>
-        <p><strong>카카오뱅크</strong> 3333-1234-567890</p>
-        <p><strong>예금주</strong> 주식회사 고롱고롱</p>
-      </div>
-      <div class="footer__to-top">
-        <a href="#">
-          <img src="../../../img/products/top.png" />
-        </a>
-      </div>
-    </footer>
+    <footer></footer>
   </body>
 </html>

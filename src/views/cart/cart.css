@@ -1,3 +1,5 @@
+@import '/src/views/public/css/main.css';
+
 body {
   background-color: #f7f7f7;
 }
@@ -48,7 +50,7 @@ main {
   align-items: center;
 }
 
-.item-info-wrap__itme-checkbox {
+.item-info-wrap__item-checkbox {
   /*webkit 속성값 */
   appearance: none;
   position: relative;
@@ -61,7 +63,7 @@ main {
   border-radius: 2px;
 }
 
-.item-info-wrap__itme-checkbox::before {
+.item-info-wrap__item-checkbox::before {
   content: '\2713';
   font-size: 20px;
   font-weight: 900;
@@ -73,7 +75,7 @@ main {
   line-height: 1;
 }
 
-.item-info-wrap__itme-checkbox:checked {
+.item-info-wrap__item-checkbox:checked {
   /* check box */
   /* Light/primary */
   background: #ffeb60;
@@ -82,7 +84,7 @@ main {
   border-radius: 2px;
 }
 
-.item-info-wrap__itme-checkbox:checked::before {
+.item-info-wrap__item-checkbox:checked::before {
   border-radius: 2px;
   transform: scale(1) translate(-50%, -50%);
 }

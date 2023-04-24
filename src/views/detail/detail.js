@@ -1,7 +1,6 @@
 import { main } from '/layouts/main.js';
 await main();
 
-
 // .get(`http://localhost:3000/api/products/${id}`)
 const url = window.location.pathname;
 const itemId = url.split('/')[2];
@@ -19,19 +18,10 @@ axios
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
     itemImg.forEach(data=>data.setAttribute('src', item.imgUrl))
-    // for (let i = 0; i < itemImg.length; i++) {
-    //   itemImg[i].setAttribute('src', item.imgUrl);
-    // }
 
     name.forEach(data=>data.innerText = item.name)
-    // for (let i = 0; i < name.length; i++) {
-    //   name[i].innerText = item.name;
-    // }
 
     price.forEach(data=>data.innerText = item.price)
-    // for (let i = 0; i < price.length; i++) {
-    //   price[i].innerText = item.price;
-    // }
 
     category.innerText = item.category;
     navCartBtn.addEventListener('click', addCart);
