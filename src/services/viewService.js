@@ -7,6 +7,8 @@ const viewService = {
     const src = path.join(__dirname, `../views/${srcFolder}`);
     const option = { index: `${srcFolder}.html` };
 
+    console.log(src);
+
     return express.static(src, option);
   },
 };
