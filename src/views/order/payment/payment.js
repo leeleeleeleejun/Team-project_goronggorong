@@ -1,55 +1,90 @@
-//import axios from 'axios';
-//import axios from 'axios';
 import { main } from '/src/views/public/js/main.js';
 await main();
 
+axios
+  .get('https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list', {
+    // headers: {
+    //   Authorization: 'Bearer ' + localStorage.getItem('userToken'),
+    // },
+  })
+  .then((res) => {
+    console.log(res);
+    const { name, email, phone, address } = res.data;
+    const userName = document.querySelector('.user-name');
+    const userPhone = document.querySelector('.user-phone');
+    // 회원정보를 기본 배송지로 설정
+    userName.innerHTML = name;
+    userPhone.innerHTML = phone;
+    deliveryInfo.deliveryAddress.innerHTML = address;
+    deliveryInfo.deliveryTargetName.innerHTML = name;
+    deliveryInfo.deliveryTargetPhone.innerHTML = phone;
+
+    reqBody.setValue('userId', email);
+    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, name: name });
+    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, phone: phone });
+    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, address: address });
+    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, requestMessage: deliveryRequestOption.value });
+  })
+  .catch((error) => console.error(error));
+
+const navCate = document.querySelector('.nav__cate');
+[...navCate.children].forEach((navItem) => {
+  navItem.addEventListener('click', (e) => {
+    const result = confirm(`이동 시 주문내역이 사라집니다.
+이동하시겠습니까?`);
+    if (!result) {
+      e.preventDefault();
+    }
+  });
+});
+
+// 결제완료 시 서버에 보낼 데이터
+const reqBody = (() => {
+  const OrderSchema = {
+    orderId: {},
+    userId: {},
+    receiver: {
+      name: {},
+      phone: {},
+      address: {},
+      requestMessage: {},
+    },
+
+    products: [
+      {
+        id: {},
+        amount: {},
+      },
+    ],
+    totalPrice: {},
+    paymentMethod: {
+      paymentType: {
+        // credit, account
+      },
+      creditInfo: {
+        company: {},
+        cardNumber: {},
+        expiryDate: {},
+        cvc: {},
+        cardOwner: {},
+      },
+    },
+  };
+  const getValue = () => {
+    return OrderSchema;
+  };
+  const setValue = (target, change) => {
+    return (OrderSchema[target] = change);
+  };
+  return { getValue, setValue };
+})();
+
 const deliveryInfo = {
   deliveryInfoWrap: document.querySelector('.delivery-info'),
-  deliveryAddressName: document.querySelector('.delivery-address-name'),
   deliveryAddress: document.querySelector('.delivery-address'),
   deliveryTargetName: document.querySelector('.delivery-target-name'),
   deliveryTargetPhone: document.querySelector('.delivery-target-phone'),
 };
-
-//유저 정보 불러오기
-axios({
-  method: 'get',
-  url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
-  responseType: 'json',
-}).then(function (response) {
-  const userName = document.querySelector('.user-name');
-  const userPhone = document.querySelector('.user-phone');
-});
-
-const useVirtualAccount = document.querySelector('.use-virtual-account');
-const useCard = document.querySelector('.use-card');
-const cardInfo = document.querySelector('.card-info');
-const virtualAccountInfo = document.querySelector('.virtual-account-info');
-
-const reqBody = (() => {
-  const value = {
-    userId: '',
-    address: '',
-    deliveryMessage: '',
-    //products: [{ product_id, amount }],
-    totalPrice: '',
-    paymentMethod: '',
-    paymentType: '',
-    card: '',
-    creditInfo: '',
-    company: '',
-    cardNumber: '',
-    expiryDate: '',
-    cvc: '',
-  };
-  const getValue = () => {
-    return value;
-  };
-  const setValue = (target, change) => {
-    return (value[target] = change);
-  };
-  return { getValue, setValue };
-})();
 
 const inputNumberTypeCheck = (event, middleFnc) => {
   // 입력된 값에서 공백을 제거
@@ -63,15 +98,33 @@ const inputNumberTypeCheck = (event, middleFnc) => {
   event.target.value = targetNumber.trim();
 };
 
+const useVirtualAccount = document.querySelector('.use-virtual-account');
+const useCard = document.querySelector('.use-card');
+const cardInfo = document.querySelector('.card-info');
+const virtualAccountInfo = document.querySelector('.virtual-account-info');
+
 useVirtualAccount.addEventListener('change', () => {
   virtualAccountInfo.classList.add('open');
   cardInfo.classList.remove('open');
-  reqBody.setValue('paymentType', 'useVirtualAccount');
+  reqBody.setValue('paymentMethod', { ...reqBody.getValue().paymentMethod, paymentType: 'account' });
+  reqBody.setValue('paymentMethod', {
+    ...reqBody.getValue().paymentMethod,
+    creditInfo: {},
+  });
+  console.log(reqBody.getValue);
 });
 
 useCard.addEventListener('change', () => {
   cardInfo.classList.add('open');
   virtualAccountInfo.classList.remove('open');
+  reqBody.setValue('paymentMethod', { ...reqBody.getValue().paymentMethod, paymentType: 'credit' });
+  const setCreditInfo = (target, change) => {
+    const creditInfo = reqBody.getValue().paymentMethod.creditInfo;
+    reqBody.setValue('paymentMethod', {
+      ...reqBody.getValue().paymentMethod,
+      creditInfo: { ...creditInfo, [target]: change },
+    });
+  };
 
   const cardNumber = document.querySelector('.card-number');
   cardNumber.addEventListener('input', (e) => {
@@ -80,15 +133,23 @@ useCard.addEventListener('change', () => {
       targetNumber = targetNumber.replace(/(.{4})/g, '$1 ');
       return targetNumber;
     });
+    if (e.target.value.length === 19) {
+      const target = e.target.value.replace(/ /g, '');
+      setCreditInfo('cardNumber', target);
+    }
   });
 
   const expirDate = document.querySelector('.expir-date');
   expirDate.addEventListener('input', (e) => {
     inputNumberTypeCheck(e, (targetNumber) => {
-      // 숫자 4자리마다 공백을 삽입
+      // 숫자 2자리마다 공백을 삽입
       targetNumber = targetNumber.replace(/(.{2})/g, '$1 ');
       return targetNumber;
     });
+    if (e.target.value.length === 5) {
+      const target = e.target.value.replace(/ /g, '');
+      setCreditInfo('expiryDate', target);
+    }
   });
 
   const cvcNumber = document.querySelector('.cvc-number');
@@ -96,24 +157,33 @@ useCard.addEventListener('change', () => {
     inputNumberTypeCheck(e, (targetNumber) => {
       return targetNumber;
     });
+    if (e.target.value.length === 3) {
+      const target = e.target.value;
+      setCreditInfo('cvc', target);
+    }
+  });
+
+  const bank = document.querySelector('.bank');
+  setCreditInfo('company', bank.value);
+  bank.addEventListener('change', (e) => {
+    const target = e.target.value;
+    setCreditInfo('company', target);
   });
 
   const nameOnCard = document.querySelector('.name-on-card');
   nameOnCard.addEventListener('input', (e) => {
     e.currentTarget.value = e.currentTarget.value.replace(/[^A-Za-z]/gi, '');
-  });
 
-  reqBody.setValue('card', 'useCard');
-  reqBody.setValue('creditInfo', 'useCard');
-  reqBody.setValue('company', 'useCard');
-  reqBody.setValue('cardNumber', 'useCard');
-  reqBody.setValue('expiryDate', 'useCard');
-  reqBody.setValue('cvc', 'useCard');
+    const target = e.target.value;
+    setCreditInfo('cardOwner', target);
+    console.log(reqBody.getValue());
+  });
 });
 
 const deliveryRequestOption = document.querySelector('.delivery-request-option');
 deliveryRequestOption.addEventListener('change', (e) => {
-  reqBody.setValue('deliveryMessage', e.target.value);
+  reqBody.setValue('receiver', { ...reqBody.getValue().receiver, requestMessage: e.target.value });
+  console.log(reqBody.getValue());
 });
 
 const changeDeliveryInfoBtn = document.querySelector('#change-delivery-info-btn');
@@ -121,7 +191,6 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
   e.currentTarget.classList.toggle('change');
 
   const changeDeliveryInfo = document.querySelector('.change-delivery-info');
-  const changeDeliveryAddressName = document.querySelector('.change-delivery-address-name');
   const changeDeliveryTargetName = document.querySelector('.change-delivery-target-name');
   const changeDeliveryTargetPhone = document.querySelector('.change-delivery-target-phone');
   const changeDeliveryAddressWrap = document.querySelector('.change-delivery-address');
@@ -143,9 +212,6 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
     changeDeliveryInfo.classList.add('close');
     e.currentTarget.innerHTML = '배송지 변경';
     // 입력값이 비울 경우 기존의 데이터 삽입
-    deliveryInfo.deliveryAddressName.innerHTML = changeDeliveryAddressName.value.length
-      ? changeDeliveryAddressName.value
-      : deliveryInfo.deliveryAddressName.innerHTML;
     deliveryInfo.deliveryAddress.innerHTML = changeDeliveryAddress.length
       ? changeDeliveryAddress
       : deliveryInfo.deliveryAddress.innerHTML;
@@ -159,14 +225,16 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
 });
 
 const paymentBtn = document.querySelector('.payment-btn');
-paymentBtn.addEventListener('click', () => {
-  const result = reqBody.getValue();
 
-  axios({
-    method: 'get',
-    url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
-    responseType: 'json',
-  }).then(function (response) {
-    console.log(response);
-  });
-});
+// paymentBtn.addEventListener('click', (e) => {
+//   const result = reqBody.getValue();
+//   e.preventDefault();
+//   console.log(result);
+//   axios({
+//     method: 'get',
+//     url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
+//     responseType: 'json',
+//   }).then(function (response) {
+//     console.log(response);
+//   });
+// });

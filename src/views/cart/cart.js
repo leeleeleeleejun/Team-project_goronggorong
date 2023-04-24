@@ -1,3 +1,4 @@
+//import axios from 'axios';
 import { main } from '/src/views/public/js/main.js';
 await main();
 localStorage.setItem(
@@ -24,19 +25,6 @@ localStorage.setItem(
   ]),
 );
 
-const reqbody = JSON.parse(localStorage.getItem('cart')).map((item) => {
-  return { name: item.name, amount: item.amount };
-});
-const getCartInfo = JSON.parse(localStorage.getItem('cart'));
-
-axios({
-  method: 'post',
-  url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
-  data: getCartInfo,
-}).then(function (response) {
-  console.log(response);
-});
-
 const cartList = document.querySelector('#cart-list');
 const totalPrice = document.querySelector('#total-price');
 const choiceOrder = document.querySelector('#choice-order');
@@ -46,7 +34,6 @@ const allOrderBtn = document.querySelector('#all-order');
 const lastOrderBtn = document.querySelector('#last-order-button');
 
 const makeListItem = (id, content) => {
-  //itemInfo = JSON.parse(itemInfo);
   const li = document.createElement('li');
   li.setAttribute('class', 'cart-list__cart-item-wrap');
   const cartItem = document.createElement('div');
@@ -57,6 +44,14 @@ const makeListItem = (id, content) => {
   itemCheckbox.setAttribute('type', 'checkbox');
   itemCheckbox.setAttribute('class', 'item-info-wrap__item-checkbox');
   itemCheckbox.setAttribute('id', id);
+  itemCheckbox.addEventListener('change', (e) => {
+    // 체크된 것만 총액에 포함
+    if (e.target.checked) {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price * content.amount;
+    } else {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price * content.amount;
+    }
+  });
 
   const itemImgWrap = document.createElement('a');
   //itemImgWrap.setAttribute('href'); // 상페이지 url 연결
@@ -82,8 +77,12 @@ const makeListItem = (id, content) => {
   increaseButton.innerText = '+';
   increaseButton.addEventListener('click', () => {
     amountNumber.innerText = ++content.amount;
-    totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price;
-    localStorage.setItem(id, JSON.stringify(content));
+    const items = JSON.parse(localStorage.getItem('cart'));
+    items[id].amount = content.amount;
+    localStorage.setItem('cart', JSON.stringify(items));
+    if (itemCheckbox.checked) {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price;
+    }
   });
   const decreaseButton = document.createElement('button');
   decreaseButton.innerText = '-';
@@ -91,9 +90,13 @@ const makeListItem = (id, content) => {
     if (Number(amountNumber.innerText) <= 1) {
       alert('수량을 확인해 주세요');
     } else {
-      amountNumber.innerText = ++content.amount;
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price;
-      localStorage.setItem(id, JSON.stringify(content));
+      amountNumber.innerText = --content.amount;
+      const items = JSON.parse(localStorage.getItem('cart'));
+      items[id].amount = content.amount;
+      localStorage.setItem('cart', JSON.stringify(items));
+      if (itemCheckbox.checked) {
+        totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price;
+      }
     }
   });
   const deleteButton = document.createElement('button');
@@ -121,33 +124,43 @@ const makeListItem = (id, content) => {
   amount.appendChild(deleteButton);
   return li;
 };
+
 const writeCartList = () => {
   cartList.innerHTML = '';
-  totalPrice.innerHTML = 0;
-  const items = JSON.parse(localStorage.getItem('cart'));
-  for (let i = 0; i < items.length; i++) {
-    cartList.appendChild(makeListItem(i, items[i]));
-    totalPrice.innerHTML = Number(totalPrice.innerHTML) + items[i].price * items[i].amount;
+  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  for (let i = 0; i < localStorageCart.length; i++) {
+    cartList.appendChild(makeListItem(i, localStorageCart[i]));
   }
 };
 
-const deleteHandle = (id) => {
-  let items = JSON.parse(localStorage.getItem('cart'));
-  items.splice(id, 1);
-  localStorage.setItem('cart', JSON.stringify(items));
-  writeCartList();
+const localStorageEventHandle = (id, order = false) => {
+  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  const targetItem = localStorageCart.splice(id, 1)[0];
+  localStorage.setItem('cart', JSON.stringify(localStorageCart));
+  if (order) {
+    const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
+    if (localStorageOrders) {
+      localStorage.setItem('orders', JSON.stringify([localStorageOrders, targetItem]));
+    } else {
+      localStorage.setItem('orders', JSON.stringify([targetItem]));
+    }
+  } else {
+    totalPrice.innerHTML = 0;
+    writeCartList();
+  }
 };
 
 choiceDeleteBtn.addEventListener('click', () => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const deleteTarget = [...checkboxes].filter((item) => item.checked);
   for (let i = deleteTarget.length - 1; i >= 0; i--) {
-    deleteHandle(deleteTarget[i].id);
+    localStorageEventHandle(deleteTarget[i].id);
   }
 });
 
 allDeleteBtn.addEventListener('click', () => {
   localStorage.setItem('cart', JSON.stringify([]));
+  totalPrice.innerHTML = 0;
   writeCartList();
 });
 
@@ -155,24 +168,31 @@ choiceOrder.addEventListener('click', () => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const orderTarget = [...checkboxes].filter((item) => item.checked);
   for (let i = orderTarget.length - 1; i >= 0; i--) {
-    deleteHandle(orderTarget[i].id);
+    localStorageEventHandle(orderTarget[i].id, 'order');
+  }
+  if (checkToken) {
+    axios.get('/orders/payment');
   }
 });
 
 allOrderBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  const reqbody = JSON.parse(localStorage.getItem('cart')).map((item) => {
-    return { name: item.name, amount: item.amount };
-  });
-  axios({
-    method: 'post',
-    url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
-    data: JSON.stringify(reqbody),
-  }).then(function (response) {
-    console.log(response);
-  });
+  localStorage.setItem('orders', localStorage.getItem('cart'));
   localStorage.setItem('cart', JSON.stringify([]));
-  writeCartList();
+  if (checkToken) {
+    axios.get('/orders/payment');
+  }
 });
+
+const checkToken = () => {
+  axios
+    .get('/api', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('userToken'),
+      },
+    })
+    .then((res) => res.data.info.email)
+    .catch((error) => console.error(error));
+};
 
 writeCartList();

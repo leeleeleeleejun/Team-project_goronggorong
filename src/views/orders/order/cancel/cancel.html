@@ -17,8 +17,8 @@
       <div class="contents">
         <div class="cancle-order">
           <section>
-            <div class="itme-info">
-              <img src="../../../img/products/logo_simple.png" />
+            <div class="item-info">
+              <img src="/src/views/img/main/logo_simple.png" />
               <div>
                 <span>제품명</span>
                 <span>수량</span>
@@ -33,22 +33,28 @@
             <div class="content">
               <div>
                 <span>사유 선택</span>
-                <ul class="cancle-reason">
+                <ul class="cancel-reason">
                   <li>
-                    <input type="radio" name="reason" />
-                    <span>단순변심</span>
+                    <label>
+                      <input type="radio" name="reason" checked />
+                      <span>단순변심</span>
+                    </label>
                   </li>
                   <li>
-                    <input type="radio" name="reason" />
-                    <span>주문실수</span>
+                    <label>
+                      <input type="radio" name="reason" />
+                      <span>주문실수</span>
+                    </label>
                   </li>
                   <li>
-                    <input type="radio" name="reason" />
-                    <span>배송지연</span>
+                    <label>
+                      <input type="radio" name="reason" />
+                      <span>배송지연</span>
+                    </label>
                   </li>
                 </ul>
               </div>
-              <div class="cancle-detail-reason">
+              <div class="cancel-detail-reason">
                 <span>상세 사유 입력</span>
                 <input type="text" placeholder="내용을 입력해주세요." />
               </div>
@@ -76,8 +82,8 @@
             <div class="content-title"></div>
             <div class="content">
               <div class="content__boutton-wrap">
-                <button>취소</button>
-                <button>취소 신청하기</button>
+                <button class="go-cancel">취소</button>
+                <button class="stop-cancel">취소 신청하기</button>
               </div>
             </div>
           </section>
