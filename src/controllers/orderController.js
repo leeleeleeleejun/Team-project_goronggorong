@@ -1,48 +1,17 @@
-import { userModel, orderModel } from '../db/index.js';
+import { orderModel } from '../db/index.js';
 import { customError } from '../middlewares/index.js';
-
-const createOrderId = () => {
-  const now = new Date();
-  let year = String(now.getFullYear());
-  const month = String(now.getMonth() + 1);
-  const date = String(now.getDate());
-  if (month.length === 1) year += '0';
-  let orderId = year + month + date;
-
-  for (let i = 0; i < 8; i++) {
-    orderId += Math.floor(Math.random() * 10);
-  }
-
-  return orderId;
-};
+import { orderService } from '../services/index.js';
 
 const orderController = {
   createOrder: async (req, res, next) => {
-    const { userId, receiver, products, totalPrice, paymentMethod } = req.body;
+    const { receiver, products, totalPrice, paymentMethod } = req.body;
 
     try {
-      if (!userId || !receiver || !products || !totalPrice || !paymentMethod) {
+      if (!receiver || !products || !totalPrice || !paymentMethod) {
         throw new customError(400, '누락된 데이터가 있습니다.');
       }
 
-      const user = await userModel.findById(userId);
-      if (!user) {
-        throw new customError(400, '사용자가 없습니다.');
-      }
-
-      const orderId = createOrderId();
-      if (paymentMethod.paymentType === 'card') {
-        req.body.deliveryStatus = '결제완료';
-      }
-
-      const order = await orderModel.createOrder({
-        ...req.body,
-        orderId,
-        user: userId,
-      });
-      if (!order) {
-        throw new customError(400, '주문이 완료되지 않았습니다.');
-      }
+      const order = await orderService.createOrder({ ...req.body, user: req.decoded._id });
 
       return res.status(200).json({
         message: '주문을 완료했습니다',
@@ -56,6 +25,10 @@ const orderController = {
     const { _id } = req.params;
 
     try {
+      if (!_id) {
+        throw new customError(400, '누락된 데이터가 있습니다.');
+      }
+
       const order = await orderModel.findOneById(_id);
       if (!order) {
         throw new customError(400, '주문 정보가 없습니다.');

@@ -5,7 +5,7 @@ const authService = {
   signToken: (user) => {
     const newToken = jwt.sign(
       {
-        id: user.id,
+        _id: user.id,
         email: user.email,
         password: user.password,
       },

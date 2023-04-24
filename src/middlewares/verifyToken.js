@@ -14,8 +14,8 @@ const verifyToken = (req, res, next) => {
       throw new customError(401, 'Authorization 헤더에 토큰이 없습니다.');
     }
 
-    const result = jwt.verify(token, process.env.SECRET_KEY);
-    if (!result) {
+    req.decoded = jwt.verify(token, process.env.SECRET_KEY);
+    if (!req.decoded) {
       throw new customError(401, '잘못된 토큰입니다.');
     }
 
