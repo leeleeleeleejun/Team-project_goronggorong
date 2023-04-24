@@ -2,12 +2,12 @@ import { Order } from '../schemas/index.js';
 
 const orderModel = {
   findOneById: async (_id) => {
-    const order = await Order.findOne({ _id }).populate('products.id');
+    const order = await Order.findOne({ _id }).populate('user', 'name').populate('products.id');
 
     return order;
   },
   findAllById: async (_id) => {
-    const orders = await Order.find({ user: _id }).populate('products.id');
+    const orders = await Order.find({ user: _id }).populate('user', 'name').populate('products.id');
 
     return orders;
   },

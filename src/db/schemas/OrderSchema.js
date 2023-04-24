@@ -40,6 +40,10 @@ const OrderSchema = new Schema({
       },
     },
   ],
+  totalCase: {
+    type: Number,
+    required: true,
+  },
   totalPrice: {
     type: Number,
     required: true,
