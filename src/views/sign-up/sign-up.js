@@ -8,7 +8,7 @@ const submit = document.querySelector('.form__submit');
 submit.addEventListener('click', function (e) {
   e.preventDefault();
   axios
-    .post('http://localhost:3000/signup', {
+    .post('/signup', {
       name: userName.value,
       email: id.value,
       password: pw.value,

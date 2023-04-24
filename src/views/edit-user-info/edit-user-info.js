@@ -1,0 +1,1 @@
+axios.get('/api/edit-user-info')

@@ -13,7 +13,7 @@ form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   axios
-    .post('/signin', {
+    .post('/api/signin', {
       email: id.value.trim(),
       password: pw.value.trim(),
     })
