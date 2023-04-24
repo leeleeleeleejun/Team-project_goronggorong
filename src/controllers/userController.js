@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import { userService, authService } from '../services/index.js';
 import { customError } from '../middlewares/index.js';
+import { userModel } from '../db/index.js';
 
 const userController = {
   createUser: async (req, res, next) => {
@@ -49,57 +50,34 @@ const userController = {
     const { name, email, Newemail, password, Newpassword, Newphone, Newaddress } = req.body;
 
     try {
+      if (!name || !email || !Newemail || !password || !Newpassword || !Newphone || !Newaddress) {
+        throw new customError(400, '누락된 데이터가 있습니다.');
+      }
       // 사용자가 있는지 확인
-      const user = await userModel.findByEmail(email);
-
-      if (!user) {
-        throw new customError(400, '사용자가 없습니다');
-      }
-
+      const user = await userService.checkUserExist(email, true);
       // 비밀번호 확인
-      const result = await bcrypt.compare(password, user.password);
-
-      if (result === false) {
-        throw new customError(400, '비밀번호가 틀렸습니다');
-      }
+      const result = await authService.verifyPassword(password, user.password);
 
       const editedInfo = { name: name };
 
       // 이메일 변경
-      if (Newemail) {
-        // 중복 email 확인
-        const checkUser = await userModel.findByEmail(Newemail);
-
-        if (checkUser) {
-          throw new customError(400, '이미 존재하는 이메일입니다.');
-        }
-
+      if (email !== Newemail) {
         editedInfo.email = Newemail;
       }
-
       // 패스워드 변경
-      if (Newpassword) {
-        const salt = 12;
-        const hashedPassword = await bcrypt.hash(Newpassword, salt);
-        editedInfo.password = hashedPassword;
+      if (password !== Newpassword) {
+        editedInfo.password = await authService.createHashPassword(Newpassword);
       }
-
       // 전화번호 변경
-      if (Newphone) {
-        editedInfo.phone = Newphone;
-      }
-
+      editedInfo.phone = Newphone;
       // 주소 변경
-      if (Newaddress) {
-        editedInfo.address = Newaddress;
-      }
-
+      editedInfo.address = Newaddress;
       // 사용자 정보 업데이트
       const updatedUser = await userModel.updateUser(user._id, editedInfo);
 
       return res.status(200).json({
         message: '사용자 정보 업데이트를 성공했습니다',
-        user: updatedUser,
+        info: updatedUser,
       });
     } catch (err) {
       next(err);
@@ -111,18 +89,9 @@ const userController = {
 
     try {
       // 사용자가 있는지 확인
-      const user = await userModel.findByEmail(email);
-
-      if (!user) {
-        throw new customError(400, '사용자가 없습니다');
-      }
-
+      const user = await userService.checkUserExist(email, true);
       // 비밀번호 확인
-      const result = await bcrypt.compare(password, user.password);
-
-      if (result === false) {
-        throw new customError(400, '비밀번호가 틀렸습니다');
-      }
+      const result = await authService.verifyPassword(password, user.password);
 
       const deletedUser = await userModel.deleteUser({ _id: user._id });
 
