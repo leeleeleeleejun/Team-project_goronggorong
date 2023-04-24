@@ -1,0 +1,1 @@
+axios.get('/api/mypage/check-valid-user')

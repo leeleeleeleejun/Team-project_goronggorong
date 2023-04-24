@@ -33,7 +33,7 @@ axios
 const createItem = (item) => {
   return `
   <li class="prod__item">
-            <a class="prod__link" href="/products/${item.id}">
+            <a class="prod__link" href="/products?id=${item.id}">
               <img
                 class="prod__link-thumb"
                 src="${item.imgUrl}"
