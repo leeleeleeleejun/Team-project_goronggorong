@@ -6,6 +6,7 @@ const router = Router();
 
 router.post('/signup', userController.createUser);
 router.post('/signin', userController.verifyUser);
+router.put('/signin/find-password', userController.findPassword);
 router.put('/mypage/edit-user-info', verifyToken, userController.myPageUpdate);
 router.delete('/mypage/delete-user-info', verifyToken, userController.myPageDelete);
 

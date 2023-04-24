@@ -45,7 +45,29 @@ const userController = {
       next(err);
     }
   },
+  findPassword: async (req, res, next) => {
+    const { name, email, phone } = req.body;
 
+    try {
+      if (!name || !email || !phone) {
+        throw new customError(400, '누락된 데이터가 있습니다.');
+      }
+
+      const user = await userService.checkUserExist(email, true);
+      if (user.name !== name || user.phone !== phone) {
+        throw new customError(404, '없는 사용자 입니다.');
+      }
+
+      const resetPassword = await userService.resetPassword(user);
+
+      return res.status(200).json({
+        message: '비밀번호가 초기화 됐습니다.',
+        info: resetPassword,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
   myPageUpdate: async (req, res, next) => {
     const { name, email, Newemail, password, Newpassword, Newphone, Newaddress } = req.body;
 
