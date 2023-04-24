@@ -3,12 +3,12 @@ const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const phone = document.querySelector('.form__phone');
 const address = document.querySelector('.form__address');
-const submitBtn = document.querySelector('.form__submit');
+const submit = document.querySelector('.form__submit');
 
 submit.addEventListener('click', function (e) {
   e.preventDefault();
   axios
-    .post('/api/signup', {
+    .post('http://localhost:3000/signup', {
       name: userName.value,
       email: id.value,
       password: pw.value,

@@ -25,17 +25,10 @@ const userService = {
       throw new customError(400, '사용자가 이미 있습니다');
     } else if (existFlag === true && !user) {
       // 사용자가 있어야 하는데 없을 때
-      throw new customError(404, '사용자가 없습니다.');
+      throw new customError(400, '사용자가 없습니다.');
     }
 
     return user;
-  },
-  resetPassword: async (user) => {
-    const resetPassword = authService.createRandomPassword();
-    const hashedPassword = await authService.createHashPassword(resetPassword);
-    await userModel.updateUser(user._id, { password: hashedPassword });
-
-    return resetPassword;
   },
 };
 

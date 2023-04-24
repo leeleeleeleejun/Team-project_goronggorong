@@ -12,7 +12,7 @@ const newPw = document.querySelector('.new-pw');
 submitBtn.addEventListener('click', function (e) {
   e.preventDefault();
   axios
-    .get('/api/signin/find-password', {
+    .get('http://localhost:3000/find-password', {
       name: userName.value,
       email: id.value,
       phone: phone.value,

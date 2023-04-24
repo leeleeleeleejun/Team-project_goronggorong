@@ -1,0 +1,98 @@
+@import '/src/views/public/css/main.css';
+@import '/src/views/orders/order/order-common.css';
+
+.delivery-info-wrap,
+.delivery-request-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.delivery-info-wrap {
+  height: 240px;
+}
+
+.pay-method li {
+  padding-top: 10px;
+}
+
+.card-info,
+.virtual-account-info {
+  width: 500px;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  visibility: hidden;
+  display: none;
+}
+
+.open {
+  visibility: visible;
+  display: flex;
+}
+
+.card-info > div,
+.virtual-account-info > div {
+  padding-left: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-info > div > input,
+.card-info > div > select {
+  width: 90%;
+  height: 30px;
+}
+
+.virtual-account-info > div {
+  flex-direction: row;
+  border-bottom: 1px solid #abb2b9;
+  padding: 10px 10px;
+}
+
+.virtual-account-info > div > span {
+  width: 55%;
+}
+
+.bank-info span {
+  line-height: 200%;
+}
+
+.bank-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-btn {
+  height: 40px;
+}
+
+.delivery-info,
+.change-delivery-info {
+  display: flex;
+  flex-direction: column;
+  height: 190px;
+}
+
+.delivery-info > span,
+.change-delivery-info > input {
+  width: 500px;
+  height: 40px;
+  margin: 3px 0;
+  line-height: 40px;
+}
+
+.change-delivery-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  display: none;
+}
+
+#change-delivery-info-btn {
+  width: 90px;
+  height: 150px;
+  margin-top: 20px;
+}

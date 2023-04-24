@@ -1,16 +1,17 @@
 import { main } from '/layouts/main.js';
 await main();
 
-const url = window.location.search;
-const itemId = url.split('=')[1];
+// .get(`http://localhost:3000/api/products/${id}`)
+const url = window.location.pathname;
+const itemId = url.split('/')[2];
 
 axios
-  .get(`/api/products?id=${itemId}`)
+  .get(`http://localhost:3000/api/products/${itemId}`)
   .then((res) => {
-    const item = res.data.info;
+    const item = res.data.product;
 
     const itemImg = document.querySelectorAll('.item__img');
-    const name = document.querySelectorAll('.item__name');
+    const name = document.querySelectorAll('item__name');
     const price = document.querySelectorAll('.item__price');
     const category = document.querySelector('.overview__category');
     const navAmount = document.querySelector('.bottom-nav__amount--count');

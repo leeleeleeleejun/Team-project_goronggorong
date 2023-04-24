@@ -1,7 +1,11 @@
 @import '/src/views/public/css/main.css';
 @import '/src/views/orders/order/order-common.css';
 
+<<<<<<<< HEAD:src/views/orders/order/cancel/cancel.css
 .item-info {
+========
+.itme-info {
+>>>>>>>> c5757ceaac483de509610e12c5df47d4b9b0348f:src/views/order/cancel/cancel.css
   display: flex;
 }
 

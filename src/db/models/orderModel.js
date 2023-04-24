@@ -11,10 +11,20 @@ const orderModel = {
 
     return orders;
   },
+  findOneById: async (_id) => {
+    const order = await Order.findOne({ _id });
+
+    return order;
+  },
+  findAllById: async (_id) => {
+    const orders = await Order.find({ userId: _id });
+
+    return orders;
+  },
   createOrder: async (orderInfo) => {
     const order = await Order.create(orderInfo);
 
-    return order;
+    return updatedOrder;
   },
   updateOrder: async (_id) => {
     const updatedOrder = await Order.updateOne({ _id }, { deliveryStatus: '주문취소' });

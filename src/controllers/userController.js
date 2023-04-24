@@ -1,7 +1,10 @@
 import bcrypt from 'bcrypt';
 import { userService, authService } from '../services/index.js';
 import { customError } from '../middlewares/index.js';
+<<<<<<< HEAD
 import { userModel } from '../db/index.js';
+=======
+>>>>>>> 0365f3b (Add: views라우터 추가)
 
 const userController = {
   createUser: async (req, res, next) => {

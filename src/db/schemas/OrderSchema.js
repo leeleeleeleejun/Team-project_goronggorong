@@ -5,9 +5,8 @@ const OrderSchema = new Schema({
     type: Number,
     required: true,
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+  userId: {
+    type: String,
     required: true,
   },
   receiver: {
@@ -27,11 +26,11 @@ const OrderSchema = new Schema({
       type: String,
     },
   },
+
   products: [
     {
       id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Product',
+        type: String,
         required: true,
       },
       amount: {
@@ -82,6 +81,9 @@ const OrderSchema = new Schema({
     type: String,
     default: '입금대기',
     required: true,
+  },
+  cancelReason: {
+    type: String,
   },
 });
 

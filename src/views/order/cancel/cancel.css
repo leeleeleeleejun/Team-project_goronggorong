@@ -5,7 +5,7 @@
   display: flex;
 }
 
-.itme-info > div {
+.item-info > div {
   display: flex;
   flex-direction: column;
 }
@@ -16,7 +16,7 @@
   margin-bottom: 20px;
 }
 
-.cancle-detail-reason {
+.cancel-detail-reason {
   display: flex;
   flex-direction: column;
 }
