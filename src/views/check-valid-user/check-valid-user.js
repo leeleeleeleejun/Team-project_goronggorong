@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const pw = document.querySelector('.form__pw');
 const submit = document.querySelector('.form__submit');
 
@@ -15,3 +16,6 @@ submit.addEventListener('click', function (e) {
       alert(err.message)
     })
 });
+=======
+axios.get('/api/mypage/check-valid-user')
+>>>>>>> eeac1e6 (Add: 카테고리제외 view라우터 연결)
