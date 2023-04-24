@@ -1,0 +1,33 @@
+@import '/src/views/orders/order/order-common.css';
+
+.item-info {
+  display: flex;
+}
+
+.item-info > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.cancel-reason {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cancel-detail-reason {
+  display: flex;
+  flex-direction: column;
+}
+
+.cancel-detail-reason > input {
+  width: 50%;
+  height: 100px;
+  margin-top: 10px;
+}
+
+.return-price {
+  display: flex;
+  justify-content: space-between;
+}
