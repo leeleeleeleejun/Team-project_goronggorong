@@ -1,4 +1,17 @@
-[
+[ {
+  "name": "엘리스",
+  "email": "elice@elice.com",
+  "password": "$2b$12$ckHhqq7S7ONVs/xuOYnt8uMUMyOkEv.Iaqj0XbYRqIUFO8AYiv/bu",
+  "phone": "01012345678",
+  "address": "이상한나라",
+  "created_at": {
+    "$date": "2023-04-24T16:12:17.508Z"
+  },
+  "updated_at": {
+    "$date": "2023-04-24T16:12:17.508Z"
+  },
+  "__v": 0
+},
   {
     "id": 1,
     "category": "Food",

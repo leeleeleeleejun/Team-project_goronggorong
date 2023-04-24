@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>success</title>
     <link rel="stylesheet" href="./success.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/order-common.css" />
+    <script src="./success.js" type="module"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="./success.js" type="module"></script>
   </head>
   <body>
     <header></header>
@@ -20,10 +22,10 @@
             <div class="content-title"></div>
             <div class="content">
               <div>
-                <span> 이준석 </span>
+                <span class="user-name"> 이준석 </span>
                 님 주문이 완료되었습니다.
               </div>
-              <div>주문하식 내역은 나의 정보에서 확인하실 수 있습니다.</div>
+              <div>주문하신 내역은 나의 정보에서 확인하실 수 있습니다.</div>
             </div>
           </section>
           <section class="success-order__user-address">
@@ -31,12 +33,10 @@
               <span>배송지</span>
             </div>
             <div class="content">
-              <div class="user-address-info">
-                <span>배송지 명</span>
-                <span>실제 주소</span>
-                <span>받는 사람 정보</span>
-              </div>
-              <div>
+              <div class="-info">
+                <span class="address">실제 주소</span>
+                <span class="rec">받는 사람 정보</span>
+                <span>전화번호</span>
                 <span>문앞 | 필요없음</span>
               </div>
             </div>

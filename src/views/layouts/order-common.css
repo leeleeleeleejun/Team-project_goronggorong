@@ -45,12 +45,20 @@ section {
   width: calc(100% - 225px);
 }
 
-.content__boutton-wrap {
+.content__button-wrap {
   display: flex;
 }
 
-.content__boutton-wrap button {
+.content__button-wrap button {
   margin: 0 2.5px;
   width: 50%;
   height: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }

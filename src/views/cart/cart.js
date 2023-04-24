@@ -1,22 +1,24 @@
-//import axios from 'axios';
-import { main } from '/src/views/public/js/main.js';
+import { main } from '/layouts/main.js';
 await main();
 localStorage.setItem(
   'cart',
   JSON.stringify([
     {
+      id: 1,
       img: './test.jpg',
       name: '방석',
       price: 2000,
       amount: 3,
     },
     {
+      id: 2,
       img: './test.jpg',
       name: '웅',
       price: 4000,
       amount: 2,
     },
     {
+      id: 3,
       img: './test.jpg',
       name: 'sdf',
       price: 6000,
@@ -31,7 +33,6 @@ const choiceOrder = document.querySelector('#choice-order');
 const choiceDeleteBtn = document.querySelector('#choice-delete');
 const allDeleteBtn = document.querySelector('#all-delete');
 const allOrderBtn = document.querySelector('#all-order');
-const lastOrderBtn = document.querySelector('#last-order-button');
 
 const makeListItem = (id, content) => {
   const li = document.createElement('li');
@@ -140,7 +141,7 @@ const localStorageEventHandle = (id, order = false) => {
   if (order) {
     const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
     if (localStorageOrders) {
-      localStorage.setItem('orders', JSON.stringify([localStorageOrders, targetItem]));
+      localStorage.setItem('orders', JSON.stringify([...localStorageOrders, targetItem]));
     } else {
       localStorage.setItem('orders', JSON.stringify([targetItem]));
     }
@@ -153,8 +154,12 @@ const localStorageEventHandle = (id, order = false) => {
 choiceDeleteBtn.addEventListener('click', () => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const deleteTarget = [...checkboxes].filter((item) => item.checked);
-  for (let i = deleteTarget.length - 1; i >= 0; i--) {
-    localStorageEventHandle(deleteTarget[i].id);
+  if (deleteTarget.length > 0) {
+    for (let i = deleteTarget.length - 1; i >= 0; i--) {
+      localStorageEventHandle(deleteTarget[i].id);
+    }
+  } else {
+    alert('선택된 제품이 없습니다.');
   }
 });
 
@@ -164,35 +169,47 @@ allDeleteBtn.addEventListener('click', () => {
   writeCartList();
 });
 
-choiceOrder.addEventListener('click', () => {
+choiceOrder.addEventListener('click', (e) => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const orderTarget = [...checkboxes].filter((item) => item.checked);
-  for (let i = orderTarget.length - 1; i >= 0; i--) {
-    localStorageEventHandle(orderTarget[i].id, 'order');
-  }
-  if (checkToken) {
-    axios.get('/orders/payment');
+  if (orderTarget.length > 0) {
+    for (let i = orderTarget.length - 1; i >= 0; i--) {
+      localStorageEventHandle(orderTarget[i].id, 'order');
+    }
+    localStorage.setItem('orders', JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]));
+    //checkToken();
+  } else {
+    alert('선택된 제품이 없습니다.');
+    e.preventDefault();
   }
 });
 
 allOrderBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  localStorage.setItem('orders', localStorage.getItem('cart'));
+  let total = 0;
+  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  [...localStorageCart].forEach((item) => (total += item.price * item.amount));
+  localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
   localStorage.setItem('cart', JSON.stringify([]));
-  if (checkToken) {
-    axios.get('/orders/payment');
-  }
+  checkToken();
 });
 
 const checkToken = () => {
-  axios
-    .get('/api', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('userToken'),
-      },
+  return axios({
+    method: 'GET',
+    url: '/api',
+    headers: {
+      Authorization: `Bearer ${token.data.access_token}`,
+    },
+  })
+    .then((res) => {
+      if (!res) {
+        e.preventDefault();
+      }
     })
-    .then((res) => res.data.info.email)
-    .catch((error) => console.error(error));
+    .catch(() => {
+      alert('로그인이 유효하지 않습니다.\n로그인 창으로 이동하겠습니다.');
+      window.location.replace('/signin');
+    });
 };
 
 writeCartList();
