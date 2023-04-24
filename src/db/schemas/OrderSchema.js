@@ -46,6 +46,7 @@ const OrderSchema = new Schema({
   paymentMethod: {
     paymentType: {
       // credit, account
+      // "card", "account"
       type: String,
       required: true,
     },
