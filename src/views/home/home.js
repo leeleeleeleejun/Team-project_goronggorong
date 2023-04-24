@@ -7,7 +7,7 @@ const amountAll = document.querySelector('.prod__item--amount');
 axios
   .get(`/api`) //전체리스트 불러오기
   .then((res) => {
-    const items = res.data.products;
+    const items = res.data.info;
     amountAll.innerText = items.length;
     const list = document.querySelector('.prod__list');
     items.forEach((item) => {
