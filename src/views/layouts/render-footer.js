@@ -3,7 +3,7 @@ function renderFooter() {
   footer.innerHTML = `
   <div class="footer__brand">
     <a href="/">
-      <img src="/src/views/img/main/logo_simple.png" width="120px" />
+      <img src="/img/logo_simple.png" width="120px" />
     </a>
     <p><strong>고롱고롱</strong></p>
     <p>우리 댕댕이, 우리 야옹이 용품 쉽게, 빠르게!</p>
@@ -18,7 +18,7 @@ function renderFooter() {
   </div>
   <div class="footer__to-top">
     <a href="#">
-      <img src="/src/views/img/main/top.png" />
+      <img src="/img/top.png" />
     </a>
   </div>
   `;
