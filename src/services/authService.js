@@ -17,7 +17,6 @@ const authService = {
 
     return newToken;
   },
-  verifyToken: () => {},
   createHashPassword: async (password) => {
     const salt = 12;
     const hashedPassword = await bcrypt.hash(password, salt);
