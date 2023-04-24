@@ -2,9 +2,14 @@ const form = document.querySelector('.sign__form');
 const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 
-form.addEventListener('submit', onSubmit);
+// pw.addEventListener('paste',function(e){
+//   e.preventDefault()
+//   const clipboardData = e.clipboardData || window.clipboardData;
+//   var pastedData = clipboardData.getData('text');
+//   pw.value = pastedData;
+// })
 
-function onSubmit(e) {
+form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   axios
@@ -20,4 +25,4 @@ function onSubmit(e) {
     .catch((err) => {
       alert(err);
     });
-}
+});
