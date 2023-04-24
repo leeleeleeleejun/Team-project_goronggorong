@@ -6,19 +6,20 @@ const verifyToken = (req, res, next) => {
 
   try {
     if (!authHeader) {
-      throw new customError(404, 'Authorization 헤더가 없습니다.');
+      throw new customError(401, 'Authorization 헤더가 없습니다.');
     }
 
     const token = authHeader ? authHeader.replace('Bearer ', '') : null;
     if (!token) {
-      throw new customError(404, 'Authorization 헤더에 토큰이 없습니다.');
+      throw new customError(401, 'Authorization 헤더에 토큰이 없습니다.');
     }
 
     const result = jwt.verify(token, process.env.SECRET_KEY);
     if (!result) {
-      throw new customError(404, '잘못된 토큰입니다.');
+      throw new customError(401, '잘못된 토큰입니다.');
     }
-    console.log(result);
+
+    console.log('🪙  Token has been verified!');
 
     next();
   } catch (err) {
