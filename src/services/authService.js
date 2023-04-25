@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { userModel } from '../db/models/index.js';
+import { customError } from '../middlewares/error-handler.js';
 
 const authService = {
-  signToken: (user) => {
+  signToken: async (user) => {
     const newToken = jwt.sign(
       {
         _id: user.id,
@@ -14,6 +16,11 @@ const authService = {
         issuer: process.env.ISSUER,
       },
     );
+
+    const updateResult = await userModel.updateUser(user.id, { refreshToken: newToken });
+    if (!updateResult) {
+      throw new customError(400, '토큰을 업데이트 하는데 실패했습니다.');
+    }
 
     return newToken;
   },
