@@ -181,7 +181,9 @@ choiceOrder.addEventListener('click', (e) => {
   } else {
     alert('선택된 제품이 없습니다.');
     e.preventDefault();
+    return;
   }
+  checkToken(e);
 });
 
 allOrderBtn.addEventListener('click', (e) => {
@@ -190,26 +192,29 @@ allOrderBtn.addEventListener('click', (e) => {
   [...localStorageCart].forEach((item) => (total += item.price * item.amount));
   localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
   localStorage.setItem('cart', JSON.stringify([]));
-  checkToken();
+  if (!checkToken()) {
+    e.preventDefault();
+  }
 });
 
-const checkToken = () => {
-  return axios({
-    method: 'GET',
-    url: '/api',
-    headers: {
-      Authorization: `Bearer ${token.data.access_token}`,
-    },
-  })
-    .then((res) => {
-      if (!res) {
-        e.preventDefault();
-      }
-    })
-    .catch(() => {
-      alert('로그인이 유효하지 않습니다.\n로그인 창으로 이동하겠습니다.');
-      window.location.replace('/signin');
-    });
-};
+// const checkToken = (e) => {
+//   return axios({
+//     method: 'GET',
+//     url: '/api',
+//     headers: {
+//       Authorization: `Bearer ${token.data.access_token}`,
+//     },
+//   })
+//     .then((res) => {
+//       if (!res) {
+//         e.preventDefault();
+//       }
+//     })
+//     .catch(() => {
+//       alert('로그인이 유효하지 않습니다.\n로그인 창으로 이동하겠습니다.');
+//       window.location.replace('/signin');
+//       e.preventDefault();
+//     });
+// };
 
 writeCartList();
