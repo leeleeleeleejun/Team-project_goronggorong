@@ -62,7 +62,7 @@ const orderController = {
     }
   },
   getUserOrders: async (req, res, next) => {
-    const { _id } = req.params;
+    const { _id } = req.decoded;
 
     try {
       if (!_id) {

@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/orders/payment', verifyToken, orderController.createOrder);
 router.get('/orders/:_id', verifyToken, orderController.getSelectedOrder);
-router.get('/orders/user/:_id', verifyToken, orderController.getUserOrders);
+router.get('/orders/selected-user', verifyToken, orderController.getUserOrders);
 router.put('/orders/cancel/:_id', verifyToken, orderController.cancelSelectedOrder); // 주문취소
 
 export { router as orderRouter };
