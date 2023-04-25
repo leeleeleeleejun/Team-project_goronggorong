@@ -11,7 +11,12 @@ async function load() {
       Authorization: `Bearer ${sampleToken}`,
     },
     url: `/api/orders/${_id}`,
-  }).then((res) => res.data.info);
+  })
+    .then((res) => {
+      console.log(res);
+      return res.data.info;
+    })
+    .catch((err) => alert);
 
   console.log(orderInfo);
   const { orderId, orderDate, deliveryStatus, paymentMethod, products, receiver, totalPrice } = orderInfo;
@@ -36,7 +41,7 @@ async function load() {
   const totalPriceNumber = document.querySelector('.total-price');
   totalPriceNumber.innerHTML = totalPrice;
   const paymentType = document.querySelector('.payment-type');
-  paymentType.innerHTML = paymentMethod.paymentType;
+  paymentType.innerHTML = paymentMethod.paymentType === 'account' ? '무통장입금' : '카드';
   const receiverName = document.querySelector('.receiver-name');
   const receiverAddress = document.querySelector('.receiver-address');
   const receiverPhone = document.querySelector('.receiver-phone');
@@ -53,11 +58,18 @@ async function load() {
       headers: {
         Authorization: `Bearer ${sampleToken}`,
       },
-      url: `/orders/cancel/${_id}`,
-      data: { ...orderInfo, deliveryStatus: '취소완료' },
+      url: `/api/orders/cancel/${_id}`,
     })
-      .then(alert('취소가 완료 되었습니다.'))
+      .then((res) => alert(res.data.message))
       .catch((err) => alert(err));
+    // axios
+    //   .put(`/api/orders/cancel/${_id}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${sampleToken}`,
+    //     },
+    //     data: { ...orderInfo, deliveryStatus: '결제완료' },
+    //   })
+    //   .then(console.log);
   });
 }
 load();
