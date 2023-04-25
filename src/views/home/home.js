@@ -18,9 +18,6 @@ axios
     const category = document.querySelectorAll('.nav__cate li');
     category.forEach((cate) => {
       cate.addEventListener('click', function (e) {
-        const link = e.target.querySelector('a');
-        const href = link.getAttribute('href');
-        link.setAttribute('href', href.replace(/\/+$/, ''));
         //기존 on카테고리에서 on클래스 삭제하고
         document.querySelector('.nav__cate--on').classList.remove('nav__cate--on');
         //클릭한 카테고리에 on 클래스 추가
@@ -32,7 +29,7 @@ axios
     alert(err);
   });
 
-//상품 불러오기
+//상품상세 불러오기
 const createItem = (item) => {
   return `
   <li class="prod__item">
@@ -50,3 +47,36 @@ const createItem = (item) => {
             </a>
           </li>`;
 };
+
+const categories = document.querySelectorAll('.nav__cate li');
+
+categories.forEach((category) => {
+  category.addEventListener('click', (e) => {
+    //기존 on카테고리에서 on클래스 삭제하고
+    document.querySelector('.nav__cate--on').classList.remove('nav__cate--on');
+    //클릭한 카테고리에 on 클래스 추가
+    e.target.classList.add('nav__cate--on');
+    const selectedCategory = category.dataset.category;
+    axios
+      .get(`/api/products/${selectedCategory}`)
+      .then((res) => {
+        const items = res.data.info;
+        amountAll.innerText = items.length;
+        const list = document.querySelector('.prod__list');
+        list.innerHTML = ''; //기존 상품 목록 초기화
+        items.forEach((item) => {
+          list.innerHTML += createItem(item);
+        });
+
+        // URL 변경 코드
+        const currentUrl = window.location.href;
+        // /products/뒤에오는 문자열 찾기-> 카테고리명으로 변경하기
+        const newUrl = currentUrl.replace(/\/products\/(.*)\/?/, `/products/${selectedCategory}`);
+        // 브라우저 히스토리에 새 url추가
+        window.history.pushState({ path: newUrl }, '', newUrl);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  });
+});
