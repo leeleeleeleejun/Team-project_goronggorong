@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import cors from 'cors';
 
 // MODULE
 import { httpLogStream } from './utils/index.js';
@@ -32,6 +33,7 @@ db.on('connected', () => console.log('Connecting DB Success'));
 db.on('error', (err) => console.error(err));
 
 // MIDDLEWARE
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(rootDir + '/public')); // public 폴더 접근
