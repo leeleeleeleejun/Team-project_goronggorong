@@ -1,4 +1,8 @@
-.user-address-info {
+.receiver-info {
   display: flex;
   flex-direction: column;
+}
+
+.receiver-info span {
+  margin-bottom: 5px;
 }

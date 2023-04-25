@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { main } from '/src/views/public/js/main.js';
+import { main } from '/layouts/main.js';
+await main();
 await main();
 
-const userToken = localStorage.getItem('userToken');
-axios.get(`/${userToken}`).then((res) => {
-  // 유저 정보 받기
-});
+// const userToken = localStorage.getItem('userToken');
+// axios.get(`/${userToken}`).then((res) => {
+//   // 유저 정보 받기
+// });
 
 const goCancel = document.querySelector('go-cancel');
 const stopCancel = document.querySelector('stop-cancel');
