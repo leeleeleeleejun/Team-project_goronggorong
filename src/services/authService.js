@@ -5,7 +5,7 @@ const authService = {
   signToken: (user) => {
     const newToken = jwt.sign(
       {
-        id: user.id,
+        _id: user.id,
         email: user.email,
         password: user.password,
       },
@@ -17,7 +17,6 @@ const authService = {
 
     return newToken;
   },
-  verifyToken: () => {},
   createHashPassword: async (password) => {
     const salt = 12;
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -32,6 +31,16 @@ const authService = {
     }
 
     return result;
+  },
+  createRandomPassword: () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let password = '';
+
+    for (let i = 0; i < 10; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return password;
   },
 };
 
