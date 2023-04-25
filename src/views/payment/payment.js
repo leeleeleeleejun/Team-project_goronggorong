@@ -144,22 +144,22 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
     e.currentTarget.innerHTML = '배송지 변경';
     // 입력값이 비울 경우 기존의 데이터 삽입
 
-    if (deliveryInfoWrap.deliveryAddress.innerHTML.length <= 0) {
+    if (changeDeliveryAddress.length <= 0) {
       alert('주소를 확인해주세요');
       return;
     } else {
       deliveryInfoWrap.deliveryAddress.innerHTML = changeDeliveryAddress;
     }
-    if (deliveryInfoWrap.deliveryTargetName.innerHTML.length <= 0) {
+    if (changeDeliveryTargetName.value.length <= 0) {
       alert('이름을 확인해주세요');
       return;
     } else {
       deliveryInfoWrap.deliveryTargetName.innerHTML = changeDeliveryTargetName.value;
     }
-    if (changeDeliveryTargetPhone.value.length <= 0 || !changeDeliveryTargetPhone.value.length > 11) {
-      alert('번호를 확인해주세요');
-    } else {
+    if (changeDeliveryTargetPhone.value.length === 11) {
       deliveryInfoWrap.deliveryTargetPhone.innerHTML = changeDeliveryTargetPhone.value;
+    } else {
+      alert('번호를 확인해주세요');
     }
   } else {
     deliveryInfoWrap.deliveryInfo.classList.add('close');
@@ -180,6 +180,7 @@ paymentBtn.addEventListener('click', (e) => {
     ...reqBody.getValue().receiver,
     requestMessage: deliveryInfoWrap.deliveryRequestOption.value,
   });
+  console.log(reqBody.getValue());
   //카드 선택 시
   if (reqBody.getValue().paymentMethod.paymentType === 'card') {
     const setCardInfo = (target, change) => {
@@ -223,6 +224,18 @@ paymentBtn.addEventListener('click', (e) => {
     e.preventDefault();
     return;
   }
+
+  reqBody.getValue().receiver;
+
+  localStorage.setItem(
+    'deliveryInfo',
+    JSON.stringify({
+      ...reqBody.getValue().receiver,
+      totalPrice: reqBody.getValue().totalPrice,
+      paymentType: reqBody.getValue().paymentMethod.paymentType,
+    }),
+  );
+
   localStorage.removeItem('orders');
   localStorage.setItem('');
   axios({
