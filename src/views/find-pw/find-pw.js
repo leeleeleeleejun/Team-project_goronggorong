@@ -12,7 +12,7 @@ const newPw = document.querySelector('.new-pw');
 submitBtn.addEventListener('click', function (e) {
   e.preventDefault();
   axios
-    .get('/api/signin/find-password', {
+    .put('/api/signin/find-password', {
       name: userName.value,
       email: id.value,
       phone: phone.value,
@@ -20,7 +20,7 @@ submitBtn.addEventListener('click', function (e) {
     .then((res) => {
       if (res.status === 200) {
         modal.classList.add('is-active');
-        newPw.value = res.data.info.password;
+        newPw.value = res.data.info;
       }
       if (res.status === 400) {
         alert(res.data.message);
