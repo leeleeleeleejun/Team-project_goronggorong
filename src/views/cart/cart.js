@@ -185,7 +185,6 @@ axios({
       let total = 0;
       const localStorageCart = JSON.parse(localStorage.getItem('cart'));
       [...localStorageCart].forEach((item) => (total += item.price * item.amount));
-      console.log(total);
       localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
       localStorage.setItem('cart', JSON.stringify([]));
     });
