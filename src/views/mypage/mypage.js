@@ -19,18 +19,21 @@ const username=document.querySelector('.user__name')
 // preview__info--price
 // preview__btn--detail
 
+const sampleToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w'
 
 axios({
   method: 'get',
   url: '/api/orders/user/6440f99065989e9768bbae31',
   //유저 토큰 확인
-  // headers: {
-  //   Authorization: `Bearer ${token.data.access_token}`,
-  // },
+  headers: {
+    Authorization: `Bearer ${sampleToken}`,
+    // Authorization: `Bearer ${token.data.access_token}`,
+  },
 })
   .then((res) => {
-    const order = res.data.info
-    username.innerText=order.user.name
+    const orders = res.data.info
+    username.innerText=orders[0].user.name
+    console.log(res.data.info)
   })
   .catch((err) => {
     alert(err.message);
