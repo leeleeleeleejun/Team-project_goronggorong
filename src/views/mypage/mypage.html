@@ -4,18 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer type="module" src="mypage.js"></script>
     <link rel="stylesheet" href="mypage.css" />
     <title>마이페이지</title>
   </head>
-  <body>  
+  <body> 
+    <header></header>
     <main role="main">
       <section class="title">
         <h1>마이페이지</h1>
       </section>
 
       <section class="user">
-        <p><span class="user__name">김집사</span>님</p>
-        <a class="user__edit" href="/check-valid-user">회원정보 수정</a>
+        <p><span class="user__name"></span>님</p>
+        <a class="user__edit" href="/mypage/check-valid-user">회원정보 수정</a>
         <a class="user__signout" href="/">로그아웃</a>
       </section>
 
@@ -48,23 +53,25 @@
           <div class="order__preview">
             <div class="preview__top">
               <p class="preview__top--date">2023.04.19</p>
+              <p class="preview__top--orderid">1234</p>
             </div>
             <div class="preview__bottom">
               <h2 class="preview__state">배송준비중</h2>
               <div class="preview__info-container">
-                <img width="100px" src="https://cdudsyowwnmx6388661.cdn.ntruss.com/aboutPet/images/goods/GI251031450/b27ed4e6-5e38-442e-bde8-9e8be1c36138.jpg?type=f&w=259&h=259&quality=90&align=4"/>
+                <img width="100px" class="preview__info--img" src="https://cdudsyowwnmx6388661.cdn.ntruss.com/aboutPet/images/goods/GI251031450/b27ed4e6-5e38-442e-bde8-9e8be1c36138.jpg?type=f&w=259&h=259&quality=90&align=4"/>
                 <div class="preview__info">
                   <p class="preview__info--title">캐티맨 카샤카샤 붕붕</p>
-                  <p><strong class="preview__info__count">1</strong>개</p>
-                  <h2><strong class="preview__info__price">4,800</strong>원</h2>
+                  <p>외 <strong class="preview__info--others">5</strong>건</p>
+                  <p><strong class="preview__info--count">1</strong>개</p>
+                  <h2><strong class="preview__info--price">4,800</strong>원</h2>
                 </div>
                 <button class="preview__btn--detail">주문 상세</button>
               </div>
-              <button class="preview__btn--cancel">주문 취소</button>
             </div>
           </article>
         </article>
       </section>
     </main>
+    <footer></footer>
   </body>
 </html>

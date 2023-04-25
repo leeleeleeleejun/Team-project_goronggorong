@@ -1,20 +1,13 @@
 import { main } from '/layouts/main.js';
 await main();
-//패스로 불러올 때
-// const url = window.location.pathname;
-// const itemId = url.split('/')[2];
 
-// axios
-//   .get(`http://localhost:3000/api/products/${itemId}`)
-
-// url주소에서 ?뒤의 문자열 가져와서 '='으로 id값만 분리하기
 const url = window.location.search;
 const itemId = url.split('=')[1];
 
 axios
-  .get(`http://localhost:3000/api/products?id=${itemId}`)
+  .get(`/api/products?id=${itemId}`)
   .then((res) => {
-    const item = res.data.product;
+    const item = res.data.info;
 
     const itemImg = document.querySelectorAll('.item__img');
     const name = document.querySelectorAll('.item__name');
@@ -23,11 +16,11 @@ axios
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
-    itemImg.forEach(data=>data.setAttribute('src', item.imgUrl))
+    itemImg.forEach((data) => data.setAttribute('src', item.imgUrl));
 
-    name.forEach(data=>data.innerText = item.name)
+    name.forEach((data) => (data.innerText = item.name));
 
-    price.forEach(data=>data.innerText = item.price)
+    price.forEach((data) => (data.innerText = item.price));
 
     category.innerText = item.category;
     navCartBtn.addEventListener('click', addCart);
@@ -36,7 +29,8 @@ axios
 
     function addCart() {
       const newItem = {
-        img: item.imgUrl,
+        id: item.id,
+        imgUrl: item.imgUrl,
         name: item.name,
         price: item.price,
         amount: navAmount.value,

@@ -5,36 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="./home.css" />
+    <link rel="stylesheet" type="text/css" href="./category.css" />
     <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer type="module" src="./home.js"></script>
+    <script defer type="module" src="category.js"></script>
     <title>고롱고롱</title>
   </head>
+  <header></header>
+  <nav class="navbar">
+    <ul class="nav__cate">
+      <li>
+        <a class="nav__cate--on" href="/">All</a>
+      </li>
+      <li data-category="Food">
+        <a>Food</a>
+      </li>
+      <li data-category="Snack">
+        <a>Snack</a>
+      </li>
+      <li data-category="Toy">
+        <a>Toy</a>
+      </li>
+      <li data-category="Toilet">
+        <a>Toilet</a>
+      </li>
+      <li data-category="Fashion">
+        <a>Fashion</a>
+      </li>
+    </ul>
+  </nav>
   <body>
-    <header></header>
-    <nav class="navbar">
-      <ul class="nav__cate">
-        <li>
-          <a class="nav__cate--on" href="/">All</a>
-        </li>
-        <li>
-          <a href="/products/Food">Food</a>
-        </li>
-        <li>
-          <a href="/products/Snack">Snack</a>
-        </li>
-        <li>
-          <a href="/products/Toy">Toy</a>
-        </li>
-        <li>
-          <a href="/products/Toilet">Toilet</a>
-        </li>
-        <li>
-          <a href="/products/Fashion">Fashion</a>
-        </li>
-      </ul>
-    </nav>
     <main role="main">
       <section class="prod">
         <div class="prod__page-size">

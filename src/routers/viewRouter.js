@@ -21,10 +21,10 @@ router.use('/mypage/edit-user-info', viewService.serveStatics('edit-user-info'))
 // ORDER
 router.use('/orders/cart', viewService.serveStatics('cart')); // 장바구니
 router.use('/orders/payment', viewService.serveStatics('payment')); // 결제 페이지
-router.use('/orders/payment/success', viewService.serveStatics('order/success')); // 결제 성공
-router.use('/orders/:orderId', viewService.serveStatics('order/order-detail')); // 주문 상세 확인
-router.use('/orders/:orderId/cancel-order', viewService.serveStatics('order/cancel')); // 주문 취소
-router.use('/orders/:orderId/cancel-order/success', viewService.serveStatics('order/cancel-complete')); // 주문 취소 성공
+router.use('/orders/payment/success', viewService.serveStatics('success')); // 결제 성공
+router.use('/orders/:orderId', viewService.serveStatics('order-detail')); // 주문 상세 확인
+router.use('/orders/:orderId/cancel-order', viewService.serveStatics('cancel')); // 주문 취소
+router.use('/orders/:orderId/cancel-order/success', viewService.serveStatics('cancel-complete')); // 주문 취소 성공
 
 // FOOTER, HEADER
 router.use('/layouts', viewService.serveStatics('layouts')); // footer, header
