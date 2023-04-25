@@ -23,11 +23,11 @@ axios
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
-    itemImg.forEach(data=>data.setAttribute('src', item.imgUrl))
+    itemImg.forEach((data) => data.setAttribute('src', item.imgUrl));
 
-    name.forEach(data=>data.innerText = item.name)
+    name.forEach((data) => (data.innerText = item.name));
 
-    price.forEach(data=>data.innerText = item.price)
+    price.forEach((data) => (data.innerText = item.price));
 
     category.innerText = item.category;
     navCartBtn.addEventListener('click', addCart);
@@ -36,7 +36,8 @@ axios
 
     function addCart() {
       const newItem = {
-        img: item.imgUrl,
+        id: item.id,
+        imgUrl: item.imgUrl,
         name: item.name,
         price: item.price,
         amount: navAmount.value,
