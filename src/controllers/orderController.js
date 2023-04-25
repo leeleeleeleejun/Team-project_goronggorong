@@ -62,6 +62,7 @@ const orderController = {
     }
   },
   getUserOrders: async (req, res, next) => {
+    console.log(req.decoded);
     const { _id } = req.decoded;
 
     try {

@@ -9,10 +9,9 @@
   flex-direction: column;
 }
 
-.cancel-reason {
+.cancle-reason {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -21,10 +20,9 @@
   flex-direction: column;
 }
 
-.cancel-detail-reason > input {
+.cancle-detail-reason > input {
   width: 50%;
   height: 100px;
-  margin-top: 10px;
 }
 
 .return-price {

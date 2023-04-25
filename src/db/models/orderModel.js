@@ -7,14 +7,14 @@ const orderModel = {
     return order;
   },
   findAllById: async (_id) => {
-    const orders = await Order.find({ user: _id }).populate('user', 'name').populate('products.id');
+    const orders = await Order.find({ user: _id }).sort({ _id: -1 }).populate('user', 'name').populate('products.id');
 
     return orders;
   },
   createOrder: async (orderInfo) => {
     const order = await Order.create(orderInfo);
 
-    return order;
+    return updatedOrder;
   },
   updateOrder: async (_id) => {
     const updatedOrder = await Order.updateOne({ _id }, { deliveryStatus: '주문취소' });

@@ -60,7 +60,6 @@ axios({
       }
 
       //order preview 생성
-
       const orderList = document.querySelector('.order');
       orderList.innerHTML += createOrderPreview(order);
     });
