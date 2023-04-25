@@ -21,27 +21,18 @@
       <h3>주문결제</h3>
       <div class="contents">
         <div class="contents__order-sets">
-          <section class="order-sets__user-imformation">
-            <div class="content-title">
-              <span> 주문 고객 정보 </span>
-            </div>
-            <div class="content">
-              <div class="user-name"></div>
-              <div class="user-phone"></div>
-            </div>
-          </section>
           <section class="order-sets__user-address">
             <div class="content-title">
               <span> 배송지 </span>
             </div>
             <div class="content">
               <div class="delivery-info-wrap">
-                <div class="delivery-info">
+                <div class="delivery-info close">
                   <span class="delivery-address"></span>
                   <span class="delivery-target-name"></span>
                   <span class="delivery-target-phone"></span>
                 </div>
-                <div class="change-delivery-info close">
+                <div class="change-delivery-info">
                   <div class="change-delivery-address">
                     <input type="text" id="sample6_postcode" placeholder="우편번호" />
                     <button onclick="sample6_execDaumPostcode()">우편번호 찾기</button> <br />
@@ -164,7 +155,7 @@
           <section>
             <div class="content-title"></div>
             <div class="content">
-              <button class="payment-btn" type="submit">결제하기</button>
+              <a href="/orders/payment/success"><button class="payment-btn">결제하기</button></a>
             </div>
           </section>
         </div>
