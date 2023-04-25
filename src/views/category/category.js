@@ -6,7 +6,11 @@ const amountAll = document.querySelector('.prod__item--amount');
 const categories = document.querySelectorAll('.nav__cate li');
 
 categories.forEach((category) => {
-  category.addEventListener('click', () => {
+  category.addEventListener('click', (e) => {
+    //기존 on카테고리에서 on클래스 삭제하고
+    document.querySelector('.nav__cate--on').classList.remove('nav__cate--on');
+    //클릭한 카테고리에 on 클래스 추가
+    e.target.classList.add('nav__cate--on');
     const selectedCategory = category.dataset.category;
     axios.get(`/api/products/${selectedCategory}`).then((res) => {
       const items = res.data.info;
