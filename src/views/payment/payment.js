@@ -38,12 +38,12 @@ const reqBody = (() => {
 
 const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
 const totalPrice = document.querySelectorAll('.total-price');
+reqBody.setValue('totalPrice', Number(localStorageOrders[1]));
 totalPrice[0].innerHTML = localStorageOrders[1];
 totalPrice[1].innerHTML = localStorageOrders[1];
 [...localStorageOrders[0]].forEach((item) => {
   reqBody.setValue('products', [...reqBody.getValue().products, { _id: item.id, amount: item.amount }]);
 });
-reqBody.setValue('totalPrice', localStorageOrders[1]);
 
 const deliveryInfoWrap = {
   deliveryInfo: document.querySelector('.delivery-info'),
@@ -180,7 +180,6 @@ paymentBtn.addEventListener('click', (e) => {
     ...reqBody.getValue().receiver,
     requestMessage: deliveryInfoWrap.deliveryRequestOption.value,
   });
-  console.log(reqBody.getValue());
   //카드 선택 시
   if (reqBody.getValue().paymentMethod.paymentType === 'card') {
     const setCardInfo = (target, change) => {
@@ -227,23 +226,44 @@ paymentBtn.addEventListener('click', (e) => {
 
   reqBody.getValue().receiver;
 
-  localStorage.setItem(
-    'deliveryInfo',
-    JSON.stringify({
-      ...reqBody.getValue().receiver,
-      totalPrice: reqBody.getValue().totalPrice,
-      paymentType: reqBody.getValue().paymentMethod.paymentType,
-    }),
-  );
+  localStorage.setItem('deliveryInfo', {
+    ...reqBody.getValue().receiver,
+    totalPrice: reqBody.getValue().totalPrice,
+    paymentType: reqBody.getValue().paymentMethod.paymentType,
+  });
 
   localStorage.removeItem('orders');
-  localStorage.setItem('');
+  e.preventDefault();
+  console.log(reqBody.getValue());
   axios({
-    method: 'Post',
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${sampleToken}`,
     },
-    url: '/orders/payment',
-    body: JSON.stringify(reqBody),
-  });
+    url: '/api/orders/payment',
+    data: reqBody.getValue(),
+  })
+    .then(console.log)
+    .catch((err) => console.log(err));
 });
+
+// // account
+// {
+//   "receiver": {
+//       "name": "John",
+//       "phone": "01012345678",
+//       "address": "서울특별시 강남구",
+//       "requestMessage": "문 앞에 두고 가주세요."
+//   },
+//   "products": [{
+//       "id": "6444d810c6efec47b104fc7c",
+//       "amount": 1
+//   }, {
+//       "id": "6444d810c6efec47b104fc7d",
+//       "amount": 2
+//   }],
+//   "totalPrice": 2000,
+//   "paymentMethod": {
+//       "paymentType": "account"
+//   }
+// }
