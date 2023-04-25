@@ -146,12 +146,20 @@ main {
   border: none;
 }
 
-.last-order-button-wrap {
+.choice-order-button-wrap {
   display: flex;
 }
 
-.last-order-button-wrap button {
+#choice-order {
+  margin: auto;
   width: 50%;
   height: 40px;
-  margin: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }

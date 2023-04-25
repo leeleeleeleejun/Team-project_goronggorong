@@ -1,15 +1,24 @@
 import { main } from '/src/views/public/js/main.js';
 await main();
 
-axios
-  .get('https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list', {
-    // headers: {
-    //   Authorization: 'Bearer ' + localStorage.getItem('userToken'),
-    // },
-  })
+axios({
+  method: 'GET',
+  url: '/api',
+  headers: {
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w`,
+  },
+})
   .then((res) => {
     console.log(res);
-    const { name, email, phone, address } = res.data;
+    const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
+    const totalPrice = document.querySelectorAll('.total-price');
+    totalPrice[0].innerHTML = localStorageOrders[1];
+    totalPrice[1].innerHTML = localStorageOrders[1];
+    [...localStorageOrders[0]].forEach((item) => {
+      reqBody.setValue('products', [...reqBody.getValue().products, { _id: item.id, amount: item.amount }]);
+    });
+    reqBody.setValue('totalPrice', localStorageOrders[1]);
+    const { name, phone, address } = res.data;
     const userName = document.querySelector('.user-name');
     const userPhone = document.querySelector('.user-phone');
     // 회원정보를 기본 배송지로 설정
@@ -25,24 +34,25 @@ axios
     reqBody.setValue('receiver', { ...reqBody.getValue().receiver, address: address });
     reqBody.setValue('receiver', { ...reqBody.getValue().receiver, requestMessage: deliveryRequestOption.value });
   })
-  .catch((error) => console.error(error));
-
-const navCate = document.querySelector('.nav__cate');
-[...navCate.children].forEach((navItem) => {
-  navItem.addEventListener('click', (e) => {
-    const result = confirm(`이동 시 주문내역이 사라집니다.
-이동하시겠습니까?`);
-    if (!result) {
-      e.preventDefault();
-    }
+  .catch(() => {
+    alert('로그인이 유효하지 않습니다.\n로그인 창으로 이동하겠습니다.');
+    //window.location.replace('/signin');
   });
-});
+
+// const navCate = document.querySelector('.nav__cate');
+// [...navCate.children].forEach((navItem) => {
+//   navItem.addEventListener('click', (e) => {
+//     const result = confirm(`이동 시 주문내역이 사라집니다.
+// 이동하시겠습니까?`);
+//     if (!result) {
+//       e.preventDefault();
+//     }
+//   });
+// });
 
 // 결제완료 시 서버에 보낼 데이터
 const reqBody = (() => {
   const OrderSchema = {
-    orderId: {},
-    userId: {},
     receiver: {
       name: {},
       phone: {},
@@ -225,16 +235,66 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
 });
 
 const paymentBtn = document.querySelector('.payment-btn');
-
-// paymentBtn.addEventListener('click', (e) => {
-//   const result = reqBody.getValue();
-//   e.preventDefault();
-//   console.log(result);
-//   axios({
-//     method: 'get',
-//     url: 'https://c30c061a-143f-42e2-a024-aea45621a3ca.mock.pstmn.io/list',
-//     responseType: 'json',
-//   }).then(function (response) {
-//     console.log(response);
-//   });
-// });
+paymentBtn.addEventListener('click', (e) => {
+  reqBody.setValue('receiver', { ...reqBody.getValue().receiver, name: deliveryInfoWrap.deliveryTargetName.innerHTML });
+  reqBody.setValue('receiver', {
+    ...reqBody.getValue().receiver,
+    phone: deliveryInfoWrap.deliveryTargetPhone.innerHTML,
+  });
+  reqBody.setValue('receiver', { ...reqBody.getValue().receiver, address: deliveryInfoWrap.deliveryAddress.innerHTML });
+  reqBody.setValue('receiver', {
+    ...reqBody.getValue().receiver,
+    requestMessage: deliveryInfoWrap.deliveryRequestOption.value,
+  });
+  //카드 선택 시
+  if (reqBody.getValue().paymentMethod.paymentType === 'card') {
+    const setCardInfo = (target, change) => {
+      const cardInfo = reqBody.getValue().paymentMethod.cardInfo;
+      reqBody.setValue('paymentMethod', {
+        ...reqBody.getValue().paymentMethod,
+        cardInfo: { ...cardInfo, [target]: change },
+      });
+    };
+    if (cardInfoWarp.cardNumber.value.length === 19) {
+      setCardInfo('cardNumber', cardInfoWarp.cardNumber.value.replace(/ /g, ''));
+    } else {
+      alert('카드번호를 확인해주세요');
+      e.preventDefault();
+      return;
+    }
+    if (cardInfoWarp.expirDate.value.length === 5) {
+      setCardInfo('expiryDate', cardInfoWarp.expirDate.value.replace(/ /g, ''));
+    } else {
+      alert('카드 만료일을 확인해주세요');
+      e.preventDefault();
+      return;
+    }
+    if (cardInfoWarp.cvcNumber.value.length === 3) {
+      setCardInfo('cvc', cardInfoWarp.cvcNumber.value);
+    } else {
+      alert('CVC를 확인해주세요');
+      e.preventDefault();
+      return;
+    }
+    if (cardInfoWarp.nameOnCard.value.length === 0) {
+      setCardInfo('cardOwner', cardInfoWarp.nameOnCard.value);
+    } else {
+      alert('카드에 적힌 이름을 확인해주세요');
+      e.preventDefault();
+      return;
+    }
+    setCardInfo('company', cardInfoWarp.company.value);
+  } else if (reqBody.getValue().paymentMethod.paymentType !== 'account') {
+    alert('결제 수단을 선택해주세요.');
+    e.preventDefault();
+    return;
+  }
+  localStorage.removeItem('orders');
+  console.log(reqBody.getValue());
+  localStorage.setItem('');
+  axios({
+    url: '/orders/payment',
+    method: Post,
+    body: JSON.stringify(reqBody),
+  });
+});

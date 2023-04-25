@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment</title>
-    <link rel="stylesheet" href="./payment.css" />
+
+    <link rel="stylesheet" type="text/css" href="./payment.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/order-common.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./payment.js" type="module"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/src/views/public/js/deliveryAdressApi.js"></script>
+    <script src="/layouts/deliveryAddressApi.js"></script>
   </head>
   <body>
     <header></header>
@@ -23,8 +26,8 @@
               <span> 주문 고객 정보 </span>
             </div>
             <div class="content">
-              <div class="user-name">이준석</div>
-              <div class="user-phone">010-0000-0000</div>
+              <div class="user-name"></div>
+              <div class="user-phone"></div>
             </div>
           </section>
           <section class="order-sets__user-address">
@@ -34,9 +37,9 @@
             <div class="content">
               <div class="delivery-info-wrap">
                 <div class="delivery-info">
-                  <span class="delivery-address">실제 주소</span>
-                  <span class="delivery-target-name">받는 사람 이름</span>
-                  <span class="delivery-target-phone">받는 사람 번호</span>
+                  <span class="delivery-address"></span>
+                  <span class="delivery-target-name"></span>
+                  <span class="delivery-target-phone"></span>
                 </div>
                 <div class="change-delivery-info close">
                   <div class="change-delivery-address">
@@ -89,11 +92,11 @@
                   <div class="card-info">
                     <div>
                       <span>카드 번호</span>
-                      <input type="text" class="card-number" maxlength="19" />
+                      <input type="text" class="card-number" maxlength="19" placeholder="숫자로만 작성해주세요." />
                     </div>
                     <div>
                       <span>만료일</span>
-                      <input type="text" class="expir-date" maxlength="5" />
+                      <input type="text" class="expir-date" maxlength="5" placeholder="숫자로만 작성해주세요." />
                     </div>
                     <div>
                       <span>CVC/CVV</span>
@@ -117,8 +120,8 @@
                       </select>
                     </div>
                     <div>
-                      <span>이름</span>
-                      <input type="text" class="name-on-card" />
+                      <span>카드에 적힌 이름</span>
+                      <input type="text" class="name-on-card" placeholder="영문으로 작성해주세요." />
                     </div>
                   </div>
                 </li>
@@ -130,7 +133,7 @@
                   <div class="virtual-account-info">
                     <div>
                       <span>입금액</span>
-                      <div>141,000원</div>
+                      <div class="total-price"></div>
                     </div>
                     <div class="bank-info">
                       <span>입금하실 은행 및 계좌</span>
@@ -156,7 +159,7 @@
             <div class="content-title">
               <span>결제 금액</span>
             </div>
-            <div class="content">5999원</div>
+            <div class="content total-price"></div>
           </section>
           <section>
             <div class="content-title"></div>

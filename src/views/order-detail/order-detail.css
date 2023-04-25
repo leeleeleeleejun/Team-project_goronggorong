@@ -1,0 +1,26 @@
+.item-info {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #abb2b9;
+}
+
+.item-info > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px;
+}
+
+.receiver-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.receiver-info span {
+  margin-bottom: 5px;
+}
+
+img {
+  width: 20%;
+  height: 20%;
+}
