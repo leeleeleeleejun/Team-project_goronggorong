@@ -123,7 +123,7 @@ const userController = {
 
       return res.status(200).json({
         message: '사용자 삭제 성공',
-        deletedUser,
+        info: deletedUser,
       });
     } catch (err) {
       next(err);
