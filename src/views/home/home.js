@@ -45,7 +45,6 @@ const createItem = (item) => {
                 <p class="prod__title">${item.name}</p>
                 <div class="prod__order">
                   <span><strong class="prod__order-price">${item.price}</strong>원</span>
-                  <!-- <button class="prod__add-cart"><img src="/src/views/img/main/cart.png" /></button> -->
                 </div>
               </div>
             </a>
