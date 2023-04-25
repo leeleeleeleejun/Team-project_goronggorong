@@ -14,7 +14,7 @@ const orderModel = {
   createOrder: async (orderInfo) => {
     const order = await Order.create(orderInfo);
 
-    return order;
+    return updatedOrder;
   },
   updateOrder: async (_id) => {
     const updatedOrder = await Order.updateOne({ _id }, { deliveryStatus: '주문취소' });

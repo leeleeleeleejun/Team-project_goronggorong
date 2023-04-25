@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cart</title>
+    <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
     <link rel="stylesheet" href="./cart.css" />
     <link rel="icon" href="/src/views/img/favicon-96x96.jpg" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -25,8 +26,7 @@
             <button id="all-delete">전체삭제</button>
           </div>
           <div id="order-button-wrap">
-            <button id="choice-order">선택상품 주문</button>
-            <button id="all-order">전체상품 주문</button>
+            <a id="all-order" href="/orders/payment"><button>전체상품 주문</button></a>
           </div>
         </div>
         <div id="total-price-wrap">
@@ -36,9 +36,7 @@
             원
           </div>
         </div>
-        <form class="last-order-button-wrap">
-          <button id="last-order-button">주문하기</button>
-        </form>
+        <a href="/orders/payment" class="choice-order-button-wrap"><button id="choice-order">주문하기</button></a>
       </section>
     </main>
     <footer></footer>

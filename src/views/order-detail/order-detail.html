@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>detail</title>
+
+    <link rel="stylesheet" href="./order-detail.css" />
+
+    <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/order-common.css" />
+    <link rel="icon" href="/src/views/img/favicon-96x96.jpg" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./order-detail.js" type="module"></script>
+  </head>
+  <body>
+    <header></header>
+    <nav class="navbar"></nav>
+    <main>
+      <h3>주문 상세</h3>
+      <div class="contents">
+        <div class="success-order">
+          <section>
+            <div class="item-status">
+              <div class="order-id"></div>
+              <div class="order-date"></div>
+              <div class="order-status"></div>
+              <ul class="item-info-wrap"></ul>
+            </div>
+          </section>
+          <section class="success-order__user-adress">
+            <div class="content-title">
+              <span>배송지</span>
+            </div>
+            <div class="content">
+              <div class="receiver-info">
+                <span class="receiver-name"></span>
+                <span class="receiver-address"></span>
+                <span class="receiver-phone"></span>
+                <span class="receiver-request"></span>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="content-title">
+              <span>결제정보</span>
+            </div>
+            <div class="content">
+              <div>총 결제금액</div>
+              <div class="total-price"></div>
+            </div>
+          </section>
+          <section>
+            <div class="content-title">
+              <span>결제수단 정보</span>
+            </div>
+            <div class="content">
+              <span class="payment-type"></span>
+            </div>
+          </section>
+          <section>
+            <div class="content-title"></div>
+            <div class="content">
+              <div class="content__button-wrap">
+                <button class="cancel-order">주문 취소하기</button>
+                <a href="/"><button class="go-main-page">계속 쇼핑하기</button></a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
