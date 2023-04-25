@@ -5,7 +5,7 @@ const phone = document.querySelector('.form__phone');
 const address = document.querySelector('.form__address');
 const submitBtn = document.querySelector('.form__submit');
 
-submit.addEventListener('click', function (e) {
+submitBtn.addEventListener('click', function (e) {
   e.preventDefault();
   axios
     .post('/api/signup', {
