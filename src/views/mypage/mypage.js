@@ -25,7 +25,7 @@ const sampleToken =
 
 axios({
   method: 'get',
-  url: '/api/orders/selected-user',
+  url: '/api/orders/user/order-list',
   //유저 토큰 확인
   headers: {
     Authorization: `Bearer ${sampleToken}`,
@@ -34,7 +34,6 @@ axios({
   .then((res) => {
     const orders = res.data.info;
     orders.forEach((order) => {
-      console.log(order.deliveryStatus);
       const username = document.querySelector('.user__name');
       username.innerText = order.user.name;
       //배송 상태
@@ -70,10 +69,13 @@ axios({
   });
 
 const createOrderPreview = (order) => {
+  const orderDate = order.orderDate;
+  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일 HH:mm:ss');
+
   return `
     <div class="order__preview">
           <div class="preview__top">
-            <p class="preview__top--date">${order.orderDate}</p>
+            <p class="preview__top--date">${getDate}</p>
             <p class="preview__top--orderid">${order.orderId}</p>
           </div>
           <div class="preview__bottom">
