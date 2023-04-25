@@ -1,34 +1,43 @@
 import { main } from '/layouts/main.js';
 await main();
 
+const sampleToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
+
 async function load() {
   const checkToken = await axios({
     method: 'GET',
-    url: '/api',
-    // headers: {
-    //   Authorization: `Bearer ${token.data.access_token}`,
-    // },
-  }).catch();
-  const orderInfo = await axios({
-    method: 'GET',
-    url: '/api',
+    url: '/orders/payment/success',
+    headers: {
+      Authorization: `Bearer ${sampleToken}`,
+    },
   })
-    .then((res) => {
-      // const { receiver, paymentMethod, totalPrice } = res.data.info;
-      // const userName = document.querySelector('.user-name');
-      // const receiverName = document.querySelector('.receiver-name');
-      // const receiverAddress = document.querySelector('.receiver-address');
-      // const receiverPhone = document.querySelector('.receiver-phone');
-      // const receiverRequest = document.querySelector('.receiver-request');
-      // const totalPriceNumber = document.querySelector('.total-price');
-      // const paymentType = document.querySelector('.payment-type');
-      // userName.innerHTML = res.data.info.name;
-      // receiverName.innerHTML = receiver.name;
-      // receiverAddress.innerHTML = receiver.address;
-      // receiverPhone.innerHTML = receiver.Phone;
-      // receiverRequest.innerHTML = receiver.requestMessage;
-      // totalPriceNumber.innerHTML = totalPrice;
-      // paymentType.innerHTML = paymentMethod.paymentType;
+    .then(() => {
+      const { name, phone, address, requestMessage, paymentType, totalPrice } = JSON.parse(
+        localStorage.getItem('deliveryInfo'),
+      );
+      const receiverName = document.querySelector('.receiver-name');
+      const receiverAddress = document.querySelector('.receiver-address');
+      const receiverPhone = document.querySelector('.receiver-phone');
+      const receiverRequest = document.querySelector('.receiver-request');
+      const totalPriceNumber = document.querySelector('.total-price');
+      const paymentTypeEl = document.querySelector('.payment-type');
+      receiverName.innerHTML = name;
+      receiverAddress.innerHTML = address;
+      receiverPhone.innerHTML = phone;
+      receiverRequest.innerHTML = requestMessage;
+      totalPriceNumber.innerHTML = totalPrice;
+      paymentTypeEl.innerHTML = paymentType === 'account' ? '무통장입금' : '카드';
     })
-    .catch();
+    .catch((err) => alert(err));
+  const deleteLocalStorage = () => {
+    localStorage.removeItem('deliveryInfo');
+  };
+
+  const goMyPage = document.querySelector('.go-my-page');
+  const goMainPage = document.querySelector('.go-main-page');
+  goMyPage.addEventListener('click', deleteLocalStorage);
+  goMainPage.addEventListener('click', deleteLocalStorage);
 }
+
+load();
