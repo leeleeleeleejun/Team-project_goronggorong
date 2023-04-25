@@ -10,7 +10,6 @@ categories.forEach((category) => {
     const selectedCategory = category.dataset.category;
     axios.get(`/api/products/${selectedCategory}`).then((res) => {
       const items = res.data.info;
-      console.log(items);
       amountAll.innerText = items.length;
       const list = document.querySelector('.prod__list');
       list.innerHTML = ''; //기존 상품 목록 초기화
