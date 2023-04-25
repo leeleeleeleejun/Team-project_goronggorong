@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { main } from '/layouts/main.js';
 await main();
 
@@ -20,7 +19,7 @@ async function load() {
 
   await products.forEach((item) => {
     itemInfoWrap.innerHTML += `<li class="item-info">
-    <img src="${item.id.img}" />
+    <img src="${item.id.imgUrl}" />
     <div>
       <span>제품명: ${item.id.name}</span>
       <span>수량: ${item.amount}</span>
@@ -29,11 +28,11 @@ async function load() {
   </li>`;
   });
   const orderIdEl = document.querySelector('.order-id');
-  orderIdEl.innerHTML = orderId;
+  orderIdEl.innerHTML = `주문번호: ${orderId}`;
   const orderDateEl = document.querySelector('.order-date');
   const orderStatusEl = document.querySelector('.order-status');
-  orderDateEl.innerHTML = orderDate;
-  orderStatusEl.innerHTML = deliveryStatus;
+  orderDateEl.innerHTML = `주문일자: ${orderDate.slice(0, 10)}`;
+  orderStatusEl.innerHTML = `주문상태: ${deliveryStatus}`;
   const totalPriceNumber = document.querySelector('.total-price');
   totalPriceNumber.innerHTML = totalPrice;
   const paymentType = document.querySelector('.payment-type');
@@ -54,7 +53,7 @@ async function load() {
       headers: {
         Authorization: `Bearer ${sampleToken}`,
       },
-      url: `/api/orders/${_id}`,
+      url: `/orders/cancel/${_id}`,
       data: { ...orderInfo, deliveryStatus: '취소완료' },
     })
       .then(alert('취소가 완료 되었습니다.'))

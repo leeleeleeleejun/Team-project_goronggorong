@@ -12,9 +12,9 @@ const url = window.location.search;
 const itemId = url.split('=')[1];
 
 axios
-  .get(`http://localhost:3000/api/products?id=${itemId}`)
+  .get(`/api/products?id=${itemId}`)
   .then((res) => {
-    const item = res.data.product;
+    const item = res.data.info;
 
     const itemImg = document.querySelectorAll('.item__img');
     const name = document.querySelectorAll('.item__name');
@@ -36,7 +36,8 @@ axios
 
     function addCart() {
       const newItem = {
-        img: item.imgUrl,
+        id: item.id,
+        imgUrl: item.imgUrl,
         name: item.name,
         price: item.price,
         amount: navAmount.value,

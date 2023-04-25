@@ -21,11 +21,6 @@ const orderModel = {
 
     return updatedOrder;
   },
-  updateOrder: async (_id) => {
-    const updatedOrder = await Order.updateOne({ _id }, { deliveryStatus: '주문취소' });
-
-    return updatedOrder;
-  },
 };
 
 export default orderModel;

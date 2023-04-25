@@ -83,9 +83,6 @@ const OrderSchema = new Schema({
     default: '입금대기',
     required: true,
   },
-  cancelReason: {
-    type: String,
-  },
 });
 
 export default model('Order', OrderSchema);

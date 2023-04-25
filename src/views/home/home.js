@@ -18,6 +18,9 @@ axios
     const category = document.querySelectorAll('.nav__cate li');
     category.forEach((cate) => {
       cate.addEventListener('click', function (e) {
+        const link = e.target.querySelector('a');
+        const href = link.getAttribute('href');
+        link.setAttribute('href', href.replace(/\/+$/, ''));
         //기존 on카테고리에서 on클래스 삭제하고
         document.querySelector('.nav__cate--on').classList.remove('nav__cate--on');
         //클릭한 카테고리에 on 클래스 추가
@@ -33,7 +36,7 @@ axios
 const createItem = (item) => {
   return `
   <li class="prod__item">
-            <a class="prod__link" href="/products/${item.id}">
+            <a class="prod__link" href="/products?id=${item.id}">
               <img
                 class="prod__link-thumb"
                 src="${item.imgUrl}"
@@ -48,3 +51,19 @@ const createItem = (item) => {
             </a>
           </li>`;
 };
+
+//전체 상품 목록 불러오기
+
+axios
+  //api/?skip=0&limit=20
+  .get(`/api/?skip=${skip}&limit=${limit}`)
+  .then((res) => {
+    const items = res.data.products;
+    const list = document.querySelector('.prod__list');
+    items.forEach((item) => {
+      list.innerHTML += createItem(item);
+    });
+  })
+  .catch((err) => {
+    alert(err);
+  });
