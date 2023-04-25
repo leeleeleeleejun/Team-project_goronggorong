@@ -1,8 +1,10 @@
-function renderHeader(loggedInUser) {
+const userToken = localStorage.getItem('userToken');
+
+function renderHeader() {
   const header = document.querySelector('header');
 
   //로그인 한 유저의 헤더
-  if (loggedInUser) {
+  if (userToken) {
     header.innerHTML = `
     <header>
   <nav class="nav">
