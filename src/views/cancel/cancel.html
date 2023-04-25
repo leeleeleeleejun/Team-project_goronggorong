@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cancel</title>
     <link rel="stylesheet" href="./cancel.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
+    <link rel="stylesheet" type="text/css" href="/layouts/order-common.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./cancel.js" type="module"></script>
   </head>
@@ -17,8 +19,8 @@
       <div class="contents">
         <div class="cancle-order">
           <section>
-            <div class="itme-info">
-              <img src="../../../img/products/logo_simple.png" />
+            <div class="item-info">
+              <img src="/src/views/img/main/logo_simple.png" />
               <div>
                 <span>제품명</span>
                 <span>수량</span>
@@ -33,22 +35,28 @@
             <div class="content">
               <div>
                 <span>사유 선택</span>
-                <ul class="cancle-reason">
+                <ul class="cancel-reason">
                   <li>
-                    <input type="radio" name="reason" />
-                    <span>단순변심</span>
+                    <label>
+                      <input type="radio" name="reason" checked />
+                      <span>단순변심</span>
+                    </label>
                   </li>
                   <li>
-                    <input type="radio" name="reason" />
-                    <span>주문실수</span>
+                    <label>
+                      <input type="radio" name="reason" />
+                      <span>주문실수</span>
+                    </label>
                   </li>
                   <li>
-                    <input type="radio" name="reason" />
-                    <span>배송지연</span>
+                    <label>
+                      <input type="radio" name="reason" />
+                      <span>배송지연</span>
+                    </label>
                   </li>
                 </ul>
               </div>
-              <div class="cancle-detail-reason">
+              <div class="cancel-detail-reason">
                 <span>상세 사유 입력</span>
                 <input type="text" placeholder="내용을 입력해주세요." />
               </div>
@@ -75,9 +83,9 @@
           <section>
             <div class="content-title"></div>
             <div class="content">
-              <div class="content__boutton-wrap">
-                <button>취소</button>
-                <button>취소 신청하기</button>
+              <div class="content__button-wrap">
+                <button class="go-cancel">취소하기</button>
+                <button class="stop-cancel">뒤로가기</button>
               </div>
             </div>
           </section>

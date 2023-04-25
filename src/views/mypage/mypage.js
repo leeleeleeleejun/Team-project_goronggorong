@@ -2,26 +2,6 @@
 import { main } from '/layouts/main.js';
 await main();
 
-<<<<<<< HEAD
-const username = document.querySelector('.user__name');
-// user__signout
-// state
-// state__1
-// state__2
-// state__3
-// state__4
-// state__5
-// preview__top--date
-// preview__top--orderid
-// preview__state
-// preview__info--img
-// preview__info--title
-// preview__info--others
-// preview__info--count
-// preview__info--price
-// preview__btn--detail
-
-=======
 //로그아웃 로직
 const signout = document.querySelector('.user__signout');
 signout.addEventListener('click', function () {
@@ -40,13 +20,12 @@ const state = [state1, state2, state3, state4, state5, state6];
 let status = [0, 0, 0, 0, 0, 0];
 
 const userToken = localStorage.getItem('userToken');
->>>>>>> e7f5ec8 (Fix: 마이페이지 수정)
 const sampleToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
 
 axios({
   method: 'get',
-  url: '/api/orders/selected-user',
+  url: '/api/orders/user/order-list',
   //유저 토큰 확인
   headers: {
     Authorization: `Bearer ${sampleToken}`,
@@ -55,7 +34,6 @@ axios({
   .then((res) => {
     const orders = res.data.info;
     orders.forEach((order) => {
-      console.log(order.deliveryStatus);
       const username = document.querySelector('.user__name');
       username.innerText = order.user.name;
       //배송 상태
@@ -91,10 +69,13 @@ axios({
   });
 
 const createOrderPreview = (order) => {
+  const orderDate = order.orderDate;
+  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일 HH:mm:ss');
+
   return `
     <div class="order__preview">
           <div class="preview__top">
-            <p class="preview__top--date">${order.orderDate}</p>
+            <p class="preview__top--date">${getDate}</p>
             <p class="preview__top--orderid">${order.orderId}</p>
           </div>
           <div class="preview__bottom">
