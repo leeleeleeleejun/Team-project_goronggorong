@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import { main } from '/layouts/main.js';
-=======
-//import axios from 'axios';
-import { main } from '/src/views/public/js/main.js';
->>>>>>> bb4204f1bd35701636026939e5a03803fdc3e356
 await main();
 localStorage.setItem(
   'cart',
@@ -146,11 +141,7 @@ const localStorageEventHandle = (id, order = false) => {
   if (order) {
     const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
     if (localStorageOrders) {
-<<<<<<< HEAD
       localStorage.setItem('orders', JSON.stringify([...localStorageOrders, targetItem]));
-=======
-      localStorage.setItem('orders', JSON.stringify([localStorageOrders, targetItem]));
->>>>>>> bb4204f1bd35701636026939e5a03803fdc3e356
     } else {
       localStorage.setItem('orders', JSON.stringify([targetItem]));
     }
@@ -163,17 +154,12 @@ const localStorageEventHandle = (id, order = false) => {
 choiceDeleteBtn.addEventListener('click', () => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const deleteTarget = [...checkboxes].filter((item) => item.checked);
-<<<<<<< HEAD
   if (deleteTarget.length > 0) {
     for (let i = deleteTarget.length - 1; i >= 0; i--) {
       localStorageEventHandle(deleteTarget[i].id);
     }
   } else {
     alert('선택된 제품이 없습니다.');
-=======
-  for (let i = deleteTarget.length - 1; i >= 0; i--) {
-    localStorageEventHandle(deleteTarget[i].id);
->>>>>>> bb4204f1bd35701636026939e5a03803fdc3e356
   }
 });
 
@@ -186,7 +172,6 @@ allDeleteBtn.addEventListener('click', () => {
 choiceOrder.addEventListener('click', (e) => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const orderTarget = [...checkboxes].filter((item) => item.checked);
-<<<<<<< HEAD
   if (orderTarget.length > 0) {
     for (let i = orderTarget.length - 1; i >= 0; i--) {
       localStorageEventHandle(orderTarget[i].id, 'order');
@@ -196,18 +181,10 @@ choiceOrder.addEventListener('click', (e) => {
   } else {
     alert('선택된 제품이 없습니다.');
     e.preventDefault();
-=======
-  for (let i = orderTarget.length - 1; i >= 0; i--) {
-    localStorageEventHandle(orderTarget[i].id, 'order');
-  }
-  if (checkToken) {
-    axios.get('/orders/payment');
->>>>>>> bb4204f1bd35701636026939e5a03803fdc3e356
   }
 });
 
 allOrderBtn.addEventListener('click', (e) => {
-<<<<<<< HEAD
   let total = 0;
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   [...localStorageCart].forEach((item) => (total += item.price * item.amount));
@@ -233,25 +210,6 @@ const checkToken = () => {
       alert('로그인이 유효하지 않습니다.\n로그인 창으로 이동하겠습니다.');
       window.location.replace('/signin');
     });
-=======
-  e.preventDefault();
-  localStorage.setItem('orders', localStorage.getItem('cart'));
-  localStorage.setItem('cart', JSON.stringify([]));
-  if (checkToken) {
-    axios.get('/orders/payment');
-  }
-});
-
-const checkToken = () => {
-  axios
-    .get('/api', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('userToken'),
-      },
-    })
-    .then((res) => res.data.info.email)
-    .catch((error) => console.error(error));
->>>>>>> bb4204f1bd35701636026939e5a03803fdc3e356
 };
 
 writeCartList();
