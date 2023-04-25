@@ -30,15 +30,14 @@ async function load() {
       paymentTypeEl.innerHTML = paymentType === 'account' ? '무통장입금' : '카드';
     })
     .catch((err) => alert(err));
+  const deleteLocalStorage = () => {
+    localStorage.removeItem('deliveryInfo');
+  };
+
+  const goMyPage = document.querySelector('.go-my-page');
+  const goMainPage = document.querySelector('.go-main-page');
+  goMyPage.addEventListener('click', deleteLocalStorage);
+  goMainPage.addEventListener('click', deleteLocalStorage);
 }
-
-const deleteLocalStorage = () => {
-  localStorage.removeItem('deliveryInfo');
-};
-
-const goMyPage = document.querySelector('.go-my-page');
-const goMainPage = document.querySelector('.go-main-page');
-goMyPage.addEventListener('click', deleteLocalStorage);
-goMainPage.addEventListener('click', deleteLocalStorage);
 
 load();
