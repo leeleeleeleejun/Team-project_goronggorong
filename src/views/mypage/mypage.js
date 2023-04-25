@@ -20,21 +20,20 @@ const state = [state1, state2, state3, state4, state5, state6];
 let status = [0, 0, 0, 0, 0, 0];
 
 const userToken = localStorage.getItem('userToken');
-// const sampleToken =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
+const sampleToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
 
 axios({
   method: 'get',
   url: '/api/orders/user/order-list',
   //유저 토큰 확인
   headers: {
-    Authorization: `Bearer ${userToken}`,
+    Authorization: `Bearer ${sampleToken}`,
   },
 })
   .then((res) => {
     const orders = res.data.info;
     orders.forEach((order) => {
-      console.log(order.deliveryStatus);
       const username = document.querySelector('.user__name');
       username.innerText = order.user.name;
       //배송 상태
@@ -61,6 +60,7 @@ axios({
       }
 
       //order preview 생성
+
       const orderList = document.querySelector('.order');
       orderList.innerHTML += createOrderPreview(order);
     });
@@ -70,10 +70,13 @@ axios({
   });
 
 const createOrderPreview = (order) => {
+  const orderDate = order.orderDate;
+  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일 HH:mm:ss');
+
   return `
     <div class="order__preview">
           <div class="preview__top">
-            <p class="preview__top--date">${order.orderDate}</p>
+            <p class="preview__top--date">${getDate}</p>
             <p class="preview__top--orderid">${order.orderId}</p>
           </div>
           <div class="preview__bottom">
