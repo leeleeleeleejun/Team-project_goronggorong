@@ -51,19 +51,3 @@ const createItem = (item) => {
             </a>
           </li>`;
 };
-
-//전체 상품 목록 불러오기
-
-axios
-  //api/?skip=0&limit=20
-  .get(`/api/?skip=${skip}&limit=${limit}`)
-  .then((res) => {
-    const items = res.data.products;
-    const list = document.querySelector('.prod__list');
-    items.forEach((item) => {
-      list.innerHTML += createItem(item);
-    });
-  })
-  .catch((err) => {
-    alert(err);
-  });

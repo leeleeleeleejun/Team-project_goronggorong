@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '/src/views/orders/order/order-common.css';
 
 .item-info {
@@ -5,10 +6,21 @@
 }
 
 .item-info > div {
+=======
+@import '/src/views/public/css/main.css';
+@import '/src/views/orders/order/order-common.css';
+
+.itme-info {
+  display: flex;
+}
+
+.itme-info > div {
+>>>>>>> 18eb9c7 (Add: 주문 상세내역 기능 추가)
   display: flex;
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .cancel-reason {
   display: flex;
   flex-direction: row;
@@ -17,14 +29,29 @@
 }
 
 .cancel-detail-reason {
+=======
+.cancle-reason {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.cancle-detail-reason {
+>>>>>>> 18eb9c7 (Add: 주문 상세내역 기능 추가)
   display: flex;
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .cancel-detail-reason > input {
   width: 50%;
   height: 100px;
   margin-top: 10px;
+=======
+.cancle-detail-reason > input {
+  width: 50%;
+  height: 100px;
+>>>>>>> 18eb9c7 (Add: 주문 상세내역 기능 추가)
 }
 
 .return-price {
