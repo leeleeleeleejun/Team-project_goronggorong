@@ -62,7 +62,8 @@ const orderController = {
     }
   },
   getUserOrders: async (req, res, next) => {
-    const { _id } = req.params;
+    console.log(req.decoded);
+    const { _id } = req.decoded;
 
     try {
       if (!_id) {
