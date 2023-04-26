@@ -29,10 +29,9 @@ submitBtn.addEventListener('click', function (e) {
       if (res.status === 200) {
         alert(`
         회원정보가 수정되었습니다.`);
-        //회원정보 수정 페이지로 이동
-        window.location.href = '/mypage';
-        localStorage.setItem('userToken', res.data.token);
-        //변경된 토큰 저장
+        // window.location.href = '/mypage';
+        localStorage.setItem('userToken', res.data.updatedToken);
+        console.log(res.data.updatedToken);
       }
     })
     .catch((err) => {
