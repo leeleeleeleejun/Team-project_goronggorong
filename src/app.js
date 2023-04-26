@@ -47,7 +47,7 @@ app.use('/api', orderRouter);
 app.use('/api', authRouter);
 app.use(errorHandler);
 
-app.listen(port, '127.0.0.1', () => {
+app.listen(port, process.env.HOST, () => {
   console.log(`Connected to ${port}...`);
 });
 
