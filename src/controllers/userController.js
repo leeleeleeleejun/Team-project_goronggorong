@@ -115,10 +115,11 @@ const userController = {
 
       // 사용자 정보 업데이트
       const updatedUser = await userModel.updateUser(user._id, editedInfo);
-
+      const updatedToken = await authService.signToken(updatedUser);
       return res.status(200).json({
         message: '사용자 정보 업데이트를 성공했습니다',
         info: updatedUser,
+        updatedToken,
       });
     } catch (err) {
       next(err);
