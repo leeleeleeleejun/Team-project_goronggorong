@@ -34,7 +34,7 @@ submitBtn.addEventListener('click', function (e) {
       }
     })
     .catch((err) => {
-      alert(err.message);
+      alert(err.response.data.message);
     });
 });
 
@@ -51,6 +51,16 @@ deleteBtn.addEventListener('click', function () {
         email: id.value,
         password: pw.value,
       },
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          window.alert(`탈퇴되었습니다`);
+          localStorage.removeItem('userToken');
+          window.location.href = '/';
+        }
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   }
 });
