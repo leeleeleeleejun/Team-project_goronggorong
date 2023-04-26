@@ -5,10 +5,11 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import cors from 'cors';
 
 // MODULE
 import { httpLogStream } from './utils/index.js';
-import { userRouter, productRouter, orderRouter, viewRouter } from './routers/index.js';
+import { userRouter, productRouter, orderRouter, authRouter, viewRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -32,6 +33,7 @@ db.on('connected', () => console.log('Connecting DB Success'));
 db.on('error', (err) => console.error(err));
 
 // MIDDLEWARE
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(rootDir + '/public')); // public 폴더 접근
@@ -42,6 +44,7 @@ app.use(viewRouter);
 app.use('/api', userRouter);
 app.use('/api', productRouter);
 app.use('/api', orderRouter);
+app.use('/api', authRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {
