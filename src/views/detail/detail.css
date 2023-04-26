@@ -1,26 +1,26 @@
-@import '/src/views/layouts/config.css';
+@import '/layouts/config.css';
 
-.overview{
+.overview {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
 }
 
-.overview__category{
+.overview__category {
   border: 1px solid black;
   border-radius: 16px;
   padding: 4px;
 }
 
-.content{
+.content {
   display: flex;
   justify-content: center;
   margin: 50px auto;
 }
 
 /* 하단 장바구니 구매하기 버튼 영역 */
-.bottom-nav-container{
+.bottom-nav-container {
   width: 100%;
   height: 80px;
   box-shadow: 2px -4px 12px rgba(0, 0, 0, 0.1);
@@ -29,7 +29,7 @@
   background-color: white;
   position: absolute;
 }
-.bottom-nav{
+.bottom-nav {
   display: flex;
   gap: 16px;
   justify-content: space-between;
@@ -37,20 +37,20 @@
   width: 1200px;
   bottom: 0px;
 }
-.bottom-nav__img{
+.bottom-nav__img {
   border-radius: 100px;
 }
-.bottom-nav__info{
+.bottom-nav__info {
   flex: 1;
 }
-.bottom-nav__title{
+.bottom-nav__title {
   font-size: 16px;
   margin-bottom: 8px;
 }
-.bottom-nav__price{
+.bottom-nav__price {
   font-size: 16px;
 }
-.bottom-nav__amount{
+.bottom-nav__amount {
   font-size: 16px;
   font-weight: 600;
   display: flex;
@@ -60,29 +60,29 @@
   text-align: right;
   width: 200px;
   height: 56px;
-border-radius: 100px;
-padding: 0px 16px 0px 0px;
+  border-radius: 100px;
+  padding: 0px 16px 0px 0px;
 }
-.bottom-nav__amount--count{
+.bottom-nav__amount--count {
   font-size: 16px;
   font-weight: 600;
   border: 0;
   text-align: right;
   width: 160px;
   height: 50px;
-border-radius: 100px;
+  border-radius: 100px;
 }
-.bottom-nav__amount--count:focus{
+.bottom-nav__amount--count:focus {
   outline: 0;
 }
 
-.bottom-nav__btn--cart{
+.bottom-nav__btn--cart {
   font-size: 16px;
   font-weight: 600;
   border: 0;
   width: 200px;
   height: 56px;
-border-radius: 100px;
-padding: 0px 16px 0px 16px;
-background-color: #FFE04B;
+  border-radius: 100px;
+  padding: 0px 16px 0px 16px;
+  background-color: #ffe04b;
 }
