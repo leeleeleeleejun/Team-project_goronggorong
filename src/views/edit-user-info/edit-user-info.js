@@ -26,11 +26,13 @@ submitBtn.addEventListener('click', function (e) {
     },
   })
     .then((res) => {
-      if (res.status === 201) {
+      if (res.status === 200) {
         alert(`
         회원정보가 수정되었습니다.`);
-        //로그인페이지로 이동
+        //회원정보 수정 페이지로 이동
         window.location.href = '/mypage';
+        localStorage.setItem('userToken', res.data.token);
+        //변경된 토큰 저장
       }
     })
     .catch((err) => {
