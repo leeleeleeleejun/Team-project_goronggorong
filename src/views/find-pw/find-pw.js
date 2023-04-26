@@ -27,7 +27,7 @@ submitBtn.addEventListener('click', function (e) {
       }
     })
     .catch((err) => {
-      console.error(err);
+      alert(err.response.data.message);
     });
 });
 
