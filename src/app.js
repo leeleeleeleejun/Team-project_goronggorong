@@ -9,7 +9,7 @@ import cors from 'cors';
 
 // MODULE
 import { httpLogStream } from './utils/index.js';
-import { userRouter, productRouter, orderRouter, viewRouter } from './routers/index.js';
+import { userRouter, productRouter, orderRouter, authRouter, viewRouter } from './routers/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 const app = express();
@@ -44,6 +44,7 @@ app.use(viewRouter);
 app.use('/api', userRouter);
 app.use('/api', productRouter);
 app.use('/api', orderRouter);
+app.use('/api', authRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {
