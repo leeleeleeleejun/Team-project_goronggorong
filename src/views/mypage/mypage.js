@@ -30,7 +30,6 @@ axios({
 }).then((res) => {
   const username = document.querySelector('.user__name');
   username.innerText = res.data.info.name;
-  console.log(res.data.info);
 });
 
 axios({
