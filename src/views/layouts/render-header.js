@@ -23,7 +23,6 @@ function renderHeader() {
   //로그인 안 한 유저의 헤더
   else {
     header.innerHTML = `
-    <header>
       <nav class="nav">
         <a href="/">
           <img class="nav__logo" src="/img/logo.png" width="140" />
@@ -42,7 +41,6 @@ function renderHeader() {
           </li>
         </ul>
       </nav>
-    </header>
     `;
   }
 }
