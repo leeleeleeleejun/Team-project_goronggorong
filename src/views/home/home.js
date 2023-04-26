@@ -26,7 +26,7 @@ axios
     });
   })
   .catch((err) => {
-    alert(err);
+    alert(err.response.data.message);
   });
 
 //상품상세 불러오기

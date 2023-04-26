@@ -17,6 +17,6 @@ submitBtn.addEventListener('click', function (e) {
       window.location.href = '/';
     })
     .catch((err) => {
-      alert(err.message);
+      alert(err.response.data.message);
     });
 });
