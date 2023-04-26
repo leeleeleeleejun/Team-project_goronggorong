@@ -34,7 +34,7 @@ const userController = {
 
       const user = await userService.checkUserExist(email, true); // 사용자가 있어야 함
       const result = await authService.verifyPassword(password, user.password);
-      const token = authService.signToken(user);
+      const token = await authService.signToken(user);
 
       return res.status(200).json({
         message: '로그인 성공',
