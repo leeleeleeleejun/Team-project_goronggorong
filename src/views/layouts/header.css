@@ -1,4 +1,4 @@
-header{
+header {
   display: flex;
   justify-content: center;
   background-color: white;
@@ -18,7 +18,7 @@ header{
 .nav__user-menu li {
   padding: 8px;
 }
-.nav__login{
+.nav__login {
   text-decoration: none;
   font-size: 20px;
   font-weight: 700;
