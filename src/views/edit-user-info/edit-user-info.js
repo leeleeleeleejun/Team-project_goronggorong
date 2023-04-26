@@ -47,10 +47,6 @@ deleteBtn.addEventListener('click', function () {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
-      data: {
-        email: id.value,
-        password: pw.value,
-      },
     })
       .then((res) => {
         if (res.status === 200) {
