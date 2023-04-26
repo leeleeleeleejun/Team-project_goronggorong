@@ -24,6 +24,7 @@ const userController = {
       next(err);
     }
   },
+
   verifyUser: async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -45,6 +46,7 @@ const userController = {
       next(err);
     }
   },
+
   findPassword: async (req, res, next) => {
     const { name, email, phone } = req.body;
 
@@ -68,32 +70,49 @@ const userController = {
       next(err);
     }
   },
+
+  mypageVerify: async (req, res, next) => {
+    const { password } = req.body;
+    const authHeader = req.header('Authorization');
+    try {
+      const decoded = await authService.decodeToken(authHeader);
+
+      const user = await userService.checkUserExist(decoded.email, true);
+
+      const isMatch = await authService.verifyPassword(password, user.password);
+
+      if (!isMatch) {
+        throw new customError(401, '잘못된 비밀번호입니다.');
+      }
+      return res.status(200).json({
+        message: '유저 확인 성공',
+        info: decoded,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
   myPageUpdate: async (req, res, next) => {
-    const { name, email, Newemail, password, Newpassword, Newphone, Newaddress } = req.body;
+    const { name, email, password, phone, address } = req.body;
+    const authHeader = req.header('Authorization');
 
     try {
-      if (!name || !email || !Newemail || !password || !Newpassword || !Newphone || !Newaddress) {
+      if (!name || !email || !password || !phone || !address) {
         throw new customError(400, '누락된 데이터가 있습니다.');
       }
       // 사용자가 있는지 확인
-      const user = await userService.checkUserExist(email, true);
-      // 비밀번호 확인
-      const result = await authService.verifyPassword(password, user.password);
+      const decoded = await authService.decodeToken(authHeader);
+      const user = await userService.checkUserExist(decoded.email, true);
 
-      const editedInfo = { name: name };
+      const editedInfo = {};
 
-      // 이메일 변경
-      if (email !== Newemail) {
-        editedInfo.email = Newemail;
-      }
-      // 패스워드 변경
-      if (password !== Newpassword) {
-        editedInfo.password = await authService.createHashPassword(Newpassword);
-      }
-      // 전화번호 변경
-      editedInfo.phone = Newphone;
-      // 주소 변경
-      editedInfo.address = Newaddress;
+      editedInfo.name = name;
+      editedInfo.email = email;
+      editedInfo.password = await authService.createHashPassword(password);
+      editedInfo.phone = phone;
+      editedInfo.address = address;
+
       // 사용자 정보 업데이트
       const updatedUser = await userModel.updateUser(user._id, editedInfo);
 
@@ -107,13 +126,12 @@ const userController = {
   },
 
   myPageDelete: async (req, res, next) => {
-    const { email, password } = req.body;
+    const authHeader = req.header('Authorization');
 
     try {
       // 사용자가 있는지 확인
-      const user = await userService.checkUserExist(email, true);
-      // 비밀번호 확인
-      const result = await authService.verifyPassword(password, user.password);
+      const decoded = await authService.decodeToken(authHeader);
+      const user = await userService.checkUserExist(decoded.email, true);
 
       const deletedUser = await userModel.deleteUser({ _id: user._id });
 
