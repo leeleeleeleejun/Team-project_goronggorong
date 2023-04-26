@@ -62,7 +62,6 @@ const orderController = {
     }
   },
   getUserOrders: async (req, res, next) => {
-    console.log(req.decoded);
     const { _id } = req.decoded;
 
     try {
@@ -71,6 +70,9 @@ const orderController = {
       }
 
       const orders = await orderModel.findAllById(_id);
+      if (!orders) {
+        throw new customError(404, '주문 정보가 없습니다.');
+      }
 
       return res.status(200).json({
         message: '사용자의 주문 정보를 읽어왔습니다.',
