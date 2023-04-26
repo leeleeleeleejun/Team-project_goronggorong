@@ -22,9 +22,9 @@ const userModel = {
     return user;
   },
   updateUser: async (userId, editedInfo) => {
-    const updatedUser = await User.updateOne({ _id: userId }, editedInfo);
+    const updatedResult = await User.updateOne({ _id: userId }, editedInfo);
 
-    return updatedUser;
+    return updatedResult;
   },
   deleteUser: async (userId) => {
     const deletedUser = await User.deleteOne({ _id: userId });
