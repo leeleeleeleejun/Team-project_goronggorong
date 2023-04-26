@@ -1,22 +1,30 @@
 import { main } from '/layouts/main.js';
 await main();
-const sampleToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
-localStorage.setItem('userToken', sampleToken);
-axios({
-  method: 'get',
-  headers: {
-    Authorization: `Bearer ${sampleToken}`,
-  },
-  url: `/api`,
-})
-  .then((res) => res.data.info)
-  .then((res) => {
-    const cartadd = [];
-    for (let i = 0; i < 3; i++) {
-      const { imgUrl, name, price, amount } = res[i];
-      const id = res[i]._id;
-      cartadd.push({ id, imgUrl, name, price, amount });
+
+const cartList = document.querySelector('.cart-list');
+const totalPrice = document.querySelector('#total-price');
+const choiceOrder = document.querySelector('#choice-order');
+const choiceDeleteBtn = document.querySelector('#choice-delete');
+const allDeleteBtn = document.querySelector('#all-delete');
+const allOrderBtn = document.querySelector('#all-order');
+
+const makeListItem = (id, content) => {
+  const li = document.createElement('li');
+  li.setAttribute('class', 'cart-list__cart-item-wrap');
+  const cartItem = document.createElement('div');
+  cartItem.setAttribute('class', 'cart-item-wrap__cart-item');
+  const itemInfoWrap = document.createElement('div');
+  itemInfoWrap.setAttribute('class', 'cart-item__item-info-wrap');
+  const itemCheckbox = document.createElement('input');
+  itemCheckbox.setAttribute('type', 'checkbox');
+  itemCheckbox.setAttribute('class', 'item-info-wrap__item-checkbox');
+  itemCheckbox.setAttribute('id', id);
+  itemCheckbox.addEventListener('change', (e) => {
+    // 체크된 것만 총액에 포함
+    if (e.target.checked) {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price * content.amount;
+    } else {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price * content.amount;
     }
   });
 
@@ -146,19 +154,10 @@ choiceOrder.addEventListener('click', (e) => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const orderTarget = [...checkboxes].filter((item) => item.checked);
   if (orderTarget.length > 0) {
-    if (localStorage.getItem('userToken')) {
-      for (let i = orderTarget.length - 1; i >= 0; i--) {
-        localStorageEventHandle(orderTarget[i].id, 'order');
-      }
-      localStorage.setItem(
-        'orders',
-        JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]),
-      );
-    } else {
-      e.preventDefault();
-      alert('로그인이 필요합니다.');
-      window.location.href = '/signin';
+    for (let i = orderTarget.length - 1; i >= 0; i--) {
+      localStorageEventHandle(orderTarget[i].id, 'order');
     }
+    localStorage.setItem('orders', JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]));
   } else {
     alert('선택된 제품이 없습니다.');
     e.preventDefault();
@@ -166,53 +165,13 @@ choiceOrder.addEventListener('click', (e) => {
   }
 });
 
-    choiceDeleteBtn.addEventListener('click', () => {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      const deleteTarget = [...checkboxes].filter((item) => item.checked);
-      if (deleteTarget.length > 0) {
-        for (let i = deleteTarget.length - 1; i >= 0; i--) {
-          localStorageEventHandle(deleteTarget[i].id);
-        }
-      } else {
-        alert('선택된 제품이 없습니다.');
-      }
-    });
-
-    allDeleteBtn.addEventListener('click', () => {
-      localStorage.setItem('cart', JSON.stringify([]));
-      totalPrice.innerHTML = 0;
-      writeCartList();
-    });
-
-    choiceOrder.addEventListener('click', (e) => {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      const orderTarget = [...checkboxes].filter((item) => item.checked);
-      if (orderTarget.length > 0) {
-        for (let i = orderTarget.length - 1; i >= 0; i--) {
-          localStorageEventHandle(orderTarget[i].id, 'order');
-        }
-        localStorage.setItem(
-          'orders',
-          JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]),
-        );
-      } else {
-        alert('선택된 제품이 없습니다.');
-        e.preventDefault();
-        return;
-      }
-    });
-
-    allOrderBtn.addEventListener('click', (e) => {
-      let total = 0;
-      const localStorageCart = JSON.parse(localStorage.getItem('cart'));
-      [...localStorageCart].forEach((item) => (total += item.price * item.amount));
-      localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
-      localStorage.setItem('cart', JSON.stringify([]));
-    } else {
-      e.preventDefault();
-      alert('로그인이 필요합니다.');
-      window.location.href = '/signin';
-    }
+allOrderBtn.addEventListener('click', (e) => {
+  let total = 0;
+  const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  if (localStorageCart.length > 0) {
+    [...localStorageCart].forEach((item) => (total += item.price * item.amount));
+    localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
+    localStorage.setItem('cart', JSON.stringify([]));
   } else {
     alert('선택된 제품이 없습니다.');
     e.preventDefault();
