@@ -52,8 +52,9 @@ const authService = {
   decodeToken: (authHeader) => {
     const token = authHeader ? authHeader.replace('Bearer ', '') : null;
     if (!token) {
-      throw new customError(400, '토큰이 없습니다.');
+      throw new customError(404, '토큰이 없습니다.');
     }
+
     const decodedInfo = jwt.verify(token, process.env.SECRET_KEY);
     if (!decodedInfo) {
       throw new customError(401, '잘못된 토큰입니다.');
