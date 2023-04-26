@@ -1,12 +1,12 @@
 header{
   display: flex;
   justify-content: center;
+  background-color: white;
 }
 .nav {
   display: flex;
   justify-content: space-between;
   padding-top: 32px;
-  background-color: white;
   position: sticky;
   width: 1200px;
 }

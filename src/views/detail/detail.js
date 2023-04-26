@@ -13,6 +13,7 @@ axios
     const name = document.querySelectorAll('.item__name');
     const price = document.querySelectorAll('.item__price');
     const category = document.querySelector('.overview__category');
+    const description = document.querySelector('.overview__description');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
@@ -23,6 +24,7 @@ axios
     price.forEach((data) => (data.innerText = item.price));
 
     category.innerText = item.category;
+    description.innerText = item.description;
     navCartBtn.addEventListener('click', addCart);
 
     let cartItem = [];
