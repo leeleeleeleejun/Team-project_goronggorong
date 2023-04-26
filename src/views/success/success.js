@@ -1,15 +1,13 @@
 import { main } from '/layouts/main.js';
 await main();
 
-const sampleToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
-
+const userToken = localStorage.getItem('usrToken');
 async function load() {
   const checkToken = await axios({
     method: 'GET',
     url: '/orders/payment/success',
     headers: {
-      Authorization: `Bearer ${sampleToken}`,
+      Authorization: `Bearer ${userToken}`,
     },
   })
     .then(() => {

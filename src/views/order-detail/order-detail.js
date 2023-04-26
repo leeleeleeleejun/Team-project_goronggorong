@@ -3,12 +3,12 @@ await main();
 
 async function load() {
   const _id = '6446bd564ea5cb3885295803';
-  const sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
+  const userToken = localStorage.getItem('userToken');
+
   const orderInfo = await axios({
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${sampleToken}`,
+      Authorization: `Bearer ${userToken}`,
     },
     url: `/api/orders/${_id}`,
   })
@@ -22,7 +22,7 @@ async function load() {
 
   await products.forEach((item) => {
     itemInfoWrap.innerHTML += `<li class="item-info">
-    <img src="${item.id.imgUrl}" />
+    <img class="item-img" src="${item.id.imgUrl}" />
     <div>
       <span>제품명: ${item.id.name}</span>
       <span>수량: ${item.amount}</span>
@@ -55,7 +55,7 @@ async function load() {
     axios({
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${sampleToken}`,
+        Authorization: `Bearer ${userToken}`,
       },
       url: `/api/orders/cancel/${_id}`,
     })
@@ -64,14 +64,6 @@ async function load() {
         window.location.href = '/mypage';
       })
       .catch((err) => alert(err));
-    // axios
-    //   .put(`/api/orders/cancel/${_id}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${sampleToken}`,
-    //     },
-    //     data: { ...orderInfo, deliveryStatus: '결제완료' },
-    //   })
-    //   .then(console.log);
   });
 }
 load();

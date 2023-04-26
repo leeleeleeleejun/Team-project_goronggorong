@@ -1,7 +1,5 @@
 import { main } from '/layouts/main.js';
 await main();
-const sampleToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
 
 // 결제완료 시 서버에 보낼 데이터
 const reqBody = (() => {
@@ -42,7 +40,7 @@ reqBody.setValue('totalPrice', Number(localStorageOrders[1]));
 totalPrice[0].innerHTML = localStorageOrders[1];
 totalPrice[1].innerHTML = localStorageOrders[1];
 [...localStorageOrders[0]].forEach((item) => {
-  reqBody.setValue('products', [...reqBody.getValue().products, { _id: item.id, amount: item.amount }]);
+  reqBody.setValue('products', [...reqBody.getValue().products, { id: item.id, amount: item.amount }]);
 });
 
 const inputNumberTypeCheck = (event, middleFnc) => {
@@ -178,7 +176,11 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
 
 const paymentBtn = document.querySelector('.payment-btn');
 paymentBtn.addEventListener('click', async (e) => {
-  if (deliveryInfoWrap.name && deliveryInfoWrap.phone && deliveryInfoWrap.address) {
+  if (
+    deliveryInfoWrap.name.innerHTML.length > 0 &&
+    deliveryInfoWrap.phone.innerHTML.length === 11 &&
+    deliveryInfoWrap.address.innerHTML.length > 0
+  ) {
     reqBody.setValue('receiver', { ...reqBody.getValue().receiver, name: deliveryInfoWrap.name.innerHTML });
     reqBody.setValue('receiver', {
       ...reqBody.getValue().receiver,
@@ -248,19 +250,44 @@ paymentBtn.addEventListener('click', async (e) => {
     }),
   );
 
-  localStorage.removeItem('orders');
-  console.log(reqBody.getValue());
+  //localStorage.removeItem('orders');
+  //console.log(reqBody.getValue());
+
+  const sampleAccount = {
+    receiver: {
+      name: 'John',
+      phone: '01012345678',
+      address: '서울특별시 강남구',
+      requestMessage: '문 앞에 두고 가주세요.',
+    },
+    products: [
+      {
+        id: '6444d810c6efec47b104fc7c',
+        amount: 1,
+      },
+      {
+        id: '6444d810c6efec47b104fc7d',
+        amount: 2,
+      },
+    ],
+    totalPrice: 2000,
+    paymentMethod: {
+      paymentType: 'account',
+    },
+  };
+
+  const userToken = localStorage.getItem('userToken');
   await axios({
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${sampleToken}`,
+      Authorization: `Bearer ${userToken}`,
     },
     url: '/api/orders/payment',
     data: reqBody.getValue(),
   })
     .then(console.log)
     .catch((err) => {
-      console.log(err);
       e.preventDefault();
+      alert(err);
     });
 });
