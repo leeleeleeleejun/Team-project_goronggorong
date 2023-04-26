@@ -30,7 +30,6 @@ axios({
 }).then((res) => {
   const username = document.querySelector('.user__name');
   username.innerText = res.data.info.name;
-  console.log(res.data.info);
 });
 
 axios({
@@ -44,6 +43,12 @@ axios({
   .then((res) => {
     if (res.status === 200) {
       const orders = res.data.info;
+      if (!orders.length) {
+        for (let i = 0; i < 6; i++) {
+          status[i] = 0;
+          state[i].innerText = '0';
+        }
+      }
       orders.forEach((order) => {
         //배송 상태
         if (order.deliveryStatus === '입금대기') {
@@ -72,12 +77,13 @@ axios({
         orderList.innerHTML += createOrderPreview(order);
       });
     }
-    //주문내역이 없는 경우
-    if (res.status === 404) {
-      for (let i = 0; i < 6; i++) {
-        state[i].innerText = status[i];
-      }
-    }
+    // //주문내역이 없는 경우
+    // if (res.status === 404) {
+    //   for (let i = 0; i < 6; i++) {
+    //     status[i] = 0;
+    //     state[i].innerText = '0';
+    //   }
+    // }
   })
   .catch((err) => {
     alert(err.response.data.message);
