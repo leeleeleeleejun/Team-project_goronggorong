@@ -20,6 +20,18 @@ const state = [state1, state2, state3, state4, state5, state6];
 let status = [0, 0, 0, 0, 0, 0];
 
 const userToken = localStorage.getItem('userToken');
+axios({
+  method: 'get',
+  url: '/api/auth/get-user-info',
+  //유저 토큰 확인
+  headers: {
+    Authorization: `Bearer ${userToken}`,
+  },
+}).then((res) => {
+  const username = document.querySelector('.user__name');
+  username.innerText = res.data.info.name;
+  console.log(res.data.info);
+});
 
 axios({
   method: 'get',
@@ -30,40 +42,45 @@ axios({
   },
 })
   .then((res) => {
-    const orders = res.data.info;
-    orders.forEach((order) => {
-      const username = document.querySelector('.user__name');
-      username.innerText = order.user.name;
-      //배송 상태
-      if (order.deliveryStatus === '입금대기') {
-        status[0] += 1;
-      }
-      if (order.deliveryStatus === '결제완료') {
-        status[1] += 1;
-      }
-      if (order.deliveryStatus === '배송준비중') {
-        status[2] += 1;
-      }
-      if (order.deliveryStatus === '배송중') {
-        status[3] += 1;
-      }
-      if (order.deliveryStatus === '배송완료') {
-        status[4] += 1;
-      }
-      if (order.deliveryStatus === '주문취소') {
-        status[5] += 1;
-      }
+    if (res.status === 200) {
+      const orders = res.data.info;
+      orders.forEach((order) => {
+        //배송 상태
+        if (order.deliveryStatus === '입금대기') {
+          status[0] += 1;
+        }
+        if (order.deliveryStatus === '결제완료') {
+          status[1] += 1;
+        }
+        if (order.deliveryStatus === '배송준비중') {
+          status[2] += 1;
+        }
+        if (order.deliveryStatus === '배송중') {
+          status[3] += 1;
+        }
+        if (order.deliveryStatus === '배송완료') {
+          status[4] += 1;
+        }
+        if (order.deliveryStatus === '주문취소') {
+          status[5] += 1;
+        }
+        for (let i = 0; i < 6; i++) {
+          state[i].innerText = status[i];
+        }
+        //order preview 생성
+        const orderList = document.querySelector('.order');
+        orderList.innerHTML += createOrderPreview(order);
+      });
+    }
+    //주문내역이 없는 경우
+    if (res.status === 404) {
       for (let i = 0; i < 6; i++) {
         state[i].innerText = status[i];
       }
-
-      //order preview 생성
-      const orderList = document.querySelector('.order');
-      orderList.innerHTML += createOrderPreview(order);
-    });
+    }
   })
   .catch((err) => {
-    alert(err.message);
+    alert(err.response.data.message);
   });
 
 const createOrderPreview = (order) => {

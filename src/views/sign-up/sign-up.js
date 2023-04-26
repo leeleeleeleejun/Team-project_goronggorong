@@ -23,5 +23,8 @@ submitBtn.addEventListener('click', function (e) {
         //로그인페이지로 이동
         window.location.href = '/signin';
       }
+    })
+    .catch((err) => {
+      alert(err.response.data.message);
     });
 });

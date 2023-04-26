@@ -1,5 +1,8 @@
 .prod {
-  padding: 50px;
+  display: block;
+  margin: 0 auto;
+  width: 1200px;
+  padding: 40px 0;
 }
 .prod__page-size {
   display: flex;
@@ -9,7 +12,7 @@
 
 .prod__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 30px;
 }
 .prod__item {
@@ -40,7 +43,7 @@
   margin-right: 2px;
 }
 
-.pagination-list {
+/* .pagination-list {
   display: flex;
   justify-content: center;
 }
@@ -70,4 +73,4 @@
   border: 1px solid gray;
   color: lightgray;
   background-color: gray;
-}
+} */
