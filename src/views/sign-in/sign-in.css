@@ -1,11 +1,11 @@
-.sign{
+.form__link{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.sign__form{
-  display: flex;
-  flex-direction: column;
+.form__link a{
+  text-decoration: 0;
+  font-size: 16px;
+  color: #666666;
+  margin: 16px;
 }
