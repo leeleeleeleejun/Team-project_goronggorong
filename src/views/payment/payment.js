@@ -176,8 +176,6 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
 
 const paymentBtn = document.querySelector('.payment-btn');
 paymentBtn.addEventListener('click', async (e) => {
-  e.preventDefault();
-
   if (
     deliveryInfoWrap.name.innerHTML.length > 0 &&
     deliveryInfoWrap.phone.innerHTML.length === 11 &&
@@ -246,10 +244,35 @@ paymentBtn.addEventListener('click', async (e) => {
       paymentType: reqBody.getValue().paymentMethod.paymentType,
     }),
   );
-  localStorage.removeItem('orders');
+
+  //localStorage.removeItem('orders');
+  //console.log(reqBody.getValue());
+
+  const sampleAccount = {
+    receiver: {
+      name: 'John',
+      phone: '01012345678',
+      address: '서울특별시 강남구',
+      requestMessage: '문 앞에 두고 가주세요.',
+    },
+    products: [
+      {
+        id: '6444d810c6efec47b104fc7c',
+        amount: 1,
+      },
+      {
+        id: '6444d810c6efec47b104fc7d',
+        amount: 2,
+      },
+    ],
+    totalPrice: 2000,
+    paymentMethod: {
+      paymentType: 'account',
+    },
+  };
+
   const userToken = localStorage.getItem('userToken');
-  console.log(reqBody.getValue());
-  axios({
+  await axios({
     method: 'POST',
     headers: {
       Authorization: `Bearer ${userToken}`,
@@ -261,6 +284,7 @@ paymentBtn.addEventListener('click', async (e) => {
       window.location.href = '/orders/payment/success/';
     })
     .catch((err) => {
+      e.preventDefault();
       alert(err);
     });
 });
