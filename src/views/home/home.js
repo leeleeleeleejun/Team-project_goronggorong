@@ -57,26 +57,31 @@ categories.forEach((category) => {
     //클릭한 카테고리에 on 클래스 추가
     e.target.classList.add('nav__cate--on');
     const selectedCategory = category.dataset.category;
-    axios
-      .get(`/api/products/${selectedCategory}`)
-      .then((res) => {
-        const items = res.data.info;
-        amountAll.innerText = items.length;
-        const list = document.querySelector('.prod__list');
-        list.innerHTML = ''; //기존 상품 목록 초기화
-        items.forEach((item) => {
-          list.innerHTML += createItem(item);
-        });
+    if (selectedCategory === 'All') {
+      window.location.href = '/';
+      return;
+    } else {
+      axios
+        .get(`/api/products/${selectedCategory}`)
+        .then((res) => {
+          const items = res.data.info;
+          amountAll.innerText = items.length;
+          const list = document.querySelector('.prod__list');
+          list.innerHTML = ''; //기존 상품 목록 초기화
+          items.forEach((item) => {
+            list.innerHTML += createItem(item);
+          });
 
-        // URL 변경 코드
-        const currentUrl = window.location.href;
-        // /products/뒤에오는 문자열 찾기-> 카테고리명으로 변경하기
-        const newUrl = currentUrl.replace(/\/products\/(.*)\/?/, `/products/${selectedCategory}`);
-        // 브라우저 히스토리에 새 url추가
-        window.history.pushState({ path: newUrl }, '', newUrl);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+          // URL 변경 코드
+          const currentUrl = window.location.href;
+          // /products/뒤에오는 문자열 찾기-> 카테고리명으로 변경하기
+          const newUrl = currentUrl.replace(/\/products\/(.*)\/?/, `/products/${selectedCategory}`);
+          // 브라우저 히스토리에 새 url추가
+          window.history.pushState({ path: newUrl }, '', newUrl);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
   });
 });

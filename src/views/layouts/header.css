@@ -1,10 +1,14 @@
+header{
+  display: flex;
+  justify-content: center;
+}
 .nav {
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding-top: 32px;
   background-color: white;
   position: sticky;
-  width: 100%;
+  width: 1200px;
 }
 
 .nav__user-menu {
