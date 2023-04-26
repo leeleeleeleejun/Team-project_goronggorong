@@ -1,7 +1,5 @@
 import { main } from '/layouts/main.js';
 await main();
-const sampleToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
 
 // 결제완료 시 서버에 보낼 데이터
 const reqBody = (() => {
@@ -42,7 +40,7 @@ reqBody.setValue('totalPrice', Number(localStorageOrders[1]));
 totalPrice[0].innerHTML = localStorageOrders[1];
 totalPrice[1].innerHTML = localStorageOrders[1];
 [...localStorageOrders[0]].forEach((item) => {
-  reqBody.setValue('products', [...reqBody.getValue().products, { _id: item.id, amount: item.amount }]);
+  reqBody.setValue('products', [...reqBody.getValue().products, { id: item.id, amount: item.amount }]);
 });
 
 const inputNumberTypeCheck = (event, middleFnc) => {
@@ -178,7 +176,13 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
 
 const paymentBtn = document.querySelector('.payment-btn');
 paymentBtn.addEventListener('click', async (e) => {
-  if (deliveryInfoWrap.name && deliveryInfoWrap.phone && deliveryInfoWrap.address) {
+  e.preventDefault();
+
+  if (
+    deliveryInfoWrap.name.innerHTML.length > 0 &&
+    deliveryInfoWrap.phone.innerHTML.length === 11 &&
+    deliveryInfoWrap.address.innerHTML.length > 0
+  ) {
     reqBody.setValue('receiver', { ...reqBody.getValue().receiver, name: deliveryInfoWrap.name.innerHTML });
     reqBody.setValue('receiver', {
       ...reqBody.getValue().receiver,
@@ -191,7 +195,6 @@ paymentBtn.addEventListener('click', async (e) => {
     });
   } else {
     alert('배송정보를 확인해주세요');
-    e.preventDefault();
     return;
   }
 
@@ -208,34 +211,29 @@ paymentBtn.addEventListener('click', async (e) => {
       setCardInfo('cardNumber', cardInfoWarp.cardNumber.value.replace(/ /g, ''));
     } else {
       alert('카드번호를 확인해주세요');
-      e.preventDefault();
       return;
     }
     if (cardInfoWarp.expirDate.value.length === 5) {
       setCardInfo('expiryDate', cardInfoWarp.expirDate.value.replace(/ /g, ''));
     } else {
       alert('카드 만료일을 확인해주세요');
-      e.preventDefault();
       return;
     }
     if (cardInfoWarp.cvcNumber.value.length === 3) {
       setCardInfo('cvc', cardInfoWarp.cvcNumber.value);
     } else {
       alert('CVC를 확인해주세요');
-      e.preventDefault();
       return;
     }
     if (cardInfoWarp.nameOnCard.value.length > 0) {
       setCardInfo('cardOwner', cardInfoWarp.nameOnCard.value);
     } else {
       alert('카드에 적힌 이름을 확인해주세요');
-      e.preventDefault();
       return;
     }
     setCardInfo('company', cardInfoWarp.company.value);
   } else if (reqBody.getValue().paymentMethod.paymentType !== 'account') {
     alert('결제 수단을 선택해주세요.');
-    e.preventDefault();
     return;
   }
 
@@ -247,20 +245,22 @@ paymentBtn.addEventListener('click', async (e) => {
       paymentType: reqBody.getValue().paymentMethod.paymentType,
     }),
   );
-
   localStorage.removeItem('orders');
-  console.log(reqBody.getValue());
-  await axios({
+  const userToken = localStorage.getItem('userToken');
+
+  axios({
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${sampleToken}`,
+      Authorization: `Bearer ${userToken}`,
     },
     url: '/api/orders/payment',
     data: reqBody.getValue(),
   })
-    .then(console.log)
+    .then(() => {
+      window.location.href = '/orders/payment/success/';
+    })
     .catch((err) => {
-      console.log(err);
-      e.preventDefault();
+      alert(err.status);
+      if (err.status === 500) window.location.href = '/signin';
     });
 });
