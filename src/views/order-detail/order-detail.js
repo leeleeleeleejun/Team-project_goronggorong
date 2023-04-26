@@ -13,12 +13,10 @@ async function load() {
     url: `/api/orders/${_id}`,
   })
     .then((res) => {
-      console.log(res);
       return res.data.info;
     })
-    .catch((err) => alert);
+    .catch((err) => alert(err));
 
-  console.log(orderInfo);
   const { orderId, orderDate, deliveryStatus, paymentMethod, products, receiver, totalPrice } = orderInfo;
   const itemInfoWrap = document.querySelector('.item-info-wrap');
 
@@ -52,7 +50,8 @@ async function load() {
   receiverRequest.innerHTML = receiver.requestMessage;
 
   const cancelOrder = document.querySelector('.cancel-order');
-  cancelOrder.addEventListener('click', () => {
+  cancelOrder.addEventListener('click', (e) => {
+    e.preventDefault();
     axios({
       method: 'PUT',
       headers: {
@@ -60,7 +59,10 @@ async function load() {
       },
       url: `/api/orders/cancel/${_id}`,
     })
-      .then((res) => alert(res.data.message))
+      .then((res) => {
+        alert(res.data.message);
+        window.location.href = '/mypage';
+      })
       .catch((err) => alert(err));
     // axios
     //   .put(`/api/orders/cancel/${_id}`, {
