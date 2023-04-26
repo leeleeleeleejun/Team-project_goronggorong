@@ -1,12 +1,9 @@
-body{
-  background-color: #f7f7f7;
-}
-
 .sign{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 64px;
 }
 
 .sign__form{
@@ -14,8 +11,48 @@ body{
   flex-direction: column;
   gap: 8px;
 }
+.sign__form h1{
+  font-size: 24px;
+  font-weight: 500;
+  padding: 40px 0 24px 0;
+  border-bottom: 1px solid #dddddd ;
+  margin-bottom: 24px;
+}
+input{
+  height: 48px;
+width: 340px;
+padding: 8px 16px 8px 16px;
+border: 1px solid #DFDFDF;
+border-radius: 4px;
+font-size: 16px;
+margin-bottom: 24px;
+}
+input:hover{
+ background-color: #c1c1c120;
+}
+input:focus{
+  outline: 0;
+  border: 1px solid #555555;
+}
 
 .form__help{
-  color: rgb(176, 176, 176);
+  color: #9b9b9b;
   font-size: 12px;
+  position: relative;
+  top: -24px;
+}
+
+.form__submit{
+  font-size: 16px;
+  font-weight: 600;
+  border: 0;
+  width: 340px;
+  height: 56px;
+  border-radius: 100px;
+  padding: 0px 16px 0px 16px;
+  background-color: #FFE04B;
+}
+
+.form__submit:hover{
+  background-color: #FFEB60;
 }
