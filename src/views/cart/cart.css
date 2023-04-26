@@ -2,6 +2,10 @@ body {
   background-color: #f7f7f7;
 }
 
+header {
+  padding-bottom: 20px;
+}
+
 #page-title {
   padding: 0 10px;
   font-size: 30px;
@@ -15,7 +19,7 @@ main {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 800px;
+  height: 850px;
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px 10px;
@@ -111,12 +115,14 @@ main {
 }
 
 .amount-wrap__amount button {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 900;
   background: #ffeb60;
   border: 1px solid #dfdfdf;
+  border-radius: 20px;
 }
 
 .amount-wrap__delete-button {
@@ -131,7 +137,6 @@ main {
 }
 
 .amount-wrap__amount span {
-  background: #ffeb60;
   text-align: center;
   width: 40px;
   height: 30px;
@@ -144,6 +149,7 @@ main {
   height: 40px;
   line-height: 40px;
   font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .choice-order-button-wrap {
@@ -152,25 +158,40 @@ main {
 
 #choice-order {
   margin: auto;
+  font-size: 16px;
+  font-weight: 600;
+  border: 0;
   width: 50%;
-  height: 40px;
-  font-size: 20px;
+  height: 56px;
+  border-radius: 100px;
+  padding: 0px 16px 0px 16px;
+  background-color: #ffe04b;
+}
+
+#choice-order:hover {
+  background-color: #ffeb60;
 }
 
 #order-delete-button-wrap {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 #order-delete-button-wrap button {
-  /* Light/primary */
-  background: #ffeb60;
-  /* Gray/G-14 */
-  color: #242424;
-  width: 120px;
-  height: 40px;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 0;
+  width: 200px;
+  height: 56px;
+  border-radius: 100px;
+  border: #c1c1c1 solid 1px;
+  background-color: #c1c1c120;
+  padding: 0px 16px 0px 16px;
+}
+
+#order-delete-button-wrap button:hover {
+  background-color: white;
 }
 
 a {
