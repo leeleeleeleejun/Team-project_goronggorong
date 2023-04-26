@@ -176,6 +176,8 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
 
 const paymentBtn = document.querySelector('.payment-btn');
 paymentBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+
   if (
     deliveryInfoWrap.name.innerHTML.length > 0 &&
     deliveryInfoWrap.phone.innerHTML.length === 11 &&
@@ -193,7 +195,6 @@ paymentBtn.addEventListener('click', async (e) => {
     });
   } else {
     alert('배송정보를 확인해주세요');
-    e.preventDefault();
     return;
   }
 
@@ -210,34 +211,29 @@ paymentBtn.addEventListener('click', async (e) => {
       setCardInfo('cardNumber', cardInfoWarp.cardNumber.value.replace(/ /g, ''));
     } else {
       alert('카드번호를 확인해주세요');
-      e.preventDefault();
       return;
     }
     if (cardInfoWarp.expirDate.value.length === 5) {
       setCardInfo('expiryDate', cardInfoWarp.expirDate.value.replace(/ /g, ''));
     } else {
       alert('카드 만료일을 확인해주세요');
-      e.preventDefault();
       return;
     }
     if (cardInfoWarp.cvcNumber.value.length === 3) {
       setCardInfo('cvc', cardInfoWarp.cvcNumber.value);
     } else {
       alert('CVC를 확인해주세요');
-      e.preventDefault();
       return;
     }
     if (cardInfoWarp.nameOnCard.value.length > 0) {
       setCardInfo('cardOwner', cardInfoWarp.nameOnCard.value);
     } else {
       alert('카드에 적힌 이름을 확인해주세요');
-      e.preventDefault();
       return;
     }
     setCardInfo('company', cardInfoWarp.company.value);
   } else if (reqBody.getValue().paymentMethod.paymentType !== 'account') {
     alert('결제 수단을 선택해주세요.');
-    e.preventDefault();
     return;
   }
 
@@ -249,35 +245,10 @@ paymentBtn.addEventListener('click', async (e) => {
       paymentType: reqBody.getValue().paymentMethod.paymentType,
     }),
   );
-
-  //localStorage.removeItem('orders');
-  //console.log(reqBody.getValue());
-
-  const sampleAccount = {
-    receiver: {
-      name: 'John',
-      phone: '01012345678',
-      address: '서울특별시 강남구',
-      requestMessage: '문 앞에 두고 가주세요.',
-    },
-    products: [
-      {
-        id: '6444d810c6efec47b104fc7c',
-        amount: 1,
-      },
-      {
-        id: '6444d810c6efec47b104fc7d',
-        amount: 2,
-      },
-    ],
-    totalPrice: 2000,
-    paymentMethod: {
-      paymentType: 'account',
-    },
-  };
-
+  localStorage.removeItem('orders');
   const userToken = localStorage.getItem('userToken');
-  await axios({
+
+  axios({
     method: 'POST',
     headers: {
       Authorization: `Bearer ${userToken}`,
@@ -285,9 +256,11 @@ paymentBtn.addEventListener('click', async (e) => {
     url: '/api/orders/payment',
     data: reqBody.getValue(),
   })
-    .then(console.log)
+    .then(() => {
+      window.location.href = '/orders/payment/success/';
+    })
     .catch((err) => {
-      e.preventDefault();
-      alert(err);
+      alert(err.status);
+      if (err.status === 500) window.location.href = '/signin';
     });
 });

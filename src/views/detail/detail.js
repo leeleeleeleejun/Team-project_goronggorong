@@ -29,7 +29,7 @@ axios
 
     function addCart() {
       const newItem = {
-        id: item.id,
+        id: item._id,
         imgUrl: item.imgUrl,
         name: item.name,
         price: item.price,

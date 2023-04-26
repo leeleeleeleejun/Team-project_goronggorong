@@ -6,7 +6,6 @@ function renderHeader() {
   //로그인 한 유저의 헤더
   if (userToken) {
     header.innerHTML = `
-    <header>
   <nav class="nav">
     <a href="/"><img class="nav__logo" src="/img/logo.png" width="140" /></a>
 
@@ -44,7 +43,6 @@ function renderHeader() {
           </li>
         </ul>
       </nav>
-    </header>
     `;
   }
 }

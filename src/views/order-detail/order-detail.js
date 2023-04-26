@@ -2,9 +2,9 @@ import { main } from '/layouts/main.js';
 await main();
 
 async function load() {
-  const _id = '6446bd564ea5cb3885295803';
+  const _id = location.pathname.split('/')[2];
+  console.log(_id);
   const userToken = localStorage.getItem('userToken');
-
   const orderInfo = await axios({
     method: 'GET',
     headers: {
@@ -57,13 +57,14 @@ async function load() {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
+
       url: `/api/orders/cancel/${_id}`,
     })
       .then((res) => {
         alert(res.data.message);
         window.location.href = '/mypage';
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert(err.message));
   });
 }
 load();
