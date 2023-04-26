@@ -13,6 +13,7 @@ axios
     const name = document.querySelectorAll('.item__name');
     const price = document.querySelectorAll('.item__price');
     const category = document.querySelector('.overview__category');
+    const description = document.querySelector('.overview__description');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
@@ -23,6 +24,7 @@ axios
     price.forEach((data) => (data.innerText = item.price));
 
     category.innerText = item.category;
+    description.innerText = item.description;
     navCartBtn.addEventListener('click', addCart);
 
     let cartItem = [];
@@ -46,11 +48,13 @@ axios
           existingItem.amount = navAmount.value;
         } else {
           cartItem.push(newItem);
+          window.alert('장바구니에 아이템을 추가했습니다🐶');
         }
       }
       //기존 스토리지에 아이템이 없는 경우
       else {
         cartItem.push(newItem);
+        window.alert('장바구니에 아이템을 추가했습니다🐶');
       }
 
       localStorage.setItem('cart', JSON.stringify(cartItem));

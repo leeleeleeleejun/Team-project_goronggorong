@@ -23,7 +23,6 @@ const userToken = localStorage.getItem('userToken');
 axios({
   method: 'get',
   url: '/api/auth/get-user-info',
-  //유저 토큰 확인
   headers: {
     Authorization: `Bearer ${userToken}`,
   },
@@ -35,7 +34,6 @@ axios({
 axios({
   method: 'get',
   url: '/api/orders/user/order-list',
-  //유저 토큰 확인
   headers: {
     Authorization: `Bearer ${userToken}`,
   },
@@ -77,16 +75,9 @@ axios({
         orderList.innerHTML += createOrderPreview(order);
       });
     }
-    // //주문내역이 없는 경우
-    // if (res.status === 404) {
-    //   for (let i = 0; i < 6; i++) {
-    //     status[i] = 0;
-    //     state[i].innerText = '0';
-    //   }
-    // }
   })
   .catch((err) => {
-    alert(err.response.data.message);
+    console.log(err.response.data.message);
   });
 
 const createOrderPreview = (order) => {
