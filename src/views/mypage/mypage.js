@@ -20,6 +20,18 @@ const state = [state1, state2, state3, state4, state5, state6];
 let status = [0, 0, 0, 0, 0, 0];
 
 const userToken = localStorage.getItem('userToken');
+axios({
+  method: 'get',
+  url: '/api/auth/get-user-info',
+  //유저 토큰 확인
+  headers: {
+    Authorization: `Bearer ${userToken}`,
+  },
+}).then((res) => {
+  const username = document.querySelector('.user__name');
+  username.innerText = res.data.info.name;
+  console.log(res.data.info);
+});
 
 axios({
   method: 'get',
@@ -33,9 +45,6 @@ axios({
     if (res.status === 200) {
       const orders = res.data.info;
       orders.forEach((order) => {
-        const username = document.querySelector('.user__name');
-        //todo-유저네임 확인
-        username.innerText = order.user.name;
         //배송 상태
         if (order.deliveryStatus === '입금대기') {
           status[0] += 1;
@@ -58,7 +67,6 @@ axios({
         for (let i = 0; i < 6; i++) {
           state[i].innerText = status[i];
         }
-
         //order preview 생성
         const orderList = document.querySelector('.order');
         orderList.innerHTML += createOrderPreview(order);
@@ -66,7 +74,6 @@ axios({
     }
     //주문내역이 없는 경우
     if (res.status === 404) {
-      //todo-유저네임 불러오기
       for (let i = 0; i < 6; i++) {
         state[i].innerText = status[i];
       }
