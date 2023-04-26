@@ -29,7 +29,7 @@ axios
 
     function addCart() {
       const newItem = {
-        id: item.id,
+        id: item._id,
         imgUrl: item.imgUrl,
         name: item.name,
         price: item.price,
@@ -59,5 +59,5 @@ axios
     }
   })
   .catch((err) => {
-    alert(err.message);
+    alert(err.response.data.message);
   });

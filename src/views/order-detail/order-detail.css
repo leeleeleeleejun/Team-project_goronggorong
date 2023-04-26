@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #abb2b9;
+  margin-left: 40px;
+  margin-top: 15px;
+  width: 90%;
 }
 
 .item-info > div {
@@ -9,6 +12,21 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 20px 20px;
+}
+
+.item-info-wrap {
+  margin-top: 20px;
+  overflow: auto;
+  height: 420px;
+  background-color: #f7f7f7;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.item-status > div {
+  width: 280px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #abb2b9;
 }
 
 .receiver-info {
@@ -20,7 +38,7 @@
   margin-bottom: 5px;
 }
 
-img {
+.item-img {
   width: 20%;
   height: 20%;
 }
