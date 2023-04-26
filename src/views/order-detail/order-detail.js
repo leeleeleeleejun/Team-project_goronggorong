@@ -2,14 +2,9 @@ import { main } from '/layouts/main.js';
 await main();
 
 async function load() {
-<<<<<<< HEAD
-  const sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQwZjk5MDY1OTg5ZTk3NjhiYmFlMzEiLCJlbWFpbCI6InRpbUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEyJHlZZzguZmdaSXZ3aXd2VHd4bXc3YWVtaXFHdVRsRnB4Ly9Zd0hhcFloV20xNkhQTlNTNk9tIiwiaWF0IjoxNjgyMzQ4OTk3LCJpc3MiOiJnb3Jvbmdnb3JvbmcifQ.zBvrNjv46fthbNThf-lG508x3w42VouwwCeVnQokf8w';
-=======
   const _id = location.pathname.split('/')[2];
   console.log(_id);
   const userToken = localStorage.getItem('userToken');
->>>>>>> bc49c9726d49a1f0e0dac8db1124a60a3597f303
   const orderInfo = await axios({
     method: 'GET',
     headers: {
