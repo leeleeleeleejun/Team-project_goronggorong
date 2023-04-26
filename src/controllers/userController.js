@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import { userService, authService } from '../services/index.js';
 import { customError } from '../middlewares/index.js';
 import { userModel } from '../db/index.js';
@@ -101,24 +100,26 @@ const userController = {
       if (!name || !email || !password || !phone || !address) {
         throw new customError(400, '누락된 데이터가 있습니다.');
       }
-      // 사용자가 있는지 확인
-      const decoded = await authService.decodeToken(authHeader);
-      const user = await userService.checkUserExist(decoded.email, true);
 
-      const editedInfo = {};
+      const decoded = authService.decodeToken(authHeader);
+      let user = await userService.checkUserExist(decoded.email, true);
+      const hashedPassword = await authService.createHashPassword(password);
+      const refreshToken = await authService.signToken({ name, email, id: user._id });
+      const updatedResult = await userModel.updateUser(user._id, {
+        ...req.body,
+        password: hashedPassword,
+        refreshToken,
+      });
+      if (updatedResult.acknowledged === false) {
+        throw new customError(400, '사용자 정보 업데이트가 실패했습니다.');
+      }
 
-      editedInfo.name = name;
-      editedInfo.email = email;
-      editedInfo.password = await authService.createHashPassword(password);
-      editedInfo.phone = phone;
-      editedInfo.address = address;
-
-      // 사용자 정보 업데이트
-      const updatedUser = await userModel.updateUser(user._id, editedInfo);
+      user = await userService.checkUserExist(email, true);
 
       return res.status(200).json({
         message: '사용자 정보 업데이트를 성공했습니다',
-        info: updatedUser,
+        info: user,
+        token: refreshToken,
       });
     } catch (err) {
       next(err);

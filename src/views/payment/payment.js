@@ -204,7 +204,7 @@ paymentBtn.addEventListener('click', async (e) => {
       const cardInfo = reqBody.getValue().paymentMethod.cardInfo;
       reqBody.setValue('paymentMethod', {
         ...reqBody.getValue().paymentMethod,
-        cardInfo: { ...cardInfo, [target]: change },
+        creditInfo: { ...cardInfo, [target]: change },
       });
     };
     if (cardInfoWarp.cardNumber.value.length === 19) {
@@ -231,6 +231,7 @@ paymentBtn.addEventListener('click', async (e) => {
       alert('카드에 적힌 이름을 확인해주세요');
       return;
     }
+
     setCardInfo('company', cardInfoWarp.company.value);
   } else if (reqBody.getValue().paymentMethod.paymentType !== 'account') {
     alert('결제 수단을 선택해주세요.');
@@ -247,7 +248,7 @@ paymentBtn.addEventListener('click', async (e) => {
   );
   localStorage.removeItem('orders');
   const userToken = localStorage.getItem('userToken');
-
+  console.log(reqBody.getValue());
   axios({
     method: 'POST',
     headers: {
@@ -260,7 +261,6 @@ paymentBtn.addEventListener('click', async (e) => {
       window.location.href = '/orders/payment/success/';
     })
     .catch((err) => {
-      alert(err.status);
-      if (err.status === 500) window.location.href = '/signin';
+      alert(err);
     });
 });

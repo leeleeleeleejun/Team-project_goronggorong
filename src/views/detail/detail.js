@@ -48,11 +48,13 @@ axios
           existingItem.amount = navAmount.value;
         } else {
           cartItem.push(newItem);
+          window.alert('장바구니에 아이템을 추가했습니다🐶');
         }
       }
       //기존 스토리지에 아이템이 없는 경우
       else {
         cartItem.push(newItem);
+        window.alert('장바구니에 아이템을 추가했습니다🐶');
       }
 
       localStorage.setItem('cart', JSON.stringify(cartItem));
