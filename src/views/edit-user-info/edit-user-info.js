@@ -9,7 +9,7 @@ const deleteBtn = document.querySelector('.delete-btn');
 //회원정보 업데이트
 const userToken = localStorage.getItem('userToken');
 
-submitBtn.addEventListener('click', function (e) {
+submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
   axios({
     method: 'put',
@@ -27,17 +27,9 @@ submitBtn.addEventListener('click', function (e) {
   })
     .then((res) => {
       if (res.status === 200) {
-<<<<<<< HEAD
-        alert(`
-        회원정보가 수정되었습니다.`);
-        window.location.href = '/mypage';
-        localStorage.setItem('userToken', res.data.updatedToken);
-        console.log(res.data.updatedToken);
-=======
         alert(`회원정보가 수정되었습니다.`);
         window.location.href = '/mypage';
         localStorage.setItem('userToken', res.data.token);
->>>>>>> 3ab0d63cbd354250c44d1725b540297b010724ea
       }
     })
     .catch((err) => {
@@ -46,7 +38,7 @@ submitBtn.addEventListener('click', function (e) {
 });
 
 //회원탈퇴 로직
-deleteBtn.addEventListener('click', function () {
+deleteBtn.addEventListener('click', () => {
   if (confirm('탈퇴하시겠습니까?')) {
     axios({
       method: 'delete',

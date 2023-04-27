@@ -4,7 +4,7 @@ await main();
 
 //로그아웃 로직
 const signout = document.querySelector('.user__signout');
-signout.addEventListener('click', function () {
+signout.addEventListener('click', () => {
   localStorage.removeItem('userToken');
   alert('로그아웃 되었습니다.');
 });

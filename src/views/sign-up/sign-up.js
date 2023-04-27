@@ -11,16 +11,19 @@ const address = () => {
 };
 const submitBtn = document.querySelector('.form__submit');
 
-submitBtn.addEventListener('click', function (e) {
+submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  axios
-    .post('/api/signup', {
+  axios({
+    method: 'post',
+    url: '/api/signup',
+    data: {
       name: userName.value,
       email: id.value,
       password: pw.value,
       phone: phone.value,
       address: address(),
-    })
+    },
+  })
     .then((res) => {
       if (res.status === 201) {
         console.log(address());

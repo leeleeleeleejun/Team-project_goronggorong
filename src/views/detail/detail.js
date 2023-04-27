@@ -4,8 +4,10 @@ await main();
 const url = window.location.search;
 const itemId = url.split('=')[1];
 
-axios
-  .get(`/api/products?id=${itemId}`)
+axios({
+  method: 'get',
+  url: `/api/products?id=${itemId}`,
+})
   .then((res) => {
     const item = res.data.info;
 
