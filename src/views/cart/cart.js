@@ -29,7 +29,6 @@ const makeListItem = (id, content) => {
   });
 
   const itemImgWrap = document.createElement('a');
-  //itemImgWrap.setAttribute('href'); // 상페이지 url 연결
   const itemImg = document.createElement('img');
   itemImg.setAttribute('class', 'item-img-wrap__item-img');
   itemImg.setAttribute('src', content.imgUrl);
