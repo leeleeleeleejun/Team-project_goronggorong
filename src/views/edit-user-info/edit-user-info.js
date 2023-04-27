@@ -40,7 +40,6 @@ submitBtn.addEventListener('click', (e) => {
     },
     data: {
       name: userName.value,
-      email: id.value,
       password: pw.value,
       phone: phone.value,
       address: address.value,
