@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>주문결제</title>
+    <title>고롱고롱::주문결제</title>
     <link rel="stylesheet" type="text/css" href="./payment.css" />
     <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
     <link rel="stylesheet" type="text/css" href="/layouts/order-common.css" />
@@ -20,18 +20,27 @@
       <h3>주문결제</h3>
       <div class="contents">
         <div class="contents__order-sets">
+          <section>
+            <div class="content-title">
+              <span> 주문 고객 정보 </span>
+            </div>
+            <div class="content">
+              <span class="user-name"></span>
+              <span class="user-phone"></span>
+            </div>
+          </section>
           <section class="order-sets__user-address">
             <div class="content-title">
               <span> 배송지 </span>
             </div>
             <div class="content">
               <div class="delivery-info-wrap">
-                <div class="delivery-info close">
-                  <span class="delivery-address"></span>
+                <div class="delivery-info">
+                  <span class="delivery-address">잠시만 기다려 주세요</span>
                   <span class="delivery-target-name"></span>
                   <span class="delivery-target-phone"></span>
                 </div>
-                <div class="change-delivery-info">
+                <div class="change-delivery-info close">
                   <div class="change-delivery-address">
                     <input type="text" id="sample6_postcode" placeholder="우편번호" />
                     <button onclick="sample6_execDaumPostcode()">우편번호 찾기</button> <br />
@@ -52,7 +61,7 @@
                     type="tel"
                   />
                 </div>
-                <button id="change-delivery-info-btn">배송지 설정</button>
+                <button id="change-delivery-info-btn">배송지 변경</button>
               </div>
               <div class="delivery-request-wrap">
                 <div>

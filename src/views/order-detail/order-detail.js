@@ -1,7 +1,7 @@
 import { main } from '/layouts/main.js';
 await main();
 
-async function load() {
+const load = async () => {
   const _id = location.pathname.split('/')[2];
   console.log(_id);
   const userToken = localStorage.getItem('userToken');
@@ -66,5 +66,5 @@ async function load() {
       })
       .catch((err) => alert(err.message));
   });
-}
+};
 load();
