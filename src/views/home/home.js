@@ -4,8 +4,10 @@ await main();
 //전체 상품 목록 불러오기
 const amountAll = document.querySelector('.prod__item--amount');
 
-axios
-  .get(`/api`) //전체리스트 불러오기
+axios({
+  method: '',
+  url: `/api`,
+})
   .then((res) => {
     const items = res.data.info;
     amountAll.innerText = items.length;
@@ -17,7 +19,7 @@ axios
   .then((res) => {
     const category = document.querySelectorAll('.nav__cate li');
     category.forEach((cate) => {
-      cate.addEventListener('click', function (e) {
+      cate.addEventListener('click', (e) => {
         //기존 on카테고리에서 on클래스 삭제하고
         document.querySelector('.nav__cate--on').classList.remove('nav__cate--on');
         //클릭한 카테고리에 on 클래스 추가
