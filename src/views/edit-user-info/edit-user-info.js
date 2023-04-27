@@ -2,7 +2,6 @@ const userName = document.querySelector('.form__name');
 const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const phone = document.querySelector('.form__phone');
-
 const submitBtn = document.querySelector('.form__submit');
 const deleteBtn = document.querySelector('.delete-btn');
 const addressWrap = document.querySelector('.change-delivery-address');
@@ -14,7 +13,6 @@ const address = () => {
 };
 
 const userToken = localStorage.getItem('userToken');
-
 //기존 회원정보(변경불가능 값)
 axios({
   method: 'get',
@@ -30,8 +28,10 @@ axios({
 });
 
 //회원정보 업데이트
-submitBtn.addEventListener('click', (e) => {
+
+submitBtn.addEventListener('click', function (e) {
   e.preventDefault();
+  console.log(address());
   axios({
     method: 'put',
     url: '/api/mypage/edit-user-info',
@@ -42,7 +42,7 @@ submitBtn.addEventListener('click', (e) => {
       name: userName.value,
       password: pw.value,
       phone: phone.value,
-      address: address.value,
+      address: address(),
     },
   })
     .then((res) => {
@@ -58,7 +58,7 @@ submitBtn.addEventListener('click', (e) => {
 });
 
 //회원탈퇴 로직
-deleteBtn.addEventListener('click', () => {
+deleteBtn.addEventListener('click', function () {
   if (confirm('탈퇴하시겠습니까?')) {
     axios({
       method: 'delete',
