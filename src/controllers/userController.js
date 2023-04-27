@@ -93,12 +93,17 @@ const userController = {
   },
 
   myPageUpdate: async (req, res, next) => {
-    const { name, email, password, phone, address } = req.body;
+    const { name, password, phone, address } = req.body;
     const authHeader = req.header('Authorization');
 
     try {
-      if (!name || !email || !password || !phone || !address) {
-        throw new customError(400, '누락된 데이터가 있습니다.');
+      if (!name || !password || !phone || !address) {
+        throw new customError(
+          400,
+          `누락된 데이터가 있습니다. 항목: ${!name ? '이름' : ''}${!password ? ', 비밀번호' : ''}${
+            !phone ? ', 전화번호' : ''
+          }${!address ? ', 주소' : ''}`,
+        );
       }
 
       const decoded = authService.decodeToken(authHeader);
