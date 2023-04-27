@@ -29,7 +29,6 @@ const makeListItem = (id, content) => {
   });
 
   const itemImgWrap = document.createElement('a');
-  //itemImgWrap.setAttribute('href'); // 상페이지 url 연결
   const itemImg = document.createElement('img');
   itemImg.setAttribute('class', 'item-img-wrap__item-img');
   itemImg.setAttribute('src', content.imgUrl);
@@ -154,10 +153,19 @@ choiceOrder.addEventListener('click', (e) => {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   const orderTarget = [...checkboxes].filter((item) => item.checked);
   if (orderTarget.length > 0) {
-    for (let i = orderTarget.length - 1; i >= 0; i--) {
-      localStorageEventHandle(orderTarget[i].id, 'order');
+    if (localStorage.getItem('userToken')) {
+      for (let i = orderTarget.length - 1; i >= 0; i--) {
+        localStorageEventHandle(orderTarget[i].id, 'order');
+      }
+      localStorage.setItem(
+        'orders',
+        JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]),
+      );
+    } else {
+      e.preventDefault();
+      alert('로그인이 필요합니다.');
+      window.location.href = '/signin';
     }
-    localStorage.setItem('orders', JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]));
   } else {
     alert('선택된 제품이 없습니다.');
     e.preventDefault();
@@ -169,9 +177,15 @@ allOrderBtn.addEventListener('click', (e) => {
   let total = 0;
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   if (localStorageCart.length > 0) {
-    [...localStorageCart].forEach((item) => (total += item.price * item.amount));
-    localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
-    localStorage.setItem('cart', JSON.stringify([]));
+    if (localStorage.getItem('userToken')) {
+      [...localStorageCart].forEach((item) => (total += item.price * item.amount));
+      localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
+      localStorage.setItem('cart', JSON.stringify([]));
+    } else {
+      e.preventDefault();
+      alert('로그인이 필요합니다.');
+      window.location.href = '/signin';
+    }
   } else {
     alert('선택된 제품이 없습니다.');
     e.preventDefault();

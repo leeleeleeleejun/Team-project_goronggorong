@@ -27,11 +27,17 @@ submitBtn.addEventListener('click', function (e) {
   })
     .then((res) => {
       if (res.status === 200) {
+<<<<<<< HEAD
         alert(`
         회원정보가 수정되었습니다.`);
         window.location.href = '/mypage';
         localStorage.setItem('userToken', res.data.updatedToken);
         console.log(res.data.updatedToken);
+=======
+        alert(`회원정보가 수정되었습니다.`);
+        window.location.href = '/mypage';
+        localStorage.setItem('userToken', res.data.token);
+>>>>>>> 3ab0d63cbd354250c44d1725b540297b010724ea
       }
     })
     .catch((err) => {
