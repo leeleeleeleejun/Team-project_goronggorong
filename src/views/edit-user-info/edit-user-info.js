@@ -6,9 +6,22 @@ const address = document.querySelector('.form__address');
 const submitBtn = document.querySelector('.form__submit');
 const deleteBtn = document.querySelector('.delete-btn');
 
-//회원정보 업데이트
 const userToken = localStorage.getItem('userToken');
 
+//기존 회원정보(변경불가능 값)
+axios({
+  method: 'get',
+  url: '/api/auth/get-user-info',
+  headers: {
+    Authorization: `Bearer ${userToken}`,
+  },
+}).then((res) => {
+  const data = res.data.info;
+  id.value = data.email;
+  phone.value = data.phone;
+});
+
+//회원정보 업데이트
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
   axios({
