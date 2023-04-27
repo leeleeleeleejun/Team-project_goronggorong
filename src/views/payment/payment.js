@@ -248,7 +248,7 @@ paymentBtn.addEventListener('click', async (e) => {
   );
   localStorage.removeItem('orders');
   const userToken = localStorage.getItem('userToken');
-  console.log(reqBody.getValue());
+
   axios({
     method: 'POST',
     headers: {
@@ -261,6 +261,7 @@ paymentBtn.addEventListener('click', async (e) => {
       window.location.href = '/orders/payment/success/';
     })
     .catch((err) => {
-      alert(err);
+      alert(err.status);
+      if (err.status === 500) window.location.href = '/signin';
     });
 });

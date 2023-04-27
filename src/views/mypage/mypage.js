@@ -82,27 +82,29 @@ axios({
 
 const createOrderPreview = (order) => {
   const orderDate = order.orderDate;
-  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일 HH:mm:ss');
+  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일');
 
-  return `
-    <div class="order__preview">
-          <div class="preview__top">
-            <p class="preview__top--date">${getDate}</p>
-            <p class="preview__top--orderid">${order.orderId}</p>
-          </div>
-          <div class="preview__bottom">
-            <h2 class="preview__state">${order.deliveryStatus}</h2>
-            <div class="preview__info-container">
-              <img width="100px" class="preview__info--img" src="${order.products[0].id.imgUrl}"/>
-              <div class="preview__info">
-                <p class="preview__info--title">${order.products[0].id.name}</p>
-                <p>외 <strong class="preview__info--others">${order.totalCase - 1}</strong>건</p>
-                <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
-                </div>
-                <h2>총 <strong class="preview__info--price">${order.totalPrice}</strong>원</h2>
-              </div>
-              <a class="preview__btn--detail" href="/orders/${order._id}">주문 상세</a>
-            </div>
-          </div>
-          `;
+  return `<li class="order__preview">
+  <div class="preview__top">
+    <p class="preview__top--orderid">주문번호: ${order.orderId}</p>
+    <p class="preview__top--date">${getDate}</p>
+  </div>
+  <div class="preview__info-container">
+    <div class="preview__info-wrap">
+      <img width="100px" class="preview__info--img" src="${order.products[0].id.imgUrl}" />
+      <div class="preview__info">
+        <p class="preview__info--title">
+          주문제품:  ${order.products[0].id.name} 외 <strong class="preview__info--others">${
+    order.totalCase - 1
+  }</strong>건
+        </p>
+        <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
+        <p class="preview__state">주문상태: ${order.deliveryStatus}</p>
+        <p><strong class="preview__info--price">결제금액: ${order.totalPrice}</strong>원</p>
+      </div>
+    </div>
+    <a class="preview__btn--detail" href="/orders/${order._id}"><button>주문 상세</button></a>
+  </div>
+</li>
+`;
 };
