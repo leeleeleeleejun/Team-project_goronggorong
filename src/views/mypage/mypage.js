@@ -86,24 +86,24 @@ const createOrderPreview = (order) => {
 
   return `<li class="order__preview">
   <div class="preview__top">
-    <p class="preview__top--orderid">주문번호: ${order.orderId}</p>
-    <p class="preview__top--date">${getDate}</p>
+  <p class="preview__top--date">${getDate}</p>
+  <p class="preview__top--orderid">주문번호: ${order.orderId}</p>
   </div>
   <div class="preview__info-container">
     <div class="preview__info-wrap">
       <img width="100px" class="preview__info--img" src="${order.products[0].id.imgUrl}" />
       <div class="preview__info">
+      <p class="preview__state">${order.deliveryStatus}</p>
         <p class="preview__info--title">
-          주문제품:  ${order.products[0].id.name} 외 <strong class="preview__info--others">${
+          ${order.products[0].id.name} <span class="preview__info--other">외 <strong class="preview__info--others">${
     order.totalCase - 1
-  }</strong>건
+  }</strong>건</span>
         </p>
         <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
-        <p class="preview__state">주문상태: ${order.deliveryStatus}</p>
-        <p><strong class="preview__info--price">결제금액: ${order.totalPrice}</strong>원</p>
+        <p><strong class="preview__info--price">${order.totalPrice}</strong>원</p>
       </div>
     </div>
-    <a class="preview__btn--detail" href="/orders/${order._id}"><button>주문 상세</button></a>
+    <a class="preview__btn--detail" href="/orders/${order._id}">주문 상세</a>
   </div>
 </li>
 `;
