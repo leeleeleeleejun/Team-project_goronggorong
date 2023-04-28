@@ -116,9 +116,10 @@ const writeCartList = () => {
   if (!localStorageCart || localStorageCart.length <= 0) {
     cartList.innerHTML = `<li class='empty-cart'>장바구니에 담긴 상품이 없습니다.</li>
       <li class='empty-cart-img'><img src="/img/empty_cart.png"></li>`;
-  }
-  for (let i = 0; i < localStorageCart.length; i++) {
-    cartList.appendChild(makeListItem(i, localStorageCart[i]));
+  } else {
+    for (let i = 0; i < localStorageCart.length; i++) {
+      cartList.appendChild(makeListItem(i, localStorageCart[i]));
+    }
   }
 };
 
@@ -133,7 +134,6 @@ const localStorageEventHandle = (id, order = false) => {
     } else {
       localStorage.setItem('orders', JSON.stringify([targetItem]));
     }
-    totalPrice.innerHTML = 0;
   } else {
     resetCheckBox();
   }
@@ -207,12 +207,14 @@ allOrderBtn.addEventListener('click', (e) => {
 // 페이지 로드 시 체크된 상태 => 금액 연산
 // reset상태가 모두 체크된 것
 const resetCheckBox = () => {
-  totalPrice.innerHTML = 0;
   const items = JSON.parse(localStorage.getItem('cart'));
-  items.forEach((item) => {
-    totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(item.price.replace(',', '')) * item.amount;
-  });
-  totalPrice.innerHTML = Number(totalPrice.innerHTML).toLocaleString();
+  if (items) {
+    totalPrice.innerHTML = 0;
+    items.forEach((item) => {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(item.price.replace(',', '')) * item.amount;
+    });
+    totalPrice.innerHTML = Number(totalPrice.innerHTML).toLocaleString();
+  }
 };
 resetCheckBox();
 writeCartList();
