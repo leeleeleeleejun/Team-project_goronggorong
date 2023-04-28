@@ -43,7 +43,7 @@ const createItem = (item) => {
               <div class="prod__info">
                 <p class="prod__title">${item.name}</p>
                 <div class="prod__order">
-                  <span><strong class="prod__order-price">${item.price}</strong>원</span>
+                  <span><strong class="prod__order-price">${item.price.toLocaleString()}</strong>원</span>
                 </div>
               </div>
             </a>

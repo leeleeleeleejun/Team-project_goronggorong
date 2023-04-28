@@ -23,7 +23,7 @@ axios({
 
     name.forEach((data) => (data.innerText = item.name));
 
-    price.forEach((data) => (data.innerText = item.price));
+    price.forEach((data) => (data.innerText = item.price.toLocaleString()));
 
     category.innerText = item.category;
     description.innerText = item.description;
@@ -36,7 +36,7 @@ axios({
         id: item._id,
         imgUrl: item.imgUrl,
         name: item.name,
-        price: item.price,
+        price: item.price.toLocaleString(),
         amount: navAmount.value,
       };
       //스토리지에 기존 아이템이 있는 경우

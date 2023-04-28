@@ -100,7 +100,7 @@ const createOrderPreview = (order) => {
   }</strong>건</span>
         </p>
         <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
-        <p><strong class="preview__info--price">${order.totalPrice}</strong>원</p>
+        <p><strong class="preview__info--price">${order.totalPrice.toLocaleString()}</strong>원</p>
       </div>
     </div>
     <a class="preview__btn--detail" href="/orders/${order._id}">주문 상세</a>
