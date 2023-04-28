@@ -19,6 +19,7 @@ const makeListItem = (id, content) => {
   itemCheckbox.setAttribute('type', 'checkbox');
   itemCheckbox.setAttribute('class', 'item-info-wrap__item-checkbox');
   itemCheckbox.setAttribute('id', id);
+  itemCheckbox.setAttribute('checked', 'true');
   itemCheckbox.addEventListener('change', (e) => {
     // 체크된 것만 총액에 포함
     if (e.target.checked) {
@@ -125,7 +126,6 @@ const localStorageEventHandle = (id, order = false) => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   const targetItem = localStorageCart.splice(id, 1)[0];
   localStorage.setItem('cart', JSON.stringify(localStorageCart));
-  console.log(JSON.parse(localStorage.getItem('cart')));
   if (order) {
     const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
     if (localStorageOrders) {
@@ -133,8 +133,9 @@ const localStorageEventHandle = (id, order = false) => {
     } else {
       localStorage.setItem('orders', JSON.stringify([targetItem]));
     }
-  } else {
     totalPrice.innerHTML = 0;
+  } else {
+    resetCheckBox();
   }
   writeCartList();
 };
@@ -145,7 +146,6 @@ choiceDeleteBtn.addEventListener('click', () => {
 
   if (deleteTarget.length > 0) {
     for (let i = deleteTarget.length - 1; i >= 0; i--) {
-      console.log(deleteTarget[i]);
       localStorageEventHandle(deleteTarget[i].id);
     }
   } else {
@@ -204,4 +204,15 @@ allOrderBtn.addEventListener('click', (e) => {
   }
 });
 
+// 페이지 로드 시 체크된 상태 => 금액 연산
+// reset상태가 모두 체크된 것
+const resetCheckBox = () => {
+  totalPrice.innerHTML = 0;
+  const items = JSON.parse(localStorage.getItem('cart'));
+  items.forEach((item) => {
+    totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(item.price.replace(',', '')) * item.amount;
+  });
+  totalPrice.innerHTML = Number(totalPrice.innerHTML).toLocaleString();
+};
+resetCheckBox();
 writeCartList();
