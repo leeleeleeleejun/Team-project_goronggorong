@@ -22,9 +22,15 @@ const makeListItem = (id, content) => {
   itemCheckbox.addEventListener('change', (e) => {
     // 체크된 것만 총액에 포함
     if (e.target.checked) {
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price * content.amount;
+      totalPrice.innerHTML = (
+        Number(totalPrice.innerHTML.replace(',', '')) +
+        Number(content.price.replace(',', '')) * content.amount
+      ).toLocaleString();
     } else {
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price * content.amount;
+      totalPrice.innerHTML = (
+        Number(totalPrice.innerHTML.replace(',', '')) -
+        Number(content.price.replace(',', '')) * content.amount
+      ).toLocaleString();
     }
   });
 
@@ -55,7 +61,9 @@ const makeListItem = (id, content) => {
     items[id].amount = content.amount;
     localStorage.setItem('cart', JSON.stringify(items));
     if (itemCheckbox.checked) {
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price;
+      totalPrice.innerHTML = (
+        Number(totalPrice.innerHTML.replace(',', '')) + Number(content.price.replace(',', ''))
+      ).toLocaleString();
     }
   });
   const decreaseButton = document.createElement('button');
@@ -69,7 +77,9 @@ const makeListItem = (id, content) => {
       items[id].amount = content.amount;
       localStorage.setItem('cart', JSON.stringify(items));
       if (itemCheckbox.checked) {
-        totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price;
+        totalPrice.innerHTML = (
+          Number(totalPrice.innerHTML.replace(',', '')) - Number(content.price.replace(',', ''))
+        ).toLocaleString();
       }
     }
   });
@@ -102,7 +112,7 @@ const makeListItem = (id, content) => {
 const writeCartList = () => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   cartList.innerHTML = '';
-  if (localStorageCart.length <= 0) {
+  if (!localStorageCart || localStorageCart.length <= 0) {
     cartList.innerHTML = `<li class='empty-cart'>장바구니에 담긴 상품이 없습니다.</li>
       <li class='empty-cart-img'><img src="/img/empty_cart.png"></li>`;
   }
@@ -178,7 +188,8 @@ allOrderBtn.addEventListener('click', (e) => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   if (localStorageCart.length > 0) {
     if (localStorage.getItem('userToken')) {
-      [...localStorageCart].forEach((item) => (total += item.price * item.amount));
+      [...localStorageCart].forEach((item) => (total += Number(item.price.replace(',', '')) * item.amount));
+      total = total.toLocaleString();
       localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
       localStorage.setItem('cart', JSON.stringify([]));
     } else {
