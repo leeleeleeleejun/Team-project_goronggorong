@@ -24,7 +24,7 @@ const load = async () => {
       receiverAddress.innerHTML = address;
       receiverPhone.innerHTML = phone;
       receiverRequest.innerHTML = requestMessage;
-      totalPriceNumber.innerHTML = totalPrice;
+      totalPriceNumber.innerHTML = totalPrice.toLocaleString();
       paymentTypeEl.innerHTML = paymentType === 'account' ? '무통장입금' : '카드';
     })
     .catch((err) => alert(err));

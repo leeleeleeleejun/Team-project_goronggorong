@@ -16,7 +16,7 @@ const load = async () => {
       return res.data.info;
     })
     .catch((err) => alert(err));
-
+  console.log(orderInfo);
   const { orderId, orderDate, deliveryStatus, paymentMethod, products, receiver, totalPrice } = orderInfo;
   const itemInfoWrap = document.querySelector('.item-info-wrap');
 
@@ -26,7 +26,7 @@ const load = async () => {
     <div>
       <span>제품명: ${item.id.name}</span>
       <span>수량: ${item.amount}</span>
-      <span> 금액:${item.id.price * item.id.amount}</span>
+      <span> 금액:${(item.id.price * item.amount).toLocaleString()}</span>
     </div>
   </li>`;
   });
@@ -37,7 +37,7 @@ const load = async () => {
   orderDateEl.innerHTML = `주문일자: ${orderDate.slice(0, 10)}`;
   orderStatusEl.innerHTML = `주문상태: ${deliveryStatus}`;
   const totalPriceNumber = document.querySelector('.total-price');
-  totalPriceNumber.innerHTML = totalPrice;
+  totalPriceNumber.innerHTML = totalPrice.toLocaleString();
   const paymentType = document.querySelector('.payment-type');
   paymentType.innerHTML = paymentMethod.paymentType === 'account' ? '무통장입금' : '카드';
   const receiverName = document.querySelector('.receiver-name');
