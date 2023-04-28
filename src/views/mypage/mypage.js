@@ -4,7 +4,7 @@ await main();
 
 //로그아웃 로직
 const signout = document.querySelector('.user__signout');
-signout.addEventListener('click', function () {
+signout.addEventListener('click', () => {
   localStorage.removeItem('userToken');
   alert('로그아웃 되었습니다.');
 });
@@ -100,7 +100,7 @@ const createOrderPreview = (order) => {
   }</strong>건</span>
         </p>
         <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
-        <p><strong class="preview__info--price">${order.totalPrice}</strong>원</p>
+        <p><strong class="preview__info--price">${order.totalPrice.toLocaleString()}</strong>원</p>
       </div>
     </div>
     <a class="preview__btn--detail" href="/orders/${order._id}">주문 상세</a>

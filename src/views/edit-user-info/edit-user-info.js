@@ -2,15 +2,36 @@ const userName = document.querySelector('.form__name');
 const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const phone = document.querySelector('.form__phone');
-const address = document.querySelector('.form__address');
 const submitBtn = document.querySelector('.form__submit');
 const deleteBtn = document.querySelector('.delete-btn');
+const addressWrap = document.querySelector('.change-delivery-address');
+const address = () => {
+  return [...addressWrap.children]
+    .filter((item) => item.tagName === 'INPUT')
+    .map((item) => item.value)
+    .join(' ');
+};
+
+const userToken = localStorage.getItem('userToken');
+//기존 회원정보(변경불가능 값)
+axios({
+  method: 'get',
+  url: '/api/auth/get-user-info',
+  headers: {
+    Authorization: `Bearer ${userToken}`,
+  },
+}).then((res) => {
+  const data = res.data.info;
+  id.value = data.email;
+  phone.value = data.phone;
+  userName.value = data.name;
+});
 
 //회원정보 업데이트
-const userToken = localStorage.getItem('userToken');
 
 submitBtn.addEventListener('click', function (e) {
   e.preventDefault();
+  console.log(address());
   axios({
     method: 'put',
     url: '/api/mypage/edit-user-info',
@@ -19,25 +40,16 @@ submitBtn.addEventListener('click', function (e) {
     },
     data: {
       name: userName.value,
-      email: id.value,
       password: pw.value,
       phone: phone.value,
-      address: address.value,
+      address: address(),
     },
   })
     .then((res) => {
       if (res.status === 200) {
-<<<<<<< HEAD
-        alert(`
-        회원정보가 수정되었습니다.`);
-        window.location.href = '/mypage';
-        localStorage.setItem('userToken', res.data.updatedToken);
-        console.log(res.data.updatedToken);
-=======
         alert(`회원정보가 수정되었습니다.`);
         window.location.href = '/mypage';
         localStorage.setItem('userToken', res.data.token);
->>>>>>> 3ab0d63cbd354250c44d1725b540297b010724ea
       }
     })
     .catch((err) => {

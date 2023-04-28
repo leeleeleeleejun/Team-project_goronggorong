@@ -37,7 +37,7 @@ const reqBody = (() => {
 // 로컬스토리지로 주문 정보를 받음
 const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
 const totalPrice = document.querySelectorAll('.total-price');
-reqBody.setValue('totalPrice', Number(localStorageOrders[1]));
+reqBody.setValue('totalPrice', Number(localStorageOrders[1].replace(',', '')));
 totalPrice[0].innerHTML = localStorageOrders[1];
 totalPrice[1].innerHTML = localStorageOrders[1];
 [...localStorageOrders[0]].forEach((item) => {
@@ -271,7 +271,7 @@ paymentBtn.addEventListener('click', async (e) => {
     }),
   );
   localStorage.removeItem('orders');
-
+  console.log(reqBody.getValue());
   axios({
     method: 'POST',
     headers: {
