@@ -1,5 +1,6 @@
 import { customError } from '../middlewares/index.js';
 import { authService } from '../services/index.js';
+import { userModel } from '../db/index.js';
 
 const authController = {
   /* refreshToken: async (req, res, next) => {
@@ -20,7 +21,7 @@ const authController = {
       info: decoded,
     });
   }, */
-  getUserInfo: (req, res, next) => {
+  getUserInfo: async (req, res, next) => {
     const authHeader = req.header('Authorization');
 
     try {
@@ -29,10 +30,11 @@ const authController = {
       }
 
       const decodedInfo = authService.decodeToken(authHeader);
+      const user = await userModel.findById(decodedInfo._id);
 
       return res.status(200).json({
         message: '토큰이 확인됐습니다',
-        info: decodedInfo,
+        info: user,
       });
     } catch (err) {
       next(err);

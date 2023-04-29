@@ -2,7 +2,7 @@ import { main } from '/layouts/main.js';
 await main();
 
 const userToken = localStorage.getItem('usrToken');
-async function load() {
+const load = async () => {
   const checkToken = await axios({
     method: 'GET',
     url: '/orders/payment/success',
@@ -24,7 +24,7 @@ async function load() {
       receiverAddress.innerHTML = address;
       receiverPhone.innerHTML = phone;
       receiverRequest.innerHTML = requestMessage;
-      totalPriceNumber.innerHTML = totalPrice;
+      totalPriceNumber.innerHTML = totalPrice.toLocaleString();
       paymentTypeEl.innerHTML = paymentType === 'account' ? '무통장입금' : '카드';
     })
     .catch((err) => alert(err));
@@ -36,6 +36,6 @@ async function load() {
   const goMainPage = document.querySelector('.go-main-page');
   goMyPage.addEventListener('click', deleteLocalStorage);
   goMainPage.addEventListener('click', deleteLocalStorage);
-}
+};
 
 load();

@@ -2,7 +2,7 @@ const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const submitBtn = document.querySelector('.form__submit');
 
-submitBtn.addEventListener('click', function (e) {
+submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
   axios

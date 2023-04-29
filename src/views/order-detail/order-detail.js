@@ -1,7 +1,7 @@
 import { main } from '/layouts/main.js';
 await main();
 
-async function load() {
+const load = async () => {
   const _id = location.pathname.split('/')[2];
   console.log(_id);
   const userToken = localStorage.getItem('userToken');
@@ -16,7 +16,7 @@ async function load() {
       return res.data.info;
     })
     .catch((err) => alert(err));
-
+  console.log(orderInfo);
   const { orderId, orderDate, deliveryStatus, paymentMethod, products, receiver, totalPrice } = orderInfo;
   const itemInfoWrap = document.querySelector('.item-info-wrap');
 
@@ -26,7 +26,7 @@ async function load() {
     <div>
       <span>제품명: ${item.id.name}</span>
       <span>수량: ${item.amount}</span>
-      <span> 금액:${item.id.price * item.id.amount}</span>
+      <span> 금액:${(item.id.price * item.amount).toLocaleString()}</span>
     </div>
   </li>`;
   });
@@ -37,7 +37,7 @@ async function load() {
   orderDateEl.innerHTML = `주문일자: ${orderDate.slice(0, 10)}`;
   orderStatusEl.innerHTML = `주문상태: ${deliveryStatus}`;
   const totalPriceNumber = document.querySelector('.total-price');
-  totalPriceNumber.innerHTML = totalPrice;
+  totalPriceNumber.innerHTML = totalPrice.toLocaleString();
   const paymentType = document.querySelector('.payment-type');
   paymentType.innerHTML = paymentMethod.paymentType === 'account' ? '무통장입금' : '카드';
   const receiverName = document.querySelector('.receiver-name');
@@ -66,5 +66,5 @@ async function load() {
       })
       .catch((err) => alert(err.message));
   });
-}
+};
 load();
