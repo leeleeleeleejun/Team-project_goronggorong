@@ -28,14 +28,14 @@ const load = async () => {
       paymentTypeEl.innerHTML = paymentType === 'account' ? '무통장입금' : '카드';
     })
     .catch((err) => alert(err));
-  const deleteLocalStorage = () => {
+  const deleteDeliveryInfo = () => {
     localStorage.removeItem('deliveryInfo');
   };
 
   const goMyPage = document.querySelector('.go-my-page');
   const goMainPage = document.querySelector('.go-main-page');
-  goMyPage.addEventListener('click', deleteLocalStorage);
-  goMainPage.addEventListener('click', deleteLocalStorage);
+  goMyPage.addEventListener('click', deleteDeliveryInfo);
+  goMainPage.addEventListener('click', deleteDeliveryInfo);
 };
 
 load();
