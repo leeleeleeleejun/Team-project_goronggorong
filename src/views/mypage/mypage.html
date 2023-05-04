@@ -4,28 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="icon" href="/img/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/layouts/main.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs"></script>
     <script defer type="module" src="mypage.js"></script>
     <link rel="stylesheet" href="mypage.css" />
-    <title>마이페이지</title>
+    <title>고롱고롱::마이페이지</title>
   </head>
-  <body> 
+  <body>
     <header></header>
     <main role="main">
       <section class="title">
         <h1>마이페이지</h1>
       </section>
-
       <section class="user">
-        <p><span class="user__name"></span>님</p>
-        <a class="user__edit" href="/mypage/check-valid-user">회원정보 수정</a>
+        <div>
+          <p><span class="user__name"></span>님🐶</p>
+          <a class="user__edit" href="/mypage/check-valid-user">⚙️ 회원정보 수정</a>
+        </div>
         <a class="user__signout" href="/">로그아웃</a>
       </section>
-
       <section>
         <article>
           <ul class="state">
@@ -55,9 +55,8 @@
             </li>
           </ul>
         </article>
-        <article class="order">
-          
-          </article>
+        <article>
+          <ul class="order"></ul>
         </article>
       </section>
     </main>

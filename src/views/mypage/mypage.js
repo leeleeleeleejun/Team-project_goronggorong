@@ -4,7 +4,7 @@ await main();
 
 //로그아웃 로직
 const signout = document.querySelector('.user__signout');
-signout.addEventListener('click', function () {
+signout.addEventListener('click', () => {
   localStorage.removeItem('userToken');
   alert('로그아웃 되었습니다.');
 });
@@ -23,7 +23,6 @@ const userToken = localStorage.getItem('userToken');
 axios({
   method: 'get',
   url: '/api/auth/get-user-info',
-  //유저 토큰 확인
   headers: {
     Authorization: `Bearer ${userToken}`,
   },
@@ -35,7 +34,6 @@ axios({
 axios({
   method: 'get',
   url: '/api/orders/user/order-list',
-  //유저 토큰 확인
   headers: {
     Authorization: `Bearer ${userToken}`,
   },
@@ -77,41 +75,36 @@ axios({
         orderList.innerHTML += createOrderPreview(order);
       });
     }
-    // //주문내역이 없는 경우
-    // if (res.status === 404) {
-    //   for (let i = 0; i < 6; i++) {
-    //     status[i] = 0;
-    //     state[i].innerText = '0';
-    //   }
-    // }
   })
   .catch((err) => {
-    alert(err.response.data.message);
+    console.log(err.response.data.message);
   });
 
 const createOrderPreview = (order) => {
   const orderDate = order.orderDate;
-  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일 HH:mm:ss');
+  const getDate = dayjs(orderDate).format('YYYY년 MM월 DD일');
 
-  return `
-    <div class="order__preview">
-          <div class="preview__top">
-            <p class="preview__top--date">${getDate}</p>
-            <p class="preview__top--orderid">${order.orderId}</p>
-          </div>
-          <div class="preview__bottom">
-            <h2 class="preview__state">${order.deliveryStatus}</h2>
-            <div class="preview__info-container">
-              <img width="100px" class="preview__info--img" src="${order.products[0].id.imgUrl}"/>
-              <div class="preview__info">
-                <p class="preview__info--title">${order.products[0].id.name}</p>
-                <p>외 <strong class="preview__info--others">${order.totalCase - 1}</strong>건</p>
-                <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
-                </div>
-                <h2>총 <strong class="preview__info--price">${order.totalPrice}</strong>원</h2>
-              </div>
-              <a class="preview__btn--detail" href="/orders/${order._id}">주문 상세</a>
-            </div>
-          </div>
-          `;
+  return `<li class="order__preview">
+  <div class="preview__top">
+  <p class="preview__top--date">${getDate}</p>
+  <p class="preview__top--orderid">주문번호: ${order.orderId}</p>
+  </div>
+  <div class="preview__info-container">
+    <div class="preview__info-wrap">
+      <img width="100px" class="preview__info--img" src="${order.products[0].id.imgUrl}" />
+      <div class="preview__info">
+      <p class="preview__state">${order.deliveryStatus}</p>
+        <p class="preview__info--title">
+          ${order.products[0].id.name} <span class="preview__info--other">외 <strong class="preview__info--others">${
+    order.totalCase - 1
+  }</strong>건</span>
+        </p>
+        <!-- <p><strong class="preview__info--count">${order.products[0].id.amount}</strong>개</p> -->
+        <p><strong class="preview__info--price">${order.totalPrice.toLocaleString()}</strong>원</p>
+      </div>
+    </div>
+    <a class="preview__btn--detail" href="/orders/${order._id}">주문 상세</a>
+  </div>
+</li>
+`;
 };

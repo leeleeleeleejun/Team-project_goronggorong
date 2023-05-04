@@ -1,15 +1,15 @@
 const pw = document.querySelector('.form__pw');
 const submit = document.querySelector('.form__submit');
 
-submit.addEventListener('click', function (e) {
+submit.addEventListener('click', (e) => {
   e.preventDefault();
   const userToken = localStorage.getItem('userToken');
   axios({
     method: 'post',
-    url: '/api/mypage/check-valid-user',
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
+    url: '/api/mypage/check-valid-user',
     data: {
       password: pw.value,
     },

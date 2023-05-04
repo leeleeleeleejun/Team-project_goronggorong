@@ -93,20 +93,29 @@ const userController = {
   },
 
   myPageUpdate: async (req, res, next) => {
-    const { name, email, password, phone, address } = req.body;
+    const { name, password, phone, address } = req.body;
     const authHeader = req.header('Authorization');
 
     try {
-      if (!name || !email || !password || !phone || !address) {
-        throw new customError(400, '누락된 데이터가 있습니다.');
+      if (!name || !password || !phone || !address) {
+        throw new customError(
+          400,
+          `누락된 데이터가 있습니다. 항목: ${!name ? '이름' : ''}${!password ? ', 비밀번호' : ''}${
+            !phone ? ', 전화번호' : ''
+          }${!address ? ', 주소' : ''}`,
+        );
       }
 
       const decoded = authService.decodeToken(authHeader);
       let user = await userService.checkUserExist(decoded.email, true);
       const hashedPassword = await authService.createHashPassword(password);
-      const refreshToken = await authService.signToken({ name, email, id: user._id });
+      const refreshToken = await authService.signToken(user);
       const updatedResult = await userModel.updateUser(user._id, {
-        ...req.body,
+        name: name,
+        email: user.email,
+        password: password,
+        phone: phone,
+        address: address,
         password: hashedPassword,
         refreshToken,
       });
@@ -114,7 +123,7 @@ const userController = {
         throw new customError(400, '사용자 정보 업데이트가 실패했습니다.');
       }
 
-      user = await userService.checkUserExist(email, true);
+      user = await userService.checkUserExist(user.email, true);
 
       return res.status(200).json({
         message: '사용자 정보 업데이트를 성공했습니다',

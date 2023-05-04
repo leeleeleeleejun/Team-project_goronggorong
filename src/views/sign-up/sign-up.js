@@ -2,19 +2,28 @@ const userName = document.querySelector('.form__name');
 const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const phone = document.querySelector('.form__phone');
-const address = document.querySelector('.form__address');
+const addressWrap = document.querySelector('.change-delivery-address');
+const address = () => {
+  return [...addressWrap.children]
+    .filter((item) => item.tagName === 'INPUT')
+    .map((item) => item.value)
+    .join(' ');
+};
 const submitBtn = document.querySelector('.form__submit');
 
-submitBtn.addEventListener('click', function (e) {
+submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  axios
-    .post('/api/signup', {
+  axios({
+    method: 'post',
+    url: '/api/signup',
+    data: {
       name: userName.value,
       email: id.value,
       password: pw.value,
       phone: phone.value,
-      address: address.value,
-    })
+      address: address(),
+    },
+  })
     .then((res) => {
       if (res.status === 201) {
         alert(`
