@@ -1,4 +1,5 @@
 import { main } from '/layouts/main.js';
+import callApi from 'layouts/callApi';
 await main();
 
 // 결제완료 시 서버에 보낼 데이터
@@ -37,8 +38,8 @@ const reqBody = (() => {
 const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
 const totalPrice = document.querySelectorAll('.total-price');
 reqBody.setValue('totalPrice', Number(localStorageOrders[1]));
-totalPrice[0].innerHTML = localStorageOrders[1];
-totalPrice[1].innerHTML = localStorageOrders[1];
+totalPrice[0].textContent = localStorageOrders[1];
+totalPrice[1].textContent = localStorageOrders[1];
 [...localStorageOrders[0]].forEach((item) => {
   reqBody.setValue('products', [...reqBody.getValue().products, { id: item.id, amount: item.amount }]);
 });
@@ -162,15 +163,15 @@ changeDeliveryInfoBtn.addEventListener('click', (e) => {
   if (e.currentTarget.className === 'change') {
     deliveryInfoWrap.info.classList.remove('close');
     changeDeliveryInfoWrap.info.classList.add('close');
-    e.currentTarget.innerHTML = '배송지 설정';
+    e.currentTarget.textContent = '배송지 설정';
 
-    deliveryInfoWrap.address.innerHTML = changeDeliveryInfoWrap.address();
-    deliveryInfoWrap.name.innerHTML = changeDeliveryInfoWrap.name.value;
-    deliveryInfoWrap.phone.innerHTML = changeDeliveryInfoWrap.phone.value;
+    deliveryInfoWrap.address.textContent = changeDeliveryInfoWrap.address();
+    deliveryInfoWrap.name.textContent = changeDeliveryInfoWrap.name.value;
+    deliveryInfoWrap.phone.textContent = changeDeliveryInfoWrap.phone.value;
   } else {
     deliveryInfoWrap.info.classList.add('close');
     changeDeliveryInfoWrap.info.classList.remove('close');
-    e.currentTarget.innerHTML = '완료';
+    e.currentTarget.textContent = '완료';
   }
 });
 
@@ -179,16 +180,16 @@ paymentBtn.addEventListener('click', async (e) => {
   e.preventDefault();
 
   if (
-    deliveryInfoWrap.name.innerHTML.length > 0 &&
-    deliveryInfoWrap.phone.innerHTML.length === 11 &&
-    deliveryInfoWrap.address.innerHTML.length > 0
+    deliveryInfoWrap.name.textContent.length > 0 &&
+    deliveryInfoWrap.phone.textContent.length === 11 &&
+    deliveryInfoWrap.address.textContent.length > 0
   ) {
-    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, name: deliveryInfoWrap.name.innerHTML });
+    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, name: deliveryInfoWrap.name.textContent });
     reqBody.setValue('receiver', {
       ...reqBody.getValue().receiver,
-      phone: deliveryInfoWrap.phone.innerHTML,
+      phone: deliveryInfoWrap.phone.textContent,
     });
-    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, address: deliveryInfoWrap.address.innerHTML });
+    reqBody.setValue('receiver', { ...reqBody.getValue().receiver, address: deliveryInfoWrap.address.textContent });
     reqBody.setValue('receiver', {
       ...reqBody.getValue().receiver,
       requestMessage: deliveryInfoWrap.option.value,
@@ -247,20 +248,10 @@ paymentBtn.addEventListener('click', async (e) => {
     }),
   );
   localStorage.removeItem('orders');
-  const userToken = localStorage.getItem('userToken');
-  console.log(reqBody.getValue());
-  axios({
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${userToken}`,
-    },
-    url: '/api/orders/payment',
-    data: reqBody.getValue(),
-  })
-    .then(() => {
-      window.location.href = '/orders/payment/success/';
-    })
-    .catch((err) => {
-      alert(err);
-    });
+  try {
+    callApi('POST', '/api/orders/payment', reqBody.getValue());
+    window.location.href = '/orders/payment/success/';
+  } catch (err) {
+    alert(err);
+  }
 });

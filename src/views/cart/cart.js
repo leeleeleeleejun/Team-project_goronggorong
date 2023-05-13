@@ -22,9 +22,9 @@ const makeListItem = (id, content) => {
   itemCheckbox.addEventListener('change', (e) => {
     // 체크된 것만 총액에 포함
     if (e.target.checked) {
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price * content.amount;
+      totalPrice.textContent = Number(totalPrice.textContent) + content.price * content.amount;
     } else {
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price * content.amount;
+      totalPrice.textContent = Number(totalPrice.textContent) - content.price * content.amount;
     }
   });
 
@@ -37,40 +37,41 @@ const makeListItem = (id, content) => {
   itemInfo.setAttribute('class', 'item-info');
   const itemName = document.createElement('span');
   itemName.setAttribute('class', 'item-info__item-name');
-  itemName.innerText = content.name;
+  itemName.textContent = content.name;
   const itemPrice = document.createElement('span');
   itemPrice.setAttribute('class', 'item-info__price');
-  itemPrice.innerText = `${content.price}원`;
+  itemPrice.textContent = `${content.price}원`;
 
   const amountWrap = document.createElement('div');
   amountWrap.setAttribute('class', 'cart-list__amount-wrap');
+  textContent;
   const amount = document.createElement('div');
   amount.setAttribute('class', 'amount-wrap__amount');
   const amountNumber = document.createElement('span');
-  amountNumber.innerText = content.amount;
+  amountNumber.textContent = content.amount;
   const increaseButton = document.createElement('button');
-  increaseButton.innerText = '+';
+  increaseButton.textContent = '+';
   increaseButton.addEventListener('click', () => {
-    amountNumber.innerText = ++content.amount;
+    amountNumber.textContent = ++content.amount;
     const items = JSON.parse(localStorage.getItem('cart'));
     items[id].amount = content.amount;
     localStorage.setItem('cart', JSON.stringify(items));
     if (itemCheckbox.checked) {
-      totalPrice.innerHTML = Number(totalPrice.innerHTML) + content.price;
+      totalPrice.textContent = Number(totalPrice.textContent) + content.price;
     }
   });
   const decreaseButton = document.createElement('button');
-  decreaseButton.innerText = '-';
+  decreaseButton.textContent = '-';
   decreaseButton.addEventListener('click', () => {
-    if (Number(amountNumber.innerText) <= 1) {
+    if (Number(amountNumber.textContent) <= 1) {
       alert('수량을 확인해 주세요');
     } else {
-      amountNumber.innerText = --content.amount;
+      amountNumber.textContent = --content.amount;
       const items = JSON.parse(localStorage.getItem('cart'));
       items[id].amount = content.amount;
       localStorage.setItem('cart', JSON.stringify(items));
       if (itemCheckbox.checked) {
-        totalPrice.innerHTML = Number(totalPrice.innerHTML) - content.price;
+        totalPrice.textContent = Number(totalPrice.textContent) - content.price;
       }
     }
   });
@@ -102,7 +103,7 @@ const makeListItem = (id, content) => {
 
 const writeCartList = () => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
-  cartList.innerHTML = '';
+  cartList.textContent = '';
   if (localStorageCart.length <= 0) {
     cartList.innerHTML = `<li class='empty-cart'>장바구니에 담긴 상품이 없습니다.</li>
       <li class='empty-cart-img'><img src="/img/empty_cart.png"></li>`;
@@ -125,7 +126,7 @@ const localStorageEventHandle = (id, order = false) => {
       localStorage.setItem('orders', JSON.stringify([targetItem]));
     }
   } else {
-    totalPrice.innerHTML = 0;
+    totalPrice.textContent = 0;
   }
   writeCartList();
 };
@@ -146,7 +147,7 @@ choiceDeleteBtn.addEventListener('click', () => {
 
 allDeleteBtn.addEventListener('click', () => {
   localStorage.setItem('cart', JSON.stringify([]));
-  totalPrice.innerHTML = 0;
+  totalPrice.textContent = 0;
   writeCartList();
 });
 
@@ -160,7 +161,7 @@ choiceOrder.addEventListener('click', (e) => {
       }
       localStorage.setItem(
         'orders',
-        JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.innerHTML]),
+        JSON.stringify([JSON.parse(localStorage.getItem('orders')), totalPrice.textContent]),
       );
     } else {
       e.preventDefault();

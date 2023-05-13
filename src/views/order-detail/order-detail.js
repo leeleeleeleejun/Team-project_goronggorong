@@ -1,4 +1,6 @@
 import { main } from '/layouts/main.js';
+import callApi from 'layouts/callApi';
+
 await main();
 
 async function load() {
@@ -31,40 +33,34 @@ async function load() {
   </li>`;
   });
   const orderIdEl = document.querySelector('.order-id');
-  orderIdEl.innerHTML = `주문번호: ${orderId}`;
+  orderIdEl.textContent = `주문번호: ${orderId}`;
   const orderDateEl = document.querySelector('.order-date');
   const orderStatusEl = document.querySelector('.order-status');
-  orderDateEl.innerHTML = `주문일자: ${orderDate.slice(0, 10)}`;
-  orderStatusEl.innerHTML = `주문상태: ${deliveryStatus}`;
+  orderDateEl.textContent = `주문일자: ${orderDate.slice(0, 10)}`;
+  orderStatusEl.textContent = `주문상태: ${deliveryStatus}`;
   const totalPriceNumber = document.querySelector('.total-price');
-  totalPriceNumber.innerHTML = totalPrice;
+  totalPriceNumber.textContent = totalPrice;
   const paymentType = document.querySelector('.payment-type');
-  paymentType.innerHTML = paymentMethod.paymentType === 'account' ? '무통장입금' : '카드';
+  paymentType.textContent = paymentMethod.paymentType === 'account' ? '무통장입금' : '카드';
   const receiverName = document.querySelector('.receiver-name');
   const receiverAddress = document.querySelector('.receiver-address');
   const receiverPhone = document.querySelector('.receiver-phone');
   const receiverRequest = document.querySelector('.receiver-request');
-  receiverName.innerHTML = receiver.name;
-  receiverAddress.innerHTML = receiver.address;
-  receiverPhone.innerHTML = receiver.phone;
-  receiverRequest.innerHTML = receiver.requestMessage;
+  receiverName.textContent = receiver.name;
+  receiverAddress.textContent = receiver.address;
+  receiverPhone.textContent = receiver.phone;
+  receiverRequest.textContent = receiver.requestMessage;
 
   const cancelOrder = document.querySelector('.cancel-order');
   cancelOrder.addEventListener('click', (e) => {
     e.preventDefault();
-    axios({
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${userToken}`,
-      },
-
-      url: `/api/orders/cancel/${_id}`,
-    })
-      .then((res) => {
-        alert(res.data.message);
-        window.location.href = '/mypage';
-      })
-      .catch((err) => alert(err.message));
+    try {
+      const response = callApi('PUT', `/api/orders/cancel/${_id}`);
+      alert(response.data.message);
+      window.location.href = '/mypage';
+    } catch (err) {
+      alert(err.message);
+    }
   });
 }
 load();
