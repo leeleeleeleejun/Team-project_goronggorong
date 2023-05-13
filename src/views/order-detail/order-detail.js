@@ -3,7 +3,7 @@ import callApi from 'layouts/callApi';
 
 await main();
 
-async function load() {
+const load = async () => {
   const _id = location.pathname.split('/')[2];
 
   try {
@@ -54,5 +54,5 @@ async function load() {
       alert(err.message);
     }
   });
-}
+};
 load();

@@ -1,21 +1,17 @@
-body{
-  background-color: #f7f7f7;
+.delete-btn{
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 0;
+  width: 340px;
+  height: 56px;
+  border-radius: 100px;
+  border: #c1c1c1 solid 1px;
+  background-color: white;
+  padding: 0px 16px 0px 16px;
+  color: #878787;
 }
 
-.sign{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.sign__form{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form__help{
-  color: rgb(176, 176, 176);
-  font-size: 12px;
+.delete-btn:hover{
+  background-color: #c1c1c120;
 }

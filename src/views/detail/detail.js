@@ -4,8 +4,10 @@ await main();
 const url = window.location.search;
 const itemId = url.split('=')[1];
 
-axios
-  .get(`/api/products?id=${itemId}`)
+axios({
+  method: 'get',
+  url: `/api/products?id=${itemId}`,
+})
   .then((res) => {
     const item = res.data.info;
 
@@ -13,6 +15,7 @@ axios
     const name = document.querySelectorAll('.item__name');
     const price = document.querySelectorAll('.item__price');
     const category = document.querySelector('.overview__category');
+    const description = document.querySelector('.overview__description');
     const navAmount = document.querySelector('.bottom-nav__amount--count');
     const navCartBtn = document.querySelector('.bottom-nav__btn--cart');
 
@@ -20,9 +23,10 @@ axios
 
     name.forEach((data) => (data.innerText = item.name));
 
-    price.forEach((data) => (data.innerText = item.price));
+    price.forEach((data) => (data.innerText = item.price.toLocaleString()));
 
     category.innerText = item.category;
+    description.innerText = item.description;
     navCartBtn.addEventListener('click', addCart);
 
     let cartItem = [];
@@ -32,7 +36,7 @@ axios
         id: item._id,
         imgUrl: item.imgUrl,
         name: item.name,
-        price: item.price,
+        price: item.price.toLocaleString(),
         amount: navAmount.value,
       };
       //스토리지에 기존 아이템이 있는 경우
@@ -46,11 +50,13 @@ axios
           existingItem.amount = navAmount.value;
         } else {
           cartItem.push(newItem);
+          window.alert('장바구니에 아이템을 추가했습니다🐶');
         }
       }
       //기존 스토리지에 아이템이 없는 경우
       else {
         cartItem.push(newItem);
+        window.alert('장바구니에 아이템을 추가했습니다🐶');
       }
 
       localStorage.setItem('cart', JSON.stringify(cartItem));

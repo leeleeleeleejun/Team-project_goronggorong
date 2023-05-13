@@ -1,21 +1,40 @@
-body{
-  background-color: #f7f7f7;
+.modal-card-title{
+  font-size: 24px;
+  font-weight: 600;
 }
 
-.sign{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.modal-card-body h1{
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 16px;
 }
 
-.sign__form{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.new-pw{
+  height: 34px;
+  width: 160px;
+  background-color: #f4f4f4;
+}
+.new-pw:hover{
+  background-color: #f4f4f4;
+}
+.new-pw:focus{
+  outline: 0;
+  border: 0;
+  background-color: #f4f4f4;
 }
 
-.form__help{
-  color: rgb(176, 176, 176);
-  font-size: 12px;
+.modal-card-foot{
+  justify-content: flex-end;
+  padding: 12px 20px;
+  background-color: white;
+}
+.modal-signin{
+  border-radius: 100px;
+  width: 140px;
+  padding: 0px 16px 0px 16px;
+}
+.modal-copy{
+  border-radius: 100px;
+  width: 140px;
+  padding: 0px 16px 0px 16px;
 }

@@ -34,10 +34,11 @@ const reqBody = (() => {
   };
   return { getValue, setValue };
 })();
+
 // 로컬스토리지로 주문 정보를 받음
 const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
 const totalPrice = document.querySelectorAll('.total-price');
-reqBody.setValue('totalPrice', Number(localStorageOrders[1]));
+reqBody.setValue('totalPrice', Number(localStorageOrders[1].replace(',', '')));
 totalPrice[0].textContent = localStorageOrders[1];
 totalPrice[1].textContent = localStorageOrders[1];
 [...localStorageOrders[0]].forEach((item) => {
@@ -132,6 +133,29 @@ const changeDeliveryInfoWrap = {
   },
 };
 
+// 주문정보의 기본 배송지 설정
+const userToken = localStorage.getItem('userToken');
+
+axios({
+  method: 'GET',
+  url: '/api/auth/get-user-info',
+  headers: {
+    Authorization: `Bearer ${userToken}`,
+  },
+})
+  .then((res) => {
+    console.log(res);
+    const userName = document.querySelector('.user-name');
+    const userPhone = document.querySelector('.user-phone');
+    const { address, name, phone } = res.data.info;
+    deliveryInfoWrap.address.innerHTML = address;
+    deliveryInfoWrap.name.innerHTML = name;
+    deliveryInfoWrap.phone.innerHTML = phone;
+    userName.innerHTML = name;
+    userPhone.innerHTML = phone;
+  })
+  .catch();
+
 changeDeliveryInfoWrap.phone.addEventListener('input', (e) => {
   inputNumberTypeCheck(e, (targetNumber) => {
     return targetNumber;
@@ -146,32 +170,32 @@ changeDeliveryInfoWrap.name.addEventListener('input', (e) => {
 
 const changeDeliveryInfoBtn = document.querySelector('#change-delivery-info-btn');
 changeDeliveryInfoBtn.addEventListener('click', (e) => {
-  if (changeDeliveryInfoWrap.address().length <= 3) {
-    alert('주소를 확인해주세요');
-    return;
-  }
-  if (changeDeliveryInfoWrap.name.value.length <= 0) {
-    alert('이름을 확인해주세요');
-    return;
-  }
-  if (changeDeliveryInfoWrap.phone.value.length !== 11) {
-    alert('번호를 확인해주세요');
-    return;
-  }
   e.currentTarget.classList.toggle('change');
 
   if (e.currentTarget.className === 'change') {
+    deliveryInfoWrap.info.classList.add('close');
+    changeDeliveryInfoWrap.info.classList.remove('close');
+    e.currentTarget.innerHTML = '완료';
+  } else {
+    if (changeDeliveryInfoWrap.address().length <= 3) {
+      alert('주소를 확인해주세요');
+      return;
+    }
+    if (changeDeliveryInfoWrap.name.value.length <= 0) {
+      alert('이름을 확인해주세요');
+      return;
+    }
+    if (changeDeliveryInfoWrap.phone.value.length !== 11) {
+      alert('번호를 확인해주세요');
+      return;
+    }
     deliveryInfoWrap.info.classList.remove('close');
     changeDeliveryInfoWrap.info.classList.add('close');
-    e.currentTarget.textContent = '배송지 설정';
+    e.currentTarget.textContent = '배송지 변경';
 
     deliveryInfoWrap.address.textContent = changeDeliveryInfoWrap.address();
     deliveryInfoWrap.name.textContent = changeDeliveryInfoWrap.name.value;
     deliveryInfoWrap.phone.textContent = changeDeliveryInfoWrap.phone.value;
-  } else {
-    deliveryInfoWrap.info.classList.add('close');
-    changeDeliveryInfoWrap.info.classList.remove('close');
-    e.currentTarget.textContent = '완료';
   }
 });
 
