@@ -19,17 +19,23 @@ const makeListItem = (id, content) => {
   itemCheckbox.setAttribute('type', 'checkbox');
   itemCheckbox.setAttribute('class', 'item-info-wrap__item-checkbox');
   itemCheckbox.setAttribute('id', id);
+  itemCheckbox.setAttribute('checked', 'true');
   itemCheckbox.addEventListener('change', (e) => {
     // 체크된 것만 총액에 포함
     if (e.target.checked) {
-      totalPrice.textContent = Number(totalPrice.textContent) + content.price * content.amount;
+      totalPrice.innerHTML = (
+        Number(totalPrice.innerHTML.replace(',', '')) +
+        Number(content.price.replace(',', '')) * content.amount
+      ).toLocaleString();
     } else {
-      totalPrice.textContent = Number(totalPrice.textContent) - content.price * content.amount;
+      totalPrice.innerHTML = (
+        Number(totalPrice.innerHTML.replace(',', '')) -
+        Number(content.price.replace(',', '')) * content.amount
+      ).toLocaleString();
     }
   });
 
   const itemImgWrap = document.createElement('a');
-  //itemImgWrap.setAttribute('href'); // 상페이지 url 연결
   const itemImg = document.createElement('img');
   itemImg.setAttribute('class', 'item-img-wrap__item-img');
   itemImg.setAttribute('src', content.imgUrl);
@@ -57,7 +63,9 @@ const makeListItem = (id, content) => {
     items[id].amount = content.amount;
     localStorage.setItem('cart', JSON.stringify(items));
     if (itemCheckbox.checked) {
-      totalPrice.textContent = Number(totalPrice.textContent) + content.price;
+      totalPrice.innerHTML = (
+        Number(totalPrice.innerHTML.replace(',', '')) + Number(content.price.replace(',', ''))
+      ).toLocaleString();
     }
   });
   const decreaseButton = document.createElement('button');
@@ -71,7 +79,9 @@ const makeListItem = (id, content) => {
       items[id].amount = content.amount;
       localStorage.setItem('cart', JSON.stringify(items));
       if (itemCheckbox.checked) {
-        totalPrice.textContent = Number(totalPrice.textContent) - content.price;
+        totalPrice.innerHTML = (
+          Number(totalPrice.innerHTML.replace(',', '')) - Number(content.price.replace(',', ''))
+        ).toLocaleString();
       }
     }
   });
@@ -103,13 +113,14 @@ const makeListItem = (id, content) => {
 
 const writeCartList = () => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
-  cartList.textContent = '';
-  if (localStorageCart.length <= 0) {
+  cartList.innerHTML = '';
+  if (!localStorageCart || localStorageCart.length <= 0) {
     cartList.innerHTML = `<li class='empty-cart'>장바구니에 담긴 상품이 없습니다.</li>
       <li class='empty-cart-img'><img src="/img/empty_cart.png"></li>`;
-  }
-  for (let i = 0; i < localStorageCart.length; i++) {
-    cartList.appendChild(makeListItem(i, localStorageCart[i]));
+  } else {
+    for (let i = 0; i < localStorageCart.length; i++) {
+      cartList.appendChild(makeListItem(i, localStorageCart[i]));
+    }
   }
 };
 
@@ -117,7 +128,6 @@ const localStorageEventHandle = (id, order = false) => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   const targetItem = localStorageCart.splice(id, 1)[0];
   localStorage.setItem('cart', JSON.stringify(localStorageCart));
-  console.log(JSON.parse(localStorage.getItem('cart')));
   if (order) {
     const localStorageOrders = JSON.parse(localStorage.getItem('orders'));
     if (localStorageOrders) {
@@ -126,7 +136,7 @@ const localStorageEventHandle = (id, order = false) => {
       localStorage.setItem('orders', JSON.stringify([targetItem]));
     }
   } else {
-    totalPrice.textContent = 0;
+    resetCheckBox();
   }
   writeCartList();
 };
@@ -137,7 +147,6 @@ choiceDeleteBtn.addEventListener('click', () => {
 
   if (deleteTarget.length > 0) {
     for (let i = deleteTarget.length - 1; i >= 0; i--) {
-      console.log(deleteTarget[i]);
       localStorageEventHandle(deleteTarget[i].id);
     }
   } else {
@@ -180,7 +189,8 @@ allOrderBtn.addEventListener('click', (e) => {
   const localStorageCart = JSON.parse(localStorage.getItem('cart'));
   if (localStorageCart.length > 0) {
     if (localStorage.getItem('userToken')) {
-      [...localStorageCart].forEach((item) => (total += item.price * item.amount));
+      [...localStorageCart].forEach((item) => (total += Number(item.price.replace(',', '')) * item.amount));
+      total = total.toLocaleString();
       localStorage.setItem('orders', JSON.stringify([localStorageCart, total]));
       localStorage.setItem('cart', JSON.stringify([]));
     } else {
@@ -195,4 +205,17 @@ allOrderBtn.addEventListener('click', (e) => {
   }
 });
 
+// 페이지 로드 시 체크된 상태 => 금액 연산
+// reset상태가 모두 체크된 것
+const resetCheckBox = () => {
+  const items = JSON.parse(localStorage.getItem('cart'));
+  if (items) {
+    totalPrice.innerHTML = 0;
+    items.forEach((item) => {
+      totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(item.price.replace(',', '')) * item.amount;
+    });
+    totalPrice.innerHTML = Number(totalPrice.innerHTML).toLocaleString();
+  }
+};
+resetCheckBox();
 writeCartList();
